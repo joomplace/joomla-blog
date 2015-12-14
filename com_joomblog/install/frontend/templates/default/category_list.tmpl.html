@@ -1,0 +1,81 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: category_list.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage category_list.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+global $_JB_CONFIGURATION;
+$category = $category[0];
+$articles = $articles[0];
+$cat_image = '';
+$params = json_decode($category->params);
+if (!empty($params->image)) $cat_image = Juri::root().$params->image;
+?>
+
+
+		<div class="jb-blogs" id="item-<?php echo $category->id;?>">
+                    <div class="jb-blogs-head clearfix">
+                        <div class="jb-blog-imgcont">
+			    <img class="jb-blog-img jb-blogcat-img" alt="<?php echo $category->title;?>" <?php echo (empty($cat_image))? 'src="'.JURI::root().'components/com_joomblog/templates/default/images/document_pencil_64.png"':'src="'.$cat_image.'"';?>>
+                        </div>
+
+                        <div class="jb-blog-info">
+                            <h3 class="jb-blog-title">
+                                <a href="<?php echo $category->link;?>"><?php echo $category->title;?></a>
+                            </h3>
+                            <div  class="jb-blog-desc jb-count-catposts">
+                                <?php echo $category->count;?>&nbsp;<?php echo JText::_('COM_JOOMBLOG_POSTS_IN_CAT');?>
+                            </div>
+                            <div class="jb-blog-desc">
+                            	<?php echo $category->description;?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="jb-blog-main clearfix">
+                        <h4 class="jb-mbm"><?php echo JText::_('COM_JOOMBLOG_RECENT_POST');?></h4>
+			
+			<?php 
+			if (!empty($articles))
+			{
+			?>
+				<ul class="jb-blogposts-list ulrest">
+			<?php
+				foreach($articles as $article)
+				{
+					$user = JFactory::getUser($article->created_by);
+					$db = JFactory::getDBO();		
+					$query = "SELECT `name` FROM `#__users` WHERE id=".$user->id;
+					$db->setQuery($query);
+					$user_fullname = $db->LoadResult();
+					$articleLink = JRoute::_('index.php?option=com_joomblog&show='.$article->id.'&Itemid='.$Itemid);
+					$authorLink = JRoute::_('index.php?option=com_joomblog&task=profile&id='.$user->id.'&Itemid='.$Itemid);
+			?>
+				<li>
+				<h3 class="jb-recent-entry">
+				    <a href="<?php echo $articleLink; ?>" class="jb-blogpost"><?php echo $article->title?></a>
+                                </h3>
+                                <div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$article->categories;?></div>
+                                <small class="jb-created-bgk"><?php echo $article->created;?></small>
+				<?php if ($_JB_CONFIGURATION->get('showUserLink')) { ?> <small class="jb-category-bgk jb-catauthor"><a class="jb-blogpost-category" href="<?php echo $authorLink;?>" target="_blank"><?php echo $user_fullname;?></a></small><?php } ?>
+				</li>
+			<?php 
+				}
+			?>
+				</ul>
+				<small class="jb-show-all"><a href="<?php echo $category->link;?>"><?php echo JText::_('COM_JOOMBLOG_SHOW_ALL');?></a></small>
+			<?php	
+			} else {
+				echo '<ul class="jb-blogposts-list ulrest"><li>'.JText::_('COM_JOOMBLOG_NO_POSTS')."</li></ul>";
+			}
+			?>
+                        
+                    </div>
+                </div>

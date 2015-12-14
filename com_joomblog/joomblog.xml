@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+	<name>com_joomblog</name>
+	<creationDate>April 2014</creationDate>
+	<author>Joomplace Team</author>
+	<authorEmail> </authorEmail>
+	<authorUrl> </authorUrl>
+	<copyright>Copyright 2008 - 2010. All rights reserved</copyright>
+	<license>License Info</license>
+	<version>1.3.0 (build 001)</version>
+	<description>Blog system for Joomla</description>
+	<scriptfile>install.joomblog.php</scriptfile>
+	<files>
+	</files>
+	<media destination="com_joomblog" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</media>
+	<administration>
+		<menu alt="Joomblog">COM_JOOMBLOG</menu>
+		<submenu>
+			<menu link="option=com_categories&amp;view=categories&amp;extension=com_joomblog" alt="Joomblog/Categories">COM_JOOMBLOG_SUBMENU_CATEGORIES</menu>
+			<menu link="option=com_joomblog&amp;view=blogs" alt="Joomblog/Manage blog items">COM_JOOMBLOG_SUBMENU_BLOGS</menu>
+            <menu link="option=com_joomblog&amp;view=posts" alt="Joomblog/Manage blogs">COM_JOOMBLOG_SUBMENU_POSTS</menu>
+            <menu link="option=com_joomblog&amp;view=users" alt="Joomblog/Manage bloggers">COM_JOOMBLOG_SUBMENU_USERS</menu>
+			<menu link="option=com_joomblog&amp;view=comments" alt="Joomblog/Manage comment items">COM_JOOMBLOG_SUBMENU_COMMENTS</menu>
+			<menu link="option=com_joomblog&amp;view=tags" alt="Joomblog/Manage tag items">COM_JOOMBLOG_SUBMENU_TAGS</menu>
+			<menu link="option=com_joomblog&amp;view=settings" alt="Joomblog/Settings">COM_JOOMBLOG_SUBMENU_SETTINGS</menu>
+			<menu link="option=com_joomblog&amp;view=about" alt="Joomblog/About JoomBlog">COM_JOOMBLOG_SUBMENU_ABOUT</menu>
+		</submenu>
+		<files>
+			<filename>install.sql.php</filename>
+			<filename>install/backend.zip</filename>
+			<filename>install/frontend.zip</filename>
+			<filename>install/index.html</filename>
+		</files>
+		<languages folder="languages">
+		  <language tag="en-GB">admin/en-GB.com_joomblog.sys.ini</language>
+		  <language tag="en-GB">admin/en-GB.com_joomblog.ini</language>
+		</languages>
+	</administration>
+	<languages folder="languages">
+		<language tag="en-GB">site/en-GB.com_joomblog.ini</language>
+	</languages>
+</extension>

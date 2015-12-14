@@ -1,0 +1,97 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: blogs_blogger.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage blogs_blogger.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+global $_JB_CONFIGURATION;
+$blog	=& $blogs[0];
+$bloggers = $recent[0];
+?>
+
+		<div class="jb-blogs">
+                    <div class="jb-blogs-head clearfix">
+<!--                         <div class="jb-blog-imgcont">
+			    <?php if ($_JB_CONFIGURATION->get('avatar')!='none'){?>
+				<?php if($_JB_CONFIGURATION->get('linkAvatar')){?><a href="<?php echo $blog->authorLink;?>"><?php } ?>
+				    <img src="<?php echo $blog->src;?>" alt="" class="jb-blog-img" />
+				<?php if($_JB_CONFIGURATION->get('linkAvatar')){?></a><?php } ?>
+			<?php } ?>
+                        </div>
+ -->
+					 	<div class="jb-blog-imgcont">
+						    <img class="jb-blog-img jb-blogcat-img" <?php echo 'src="'.JURI::root().'components/com_joomblog/templates/default/images/document_pencil_64.png"';?>>
+						</div>
+
+                        <div class="jb-blog-info">
+                            <h3 class="jb-blog-title">
+                                <a href="<?php echo $blog->blogLink;?>"><?php echo $blog->title;?></a>
+                            </h3>
+                            <div class="jb-blog-authors">
+                                <img src="<?php echo $blog->src;?>" style="width: 16px; height: 16px; margin-bottom: 5px;" alt=""/>
+                                <?php if ($_JB_CONFIGURATION->get('showUserLink')) { ?>
+                                        <a href="<?php echo $blog->authorLink;?>">
+                                            <span>
+                                                <?php
+                                                    if ($_JB_CONFIGURATION->get('useFullName'))
+                                                    {
+                                                        echo $blog->name;
+                                                    }
+                                                    else
+                                                    {
+                                                        echo $blog->username;
+                                                    }
+                                                    ?>
+                                            </span>
+                                        </a>
+                                <?php } ?>
+                            </div>
+                            <div  class="jb-blog-desc">
+				<?php echo $blog->description;?>
+                            </div>
+                        </div>
+                    </div>
+		    
+		    <div class="jb-blog-main clearfix">
+                        <h4 class="jb-mbm"><?php echo JText::_('COM_JOOMBLOG_RECENT_POST');?></h4>
+			<?php if (!empty($bloggers)) : ?>
+				<ul class="jb-blogposts-list ulrest">
+				<?php
+					foreach($bloggers as $blogger)
+					{
+						$blogLink = JRoute::_('index.php?option=com_joomblog&blogid='.$blogger->bid.'&Itemid='.$Itemid.'&view=blogger');
+						$articleLink = JRoute::_('index.php?option=com_joomblog&show='.$blogger->id.'&Itemid='.$Itemid);
+				?>
+				    <li>
+					<h3 class="jb-recent-entry">
+					    <b><a href="<?php echo $blogLink;?>"><?php echo $blogger->btitle;?></a> <span class="blog-sep">&#8594;</span>
+                            <?php
+                            if ( JFactory::getUser()->get('isRoot') || JFactory::getUser()->id == $blogger->created_by )
+                                echo '<a class="jb-btn jb-blog-edit" style="float: left; margin: 5px 5px 0px 0px; padding: 1px 6px;" href="'. JRoute::_('index.php?option=com_joomblog&task=write&id='.$blogger->id.'&blogid='.$blogger->bid.'&Itemid='.$Itemid) .'" title="'.JText::_('COM_JOOMBLOG_EDIT_POST').'"><i class="jb-icon-pencil"></i></a>';
+                            ?>
+
+                            <a href="<?php echo $articleLink; ?>" class="jb-blogpost"><?php echo $blogger->title?></a></b>
+					</h3>
+					<div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$blogger->categories;?></div>
+					<small class="jb-created-bgk"><?php echo $blogger->created;?></small>
+					<small class="jb-category-bgk"><?php if( $_JB_CONFIGURATION->get('categoryDisplay') ){echo ($blogger->multicats?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')).$blogger->jcategory; }?></small>
+				    </li>
+				<?php 
+					}
+				?>
+				</ul>
+
+				<small class="jb-show-all"><a href="<?php echo JRoute::_('index.php?option=com_joomblog&user='.$blog->username.'&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_SHOW_ALL');?> (<?php echo $totalArticle;?>)</a></small>
+			<?php else : ?>
+                            <ul class="jb-blogposts-list ulrest"><li><?php echo JText::_('COM_JOOMBLOG_NO_POSTS'); ?></li></ul>
+			<?php endif; ?>
+                    </div>
+                </div>
+
+

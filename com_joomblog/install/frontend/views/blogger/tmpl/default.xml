@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMBLOG_BLOG_LAYOUT">
+		<message>
+			COM_JOOMBLOG_BLOG_LAYOUT_DESC
+		</message>
+	</layout>
+	<state>
+		<name>COM_JOOMBLOG_MENU_BLOG_LAYOUT</name>
+		<description>COM_JOOMBLOG_MENU_BLOG_LAYOUT_DESCR</description>
+	</state>
+	
+	<fields name="request">
+		<fieldset name="request"
+			addfieldpath="/administrator/components/com_joomblog/models/fields">
+			<field name="blogid" type="sql" query="SELECT * FROM #__joomblog_list_blogs" default="0" value_field="title"  key_field="id" label="Select blog" >
+			</field>	
+		</fieldset>
+	</fields>
+</metadata>

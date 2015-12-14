@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade">
+	<name>Joomblog Archive</name>
+	<author>JoomPlace Team</author>
+	<creationDate>November 2010</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.2.0 (build 001)</version>
+	<description></description>
+	<files>
+		<filename module="mod_jb_archive">mod_jb_archive.php</filename>
+		<filename module="mod_jb_archive">helper.php</filename>
+		<filename module="mod_jb_archive">index.html</filename>
+		<filename module="mod_jb_archive">tmpl/default.php</filename>
+		<filename module="mod_jb_archive">tmpl/index.html</filename>
+		<filename module="mod_jb_archive">css/styles.css</filename>
+		<filename module="mod_jb_archive">css/index.html</filename>
+		<filename module="mod_jb_archive">css/j_arrow.png</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_jb_archive.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" label="MOD_JB_ARCHIVE_MODULECLASS_SFX_LABEL" description="MOD_JB_ARCHIVE_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+			<fieldset name="advanced">
+					<field name="cache" type="list" default="1" label="MOD_JB_ARCHIVE_CACHING" description="MOD_JB_ARCHIVE_CACHING_DESCRIPTION">
+						<option value="1">MOD_JB_ARCHIVE_USE_GLOBAL</option>
+						<option value="0">MOD_JB_ARCHIVE_NO_CACHING</option>
+					</field>
+					<field name="show_posts" type="list" default="1" label="MOD_JB_ARCHIVE_CACHING_SHOW_POSTS" description="MOD_JB_ARCHIVE_CACHING_SHOW_POSTS_DESCRIPTION">
+						<option value="1">MOD_JB_ARCHIVE_CACHING_SHOW_POSTS</option>
+						<option value="0">MOD_JB_ARCHIVE_CACHING_DONT_SHOW_POSTS</option>
+					</field>
+					<field name="cache_time" type="text" default="900" label="MOD_JB_ARCHIVE_CACHE_TIME" description="MOD_JB_ARCHIVE_CACHE_TIME_DESCRIPTION" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

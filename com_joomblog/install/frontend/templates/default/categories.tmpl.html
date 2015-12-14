@@ -1,0 +1,27 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: categories.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage categories.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+defined('_JEXEC') or die('Restricted access');
+
+$tmpl = JRequest::getVar('tmpl');
+		if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';
+?>
+
+<div class="categoriesblock">
+	<ul class="categories">
+		<li class="category-row">
+			<div class="category">
+				<h2><a href="<?php echo JRoute::_("index.php?option=com_joomblog&task=tag&category=".$category.$tmpl);?>" class="title"><?php echo $title;?> (<?php echo $count;?>)</h2></a>				
+			</div>					
+		</li>
+	</ul>
+</div>
+
+<div style="clear:both;"></div>

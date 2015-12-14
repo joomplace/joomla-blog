@@ -1,0 +1,169 @@
+<!-- 
+
+* JoomBlog component for Joomla
+* @version $Id: index.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+
+
+start JoomBlog wrapper -->
+
+<?php 
+$blogid = JFactory::getApplication()->input->get('blogid');
+$itemId = jbGetItemId();
+global $_JB_CONFIGURATION;
+ ?>
+<form method="POST" action="<?php echo Juri::root()."index.php?option=com_joomblog&task=adminhome&blogid=".$blogid.'&Itemid='.$itemId; ?>">                
+    <div id="joomblogEntryList">
+    <div class="jb-wrap" id="jb-wrap">
+            <div class="jb-content"> 
+                <div class="clearfix">
+                <div class="jb-left-blogname clearfix">
+                <h2 class="jb-blog-name"><span><?php echo $blog_title; ?></span><span class="jb-seporator-gt"> &#62; </span></h2>
+                <div class="jb-btns-dropdown" >
+                    <button class="jb-btn jb-show-info"><i class="jb-icon-posts"></i> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?> <i class="jb-icon-sort-down"></i></button>
+                    <ul class="jb-dropdown-menu">                                                    
+                        <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&task=showcomments&blogid='.$blogid.'&Itemid='.$itemId; ?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_COMMENTS');?></a></li>
+                        <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&task=bloggerstats&blogid='.$blogid.'&Itemid='.$itemId; ?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?></a></li>
+                        <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&task=editblog&blogid='.$blogid.'&Itemid='.$itemId; ?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
+                    </ul>
+                </div>
+                </div>
+                <div class="jb-search">
+                    <input type="text" onkeydown="if (event.keyCode == 13) this.form.submit();" title="filter_search"  name="filter_search" class="jb-search-input" id="filter_search" value="<?php echo $filter_search; ?>"/>
+                     <div class="jb-search-clear-group">
+                        <button class="jb-btn btn-mini" type="submit"><i class="jb-icon-search"></i></button><button class="jb-btn btn-mini" type="button" onclick="document.getElementById('filter_search').value=''; document.getElementById('cat_search').value='All categories'; document.getElementById('tag_search').value='All tags'; document.getElementById('filter_state').value='All'; this.form.submit();" ><i class="jb-icon-cross"></i></button>
+                    </div>
+                </div>
+                <div class="jb-right-selects">
+                    <select id="cat_search" class="jb-sort-posts" name="cat_search" onChange="this.form.submit();">
+                        <option selected value="All categories"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SEL_CAT');?> </option>
+                        <?php foreach ($categories AS $category)
+                        {
+                            echo ($category->id == $search_cat)?'<option selected value="'.$category->id.'">'.$category->title.'</option>':'<option value="'.$category->id.'">'.$category->title.'</option>';
+                        } ?>
+                    </select>
+                    <?php if ($tags) { ?> 
+                    <select id="tag_search" class="jb-sort-posts" name="tag_search" onChange="this.form.submit();">
+                        <option selected value="All tags"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SEL_TAG');?> </option>
+                        <?php foreach ($tags AS $tag)
+                        {
+                            echo ($tag->id == $search_tag)?'<option selected value="'.$tag->id.'">'.$tag->name.'</option>':'<option value="'.$tag->id.'">'.$tag->name.'</option>';
+                        } ?>
+                    </select>
+                    <?php } ?>
+                    <select name="filter_state" class="jb-sort-posts" id="filter_state" onChange="this.form.submit();">
+                        <option <?php if ($filter_state == 'All') echo 'selected'; ?> value="All"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SEL_ALL');?>  (<?php echo (!empty($entries_count))?$entries_count:'0'; ?>)</option>
+                        <option <?php if ($filter_state == 'Published') echo 'selected'; ?> value="Published"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_PUBLISHED');?> (<?php echo (!empty($published_count))?$published_count:'0'; ?>)</option>
+                        <option <?php if ($filter_state == 'Unpublished') echo 'selected'; ?> value="Unpublished"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_UNPUBLISHED');?>  (<?php echo (!empty($unpublished_count))?$unpublished_count:'0'; ?>)</option>
+                        <option <?php if ($filter_state == 'Drafts') echo 'selected'; ?> value="Drafts"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DRAFT');?> (<?php echo (!empty($drafts_count))?$drafts_count:'0'; ?>)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <?php if ($jbentries) 
+                { ?>    
+            <div class="jb-btn-group jb-post-btn-group clearfix">
+                <span class="jb-check-all"><input class="jb-check-post jb-check-all" type="checkbox" value="on" id="jb-check-all-posts"><i class="jb-icon-checkbox-unchecked"></i><label for="jb-check-all-posts" /></label></span>
+                <?php if (empty($filter_state) OR $filter_state == 'All') { ?>                
+                
+                <?php }
+                if   ($filter_state == 'Published')  { ?>
+                <button class="jb-btn jb-btn-publ" onclick="document.getElementById('posts_action').value='unpublish'; this.form.submit();"> <?php echo JText::_('DASHBOARD_UNPUBLISH');?></button><button class="jb-btn jb-btn-revdraft" onclick="document.getElementById('posts_action').value='draft'; this.form.submit();"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DRAFT_REVERT');?></button>
+                <?php }
+                if   ($filter_state == 'Unpublished')  { ?>
+                <button class="jb-btn jb-btn-publ" onclick="document.getElementById('posts_action').value='publish'; this.form.submit();"><?php echo JText::_('DASHBOARD_PUBLISH');?></button><button class="jb-btn jb-btn-revdraft" onclick="document.getElementById('posts_action').value='draft'; this.form.submit();"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DRAFT_REVERT');?></button>
+                <?php } if   ($filter_state == 'Drafts')  { ?>  
+
+                <?php } ?>
+                <button class="jb-btn jb-trash-post-btn" onclick="document.getElementById('posts_action').value='delete'; this.form.submit();"><i class="jb-icon-trash"></i></button> 
+                <button title="<?php echo JText::_('COM_JOOMBLOG_CREATE_NEW_POST');?>" type="button" onclick="window.location.href='<?php echo Juri::root().'index.php?option=com_joomblog&task=write&id=0&blogid='.$blogid.'&Itemid='.$itemId; ?>'" class="jb-btn jb-edit-post-btn jb-btn-primary"><i class="jb-icon-pencil"></i></button>
+            </div>        
+                
+            <div class="jb-postslist-container">
+
+                
+                <?php foreach ($jbentries as $entry)
+                    { ?>
+                    <div class="jb-blog-contouter jb-outer-postslist">
+                        <div class="jb-blog-continner">
+                            <div class="clearfix">
+                                <div class="jb-left-msgpart"> 
+                                    <div>
+                                        <?php  $post_title = (!empty($entry->title))?$entry->title:JText::_('COM_JOOMBLOG_UNTITLED');                                               
+                                               if ($entry->canEdit) $postlink = '<a class="jb-posts-link" href="'.Juri::root().'index.php?option=com_joomblog&task=write&id='.$entry->id.'&blogid='.$blogid.'&Itemid='.$itemId.'" >'.$post_title.'</a>';
+                                               if (!$entry->canEdit) $postlink = $post_title;                                                
+                                        ?>
+                                        <input class="jb-check-post jb-checkpost-list" type="checkbox" name="cid[]" id="post_id" value="<?php echo $entry->id ;?>"/>
+                                        <i class="jb-icon-checkbox-unchecked"></i><label for="post_id" style="font-weight: bold;">&nbsp;<?php echo $postlink; ?></label>
+                                    </div>
+
+                                    <div class="jb-edit-links">
+                                       <?php if ($entry->canEdit) { ?> <a title="Edit" href="<?php echo Juri::root().'index.php?option=com_joomblog&task=write&id='.$entry->id.'&blogid='.$blogid.'&Itemid='.$itemId; ?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_EDIT');?></a>&nbsp;|&nbsp; <?php } ?>
+                                        <a title="<?php echo ($entry->state =='0' OR $entry->state =='-2')?JText::_('COM_JOOMBLOG_USER_DASHBOARD_PREVIEW'):JText::_('COM_JOOMBLOG_USER_DASHBOARD_VIEW');?>" target="_blank" href="<?php echo ($entry->state =='0' OR $entry->state =='-2')? Juri::root().'index.php?option=com_joomblog&task=preview&id='.$entry->id.'&Itemid='.$itemId : Juri::root().'index.php?option=com_joomblog&show='.$entry->id.'&Itemid='.$itemId; ?>"> <?php echo ($entry->state =='0' OR $entry->state =='-2')?JText::_('COM_JOOMBLOG_USER_DASHBOARD_PREVIEW'):JText::_('COM_JOOMBLOG_USER_DASHBOARD_VIEW');?></a>&nbsp;|&nbsp;
+                                        <?php if ($entry->canDelete) { ?> <a title="Delete" href="<?php echo Juri::root().'index.php?option=com_joomblog&task=delete&blogid='.$blogid.'&id='.$entry->id.'&Itemid='.$itemId; ?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DEL');?></a> <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="jb-right-msgpart">
+                                    
+                                    <?php if ($entry->state =='1') echo '<span class="jb-published"></span>';
+                                    if ($entry->state =='0') echo '<span class="jb-unpublished">'.JText::_("COM_JOOMBLOG_UNPUBLISHED").'</span>';
+                                    if ($entry->state =='-2') echo '<span class="jb-draft">'.JText::_("COM_JOOMBLOG_DRAFT").'</span>'; ?>     
+                                     <a target="_blank" href="<?php echo Juri::root().'index.php?option=com_joomblog&user='.$entry->username.'&Itemid='.$itemId; ?>" class="jb-author-link"><?php echo $entry->name ;?></a>                                            
+                                    <?php 
+                                    if  ($_JB_CONFIGURATION->get('useComment')=="2")
+                                    {
+                                        $comment_count = $entry->commentCount.'<i class="jb-icon-comment"></i>';
+                                        echo $comment_count;
+                                    }
+                                    elseif ($entry->commentCount AND $_JB_CONFIGURATION->get('useComment')!=="2") { ?>
+                                     <a target="_blank" href="<?php echo Juri::root().'index.php?option=com_joomblog&show='.$entry->id.'&Itemid='.$itemId.'#comments'; ?>"><span class="jb-comments-number" title="<?php echo number_format($entry->commentCount,0,'',' ').' '.JText::_("COM_JOOMBLOG_USER_DASHBOARD_COMMENTS_NOTE"); ?>"><?php echo number_format($entry->commentCount,0,'',' '); ?> <i class="jb-icon-comment"></i></span></a>
+                                     <?php }
+                                     else
+                                     { ?>
+                                        <span class="jb-comments-number"><?php echo number_format($entry->commentCount,0,'',' '); ?> <i class="jb-icon-comment"></i></span>
+                                     <?php } ?>
+                                   <span class="jb-statistics" title="<?php echo number_format($entry->hits,0,'',' ').' '.JText::_("COM_JOOMBLOG_USER_DASHBOARD_PAGEVIEWS"); ?>"><?php echo number_format($entry->hits,0,'',' '); ?><i class="jb-icon-stats-bars"></i></span>
+                                    <?php $date = new JDate( $entry->created );
+                                    $entry->created = $date->format('d.m.Y'); ?>
+                                    <span class="jb-creation-date"><?php echo $entry->created ;?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <?php }   
+                } 
+                else
+                { ?>
+                    <div class="jb-btn-group jb-post-btn-group clearfix">
+                    <button title="<?php echo JText::_('COM_JOOMBLOG_CREATE_NEW_POST');?>" type="button" onclick="window.location.href='<?php echo Juri::root().'index.php?option=com_joomblog&task=write&id=0&blogid='.$blogid.'&Itemid='.$itemId; ?>'" class="jb-btn jb-edit-post-btn jb-btn-primary"><i class="jb-icon-pencil"></i></button>
+                    </div> 
+                    <div class="jb-postslist-container">
+                        <?php if (empty($filter_state) OR $filter_state == 'All'): ?>
+                            <div class="jb-blog-contouter jb-outer-postslist" style="text-align:center; padding-bottom:20px;"><?php echo JText::_('COM_JOOMBLOG_NO_POSTS') ;?></div><div>
+                        <?php endif; ?>
+                        <?php if ($filter_state == 'Published'): ?>
+                            <div class="jb-blog-contouter jb-outer-postslist" style="text-align:center; padding-bottom:20px;"><?php echo JText::_('COM_JOOMBLOG_NO_PUBLISHED_POSTS'); ?></div><div>
+                        <?php endif; ?>
+                        <?php if ($filter_state == 'Unpublished'): ?>
+                            <div class="jb-blog-contouter jb-outer-postslist" style="text-align:center; padding-bottom:20px;"><?php echo JText::_('COM_JOOMBLOG_NO_UNPUBLISHED_POSTS'); ?></div><div>
+                        <?php endif; ?>
+                        <?php if ($filter_state == 'Drafts'): ?>
+                            <div class="jb-blog-contouter jb-outer-postslist" style="text-align:center; padding-bottom:20px;"><?php echo JText::_('COM_JOOMBLOG_NO_DRAFTS'); ?></div><div>
+                        <?php endif; ?>
+                    </div>
+                <?php
+                }
+                ?>
+            
+            </div> 
+        </div>
+        </div>
+</div>
+<input type="hidden" value="" id="posts_action" name="posts_action">
+</form>
+
+<div class="jb-pagenav"><?php echo $pagination; ?></div>
+

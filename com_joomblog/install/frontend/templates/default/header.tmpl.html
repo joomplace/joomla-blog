@@ -1,0 +1,60 @@
+<?php 
+/**
+* JoomBlog component for Joomla
+* @package JoomBlog
+* @subpackage header.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+global $_JB_CONFIGURATION;
+$iconsMenu = array(
+    'items'=>array(
+	JRoute::_("index.php?option=com_joomblog&task=search&Itemid=$Itemid"), JRoute::_("index.php?option=com_joomblog&task=archive&Itemid=$Itemid"), JRoute::_("index.php?option=com_joomblog&task=viewtags&Itemid=$Itemid")
+    ),
+    'classes'=>array(
+	'Search', 'Archive', 'Tags'
+    ),
+    'titles'=>array(
+	$_JB_CONFIGURATION->get('titleSearch'), $_JB_CONFIGURATION->get('titleArchive'), $_JB_CONFIGURATION->get('titleTags')
+    ),
+    'shown'=>array(
+	$_JB_CONFIGURATION->get('showSearch'), $_JB_CONFIGURATION->get('showArchive'), $_JB_CONFIGURATION->get('showTags')
+    ),
+    'order'=>array(
+	$_JB_CONFIGURATION->get('firstPositionI'), $_JB_CONFIGURATION->get('secondPositionI'), $_JB_CONFIGURATION->get('thirdPositionI')
+    )
+);
+$tmpl = JFactory::getApplication()->input->get('tmpl');
+?>
+
+<div class="jb-wrap" id="jb-wrap">
+
+
+    <div class="jb-rssandicons-container clearfix">
+    <?php if ($tmpl !== 'component') 
+	{ ?> 
+	<div class="topFeed">
+	<?php if ($_JB_CONFIGURATION->get('useRSSFeed')) : ?>
+	<a href="<?php echo $rssLink; ?>"><span><?php echo $_JB_CONFIGURATION->get('titleFeed'); ?></span></a>
+	<?php endif; ?>
+	</div>
+	<div class="clear"></div>	
+	<ul class="jb-tool-add clearfix">
+	    <?php
+	      $menuHTML = '';
+	      foreach($iconsMenu['order'] as $order){
+		    if ($iconsMenu['shown'][$order - 1]){
+			$menuHTML .= '<li class="toolbar'.$iconsMenu['classes'][$order - 1].'" id="toolbar'.$iconsMenu['classes'][$order - 1].'">';
+			$menuHTML .= '<a href="'.$iconsMenu['items'][$order - 1].'" title="'.$iconsMenu['titles'][$order - 1].'"></a>';
+			$menuHTML .= '</li>';
+		    }
+	      }
+
+	      echo $menuHTML;
+
+	    ?>
+	</ul>
+	<?php } ?>
+    </div>

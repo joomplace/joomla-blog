@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMBLOG_USER_LAYOUT">
+		<message>COM_JOOMBLOG_USER_LAYOUT_DESC</message>
+	</layout>
+	<state>
+		<name>COM_JOOMBLOG_MENU_BLOGGER_LAYOUT</name>
+		<description>COM_JOOMBLOG_MENU_BLOGGER_LAYOUT_DESCR</description>
+	</state>
+	
+	<fields name="params" >
+		<fieldset name="basic" label="JoomBlog Parameters">		
+			<field name="user" type="user" default="0" label="Select blogger" description="">
+			</field>
+			
+		</fieldset>
+	</fields>
+</metadata>

@@ -1,0 +1,269 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: category_list.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage category_list.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+JHtml::_('behavior.modal', 'a.jb-modal');
+global $_JB_CONFIGURATION;
+$Itemid = jbGetItemId();
+$my = JFactory::getUser();
+?>
+<div id="item-dashboard">
+    <div class="jb-wrap" id="jb-wrap">
+            <div class="jb-content">
+                <div class="jb-blogs">
+                    <div class="jb-blogs-head clearfix jb-postsofblog-head">
+                        <div class="jb-author-settings">
+                            <span onclick="location.href='<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&task=bloggerpref&Itemid='.$Itemid,false); ?>'" class="jb-profile-edit">
+                                <i class="jb-icon-cog-6"></i>
+                            </span>
+                        </div>
+                        <div class="jb-author-imgcont">
+                            <img class="jb-author-avatar" alt=""  src="<?php echo $user_avatar;?>" />
+                        </div>
+                        <div class="jb-author-info">
+                            <h3 class="jb-author-name">
+                                <a target="_blank" href="<?php echo JRoute::_('index.php?option=com_joomblog&Itemid='.$Itemid.'&user='.$my->username);?>"><?php echo $user_fullname ;?></a>
+                            </h3>
+                            <div  class="jb-author-desc jb-author-desc-short">
+                                <div class="jb-author-desc-inner"><?php echo str_replace("\n", "<br/>", $user_description);?>
+                                <a href="" class="jb-read-more-link"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_MORE');?></a>
+                                <!--There should be Read more link-->
+                                </div>
+                            </div>
+                            <div class="jb-auhor-links clearfix">
+                                <?php
+                                    if ($user_site):
+                                        $user_site = (preg_match("/http:\/\//", $user_site, $match)) ? $user_site : "http://".$user_site;
+                                    ?>
+                                    <span class="jb-authorsite"><i class="jb-icon-earth"></i><a class="jb-usersite-link" target="_blank" rel="nofollow" href="<?php echo $user_site;?>"><?php echo $user_site;?></a></span>
+                                <?php endif;?>
+
+                                <?php if ($user_twitter): ?>
+                                    <span class="jb-authortwitter"><i class="jb-icon-tweet"></i><a class="jb-usertwitter-link" target="_blank" rel="nofollow" href="<?php echo 'https://twitter.com/'.$user_twitter;?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_TWITTER_PROFILE"); ?></a></span>
+                                <?php endif;?>
+
+                                <?php if ($user_facebook): ?>
+                                    <span class="jb-authorfacebook"><i class="jb-icon-facebook"></i><a class="jb-userfacebook-link" target="_blank" rel="nofollow" href="<?php echo 'https://www.facebook.com/'.$user_facebook;?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_FACEBOOK_PROFILE"); ?></a></span>
+                                <?php endif;?>
+
+                                <?php if ($user_googleplus): ?>
+                                    <span class="jb-authorgoogleplus"><i class="jb-icon-google-plus-2"></i><a class="jb-usergoogleplus-link" target="_blank" rel="nofollow" href="<?php echo 'https://plus.google.com/'.$user_googleplus.'?rel=author';?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_GOOGLE_PLUS_PROFILE"); ?></a></span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <?php if ( @$newblogRights ) { ?>
+
+                <div class="jb-blogs jb-bloglist-wrap">
+                    <div class="jb-blogs-leftbtn">
+                        <button onclick="location.href='<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&task=newblog&Itemid='.$Itemid,false); ?>'" class="jb-btn"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_NEW_BLOG');?></button>
+                    </div>
+                    <?php if ($blogs)
+                    { 
+                        foreach ($blogs as $blog) {
+                        ?>
+                    <div class="jb-existing-blogs">
+                        <div class="jb-blog-contouter">
+                            <div class="jb-blog-continner">
+                                <div class="jb-blog-cont clearfix">
+                                        <h3 class="jb-dash-blog-name"><?php echo $blog->title; ?></h3>
+                                        <div class="jb-blog-buttons-cont">
+                                            <div  class="jb-btn-group clearfix">
+                                                <a title="<?php echo JText::_('COM_JOOMBLOG_ADD_POST'); ?>" href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=write&id=0&Itemid='.$Itemid,false); ?>" class="jb-btn jb-blog-edit"><i class="jb-icon-pencil"></i></a> 
+                                                <div  class="jb-btns-dropdown">
+                                                    <button class="jb-btn jb-show-posts" onclick="location.href='<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=adminhome&Itemid='.$Itemid,false); ?>'"><i class="jb-icon-posts"></i></button><button class="jb-btn jb-dropdown-toggle" data-toggle="dropdown"><i class="jb-icon-sort-down"></i></button>
+                                                    <ul class="jb-dropdown-menu">
+                                                        <li><a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=adminhome&Itemid='.$Itemid, false);?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?></a></li>
+                                                        <li><a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=showcomments&Itemid='.$Itemid, false);?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_COMMENTS');?></a></li>
+                                                        <li><a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=bloggerstats&Itemid='.$Itemid, false);?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?></a></li>
+                                                        <li><a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=editblog&Itemid='.$Itemid, false);?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
+                                                    </ul>
+                                                </div>
+                                                <a target="_blank" href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$blog->id.'&view=blogger&Itemid='.$Itemid, false);?>" class="jb-btn jb-view-blog"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_VIEW_BLOG');?></a>
+                                            </div>
+                                        </div>
+                                     <?php if ($blog->count == 0) { ?>  
+                                    <div class="jb-blog-info">
+                                           
+                                            <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_NO_POSTS');?>.
+                                            <a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=write&id=0&Itemid='.$Itemid,false); ?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_START_BLOGGING');?>!</a>
+                                    </div> 
+                                    <?php  } 
+                                    else { ?>
+                                    <div class="jb-blog-stat">
+                                            <a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=bloggerstats&Itemid='.$Itemid, false);?>"><?php echo number_format($blog->sum_hits,0,'',' ') .' '. JText::_('COM_JOOMBLOG_USER_DASHBOARD_PAGEVIEWS');?></a>
+                                             <span>&nbsp;-&nbsp;</span>
+                                           <a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&blogid='.$blog->id.'&task=adminhome&Itemid='.$Itemid, false);?>"><?php echo number_format($blog->count,0,'',' ') .' '. JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS_NOTE');?></a>
+                                           , <?php $date = new JDate( $blog->last_published );
+                                           $last_published = $date->format('M d, Y');
+                                           echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_LAST_PUBLISHED') .' '.$last_published ;?> 
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <?php } } ?>
+                     <?php if (!$blogs) { ?>
+
+                        <div class="jb-promo-wrapper">
+                            <div class="jb-promo-cloud" style="">
+                                <span class="jb-promo-arrow"></span>
+                                <span class="jb-promo-arrow-back"></span>
+                                <div class="jb-promo-message">
+                                    <div>
+                                        <h3 class="jb-promo-title"><?php echo JText::_('COM_JOOMBLOG_CREATE_YOUR_FIRST_BLOG');?></h3>
+                                        <div class="jb-promo-desc"><?php echo JText::_('COM_JOOMBLOG_CREATE_YOUR_FIRST_BLOG_DESC');?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                     <?php } ?>
+                </div>
+
+                <?php } ?>
+        
+                <div id="jb-reading-list" class="jb-blogs jb-bloglist-wrap clearfix">
+                    <h2 class="jb-bloglist-title"><span> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_READING_LIST');?>&nbsp;</span><span id="jb-title-seporator" class="jb-seporator">&#921;&nbsp;</span><span id="current_blog_title"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_ALL_BLOGS');?></span></h2>
+                    <div class="jb-blogs-leftbtn">
+                       <a class="jb-modal jb-btn jb-blog-add" href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&task=blogslist&tmpl=component&Itemid='.$Itemid, false);?>"  rel="{handler: 'iframe', size: {x:300, y:300}}"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_MANAGE_LIST');?></a>
+                        <ul class="jb-reading-list-menu">
+                            <?php if (!empty($reading_blogs)) 
+                            { ?>
+                            <li style="cursor:pointer;" id="li-blog-allblogs" onclick='switch_blog(0,0,"true",0);'><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_ALL_BLOGS');?></li>
+                                <?php foreach ($reading_blogs AS $reading_blog) 
+                                { 
+                                    $blog_title = str_replace("'","&quote;",$reading_blog->title);
+                                    $arguments = $reading_blog->id.',"'.$blog_title.'","false",0';
+                                    ?>
+                                <li class="jb-leftbtn-li" style="cursor:pointer;" id="<?php echo 'li-blog-'.$reading_blog->id;?>" onclick='switch_blog(<?php echo $arguments;?>);'><?php echo $reading_blog->title;?></li>
+                                <?php } 
+                             } ?>
+                        </ul>
+                    </div>
+                     <?php if (empty($reading_blogs)) 
+                     { ?>
+                            <div class="jb-promo-wrapper">
+                                <div class="jb-promo-cloud" style="">
+                                    <span class="jb-promo-arrow"></span>
+                                    <span class="jb-promo-arrow-back"></span>
+                                    <div class="jb-promo-message">
+                                        <div>
+                                            <h3 class="jb-promo-title"><?php echo JText::_('COM_JOOMBLOG_FOLLOW_IN_READING_LIST');?></h3>
+                                            <div class="jb-promo-desc"><?php echo JText::_('COM_JOOMBLOG_FOLLOW_IN_READING_LIST_DESC');?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      <?php } ?>
+                    <div id="posts_container"></div>
+                    <div id="more_posts_button"></div>
+                </div>               
+                
+                
+                
+                
+                
+ <!--Navigation-->
+            
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript">
+var jb_JQuery = jQuery.noConflict();
+(function($){
+$(document).ready(function(){
+     /*show-more link on dashboard page*/
+        $('.jb-read-more-link').click(function(){
+           if($(this).parent().hasClass('jb-author-desc-short')){
+                $(this).parent().removeClass('jb-author-desc-short');
+                $(this).parent().addClass('jb-author-desc-long');
+                $(this).html("<?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DESCR_HIDE'); ?>");                
+                return (false);  
+           }
+            else {
+                $(this).parent().removeClass('jb-author-desc-long');
+                $(this).parent().addClass('jb-author-desc-short');
+                $(this).html("<?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DESCR_MORE');?>");
+                return (false);
+            }
+
+            
+        });
+        /*show-more link on dashboard page end*/
+
+});
+});
+var postcount = <?php echo (int)$user_postcount;?>;
+function switch_blog(id,title,all,limit)
+    {
+        if (limit == 0)
+        {
+            limit = <?php echo (int)$user_postcount;?>;
+        }
+        if (all == 'false')
+        {
+            document.getElementById('more_posts_button').innerHTML="<button class='jb-more-posts' onclick='increase_limit("+id+",false);'><?php echo JText::_('COM_JOOMBLOG_MORE_POSTS');?></button>";
+            var blog_title=title.replace("&quote;","'"); 
+            document.getElementById('current_blog_title').innerHTML= blog_title;
+            jb_JQuery.ajax({ 
+            type: "POST", 
+            url: "<?php echo Juri::root().'index.php?option=com_joomblog&task=readinglist&itemid='.$Itemid;?>", 
+            data: "blog_id="+id+"&limit="+limit, 
+            success: function(msg){
+                if ( jb_JQuery("#posts_container").html() == jb_JQuery('<div/>').html(msg).html() )
+                {
+                    jb_JQuery('#more_posts_button').hide();
+                }
+                    jb_JQuery("#posts_container").html(msg);
+                }
+            });
+        }
+        else 
+        {
+            document.getElementById('more_posts_button').innerHTML="<button class='jb-more-posts' onclick='increase_limit(0,true);'><?php echo JText::_('COM_JOOMBLOG_MORE_POSTS');?></button>";
+            document.getElementById('current_blog_title').innerHTML=<?php echo "'".JText::_('COM_JOOMBLOG_USER_DASHBOARD_ALL_BLOGS')."'";?>;
+            jb_JQuery.ajax({ 
+            type: "POST", 
+            url: "<?php echo Juri::root().'index.php?option=com_joomblog&task=readinglist&itemid='.$Itemid;?>",
+            data: "limit="+limit,  
+            success: function(msg){
+                if ( jb_JQuery("#posts_container").html() == jb_JQuery('<div/>').html(msg).html() )
+                {
+                    jb_JQuery('#more_posts_button').hide();
+                }
+                    jb_JQuery("#posts_container").html(msg);
+                }
+            });
+        }
+
+    }
+function increase_limit(id,all)
+{
+    postcount += <?php echo (int)$user_postcount;?>;
+    if (all == false)
+    {
+        var title = document.getElementById('current_blog_title').innerHTML;
+        switch_blog(id,title,"false",postcount);
+    }
+    else
+    {
+        switch_blog(0,0,"true",postcount);
+    }
+}    
+switch_blog(0,0,"true",0);
+
+</script>

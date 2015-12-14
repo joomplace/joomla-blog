@@ -1,0 +1,47 @@
+.clearfix {
+  *zoom: 1;
+}
+
+
+.jb-btn{    
+    behavior: url('../js/PIE.htc');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+
+.jb-btn:hover {
+    behavior: url('../js/PIE.htc');    
+}
+
+
+.jb-btn-primary:hover{
+    behavior: url('../js/PIE.htc');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);    
+}
+
+
+.jb-inputbox, .jb-textarea{   
+    behavior: url('../js/PIE.htc');    
+    /*for ie8*/
+    position: relative;
+    z-index: 0;
+}
+
+
+.jb-inputbox:focus, .jb-textarea:focus{
+    behavior: url('../js/PIE.htc');
+}
+
+.error{
+    behavior: url('../js/PIE.htc');
+}
+
+.error:focus {
+    behavior: url('../js/PIE.htc');
+}
+
+.jb-blogs{
+    behavior: url('../js/PIE.htc');
+}

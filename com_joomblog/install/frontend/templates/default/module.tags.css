@@ -1,0 +1,52 @@
+#blog-tags-mod a.tag1 ,
+#blog-tags-mod a.tag2 ,
+#blog-tags-mod a.tag3 ,
+#blog-tags-mod a.tag4 ,
+#blog-tags-mod a.tag5 ,
+#blog-tags-mod a.tag6 ,
+#blog-tags-mod a.tag7 ,
+#blog-tags-mod a.tag8 ,
+#blog-tags-mod a.tag9 {
+  list-style: none;
+  display: inline;
+  padding-left:4px;
+  padding-right:4px;
+  text-align:center;
+  line-height:100%;
+}
+#blog-tags-mod a.tag1 {
+  font-size:90%;
+  font-weight:normal;
+}
+#blog-tags-mod a.tag2 {
+  font-size:100%;
+  font-weight:normal;
+}
+#blog-tags-mod a.tag3 {
+  font-size:125%;
+  font-weight:normal;
+}
+#blog-tags-mod a.tag4 {
+  font-size:150%;
+  font-weight:normal;
+}
+#blog-tags-mod a.tag5 {
+  font-size:175%;
+  font-weight:normal;
+}
+#blog-tags-mod a.tag6 {
+  font-size:200%;
+  font-weight:bold;
+}
+#blog-tags-mod a.tag7 {
+  font-size:225%;
+  font-weight:bold;
+}
+#blog-tags-mod a.tag8 {
+  font-size:250%;
+  font-weight:bold;
+}
+#blog-tags-mod a.tag9 {
+  font-size:265%;
+  font-weight:bold;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMBLOG_DASHBOARD_LAYOUT" option="Dashboard">
+		<message>
+			COM_JOOMBLOG_DASHBOARD_LAYOUT_DESC
+		</message>
+	</layout>
+</metadata>

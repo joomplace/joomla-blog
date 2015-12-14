@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="community" method="upgrade" version="3.0">
+	<name>Joomblog posts</name>
+	<author>JoomPlace.com</author>
+	<creationDate>August 2011</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.2.0 (build 001)</version>
+	<isapplication>true</isapplication>
+	<description>
+		JoomBlog plugin for JomSocial
+	</description>
+	<languages>
+	    <language tag="en-GB">en-GB.plg_joomblogposts.ini</language>
+	</languages>
+	<files>
+		<file plugin="joomblogposts">joomblogposts.php</file>
+		<folder>joomblogposts</folder>
+	</files>	
+	<params>
+		<param name="coreapp" type="list" default="0" label="Core Application" description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="count" type="text" default="5" label="Count" description="Count of recent blog posts (default is 5)." />
+		<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this plugin">
+			<option value="1">Use Global</option>
+			<option value="0">No</option>
+		</param>
+	</params>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="coreapp" type="list" default="0" label="Core Application" description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="count" type="text" default="5" label="Count" description="Count of recent blog posts (default is 5)." />
+				<field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this plugin">
+					<option value="1">Use Global</option>
+					<option value="0">No</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

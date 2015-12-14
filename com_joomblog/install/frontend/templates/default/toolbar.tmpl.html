@@ -1,0 +1,113 @@
+<?php 
+/**
+* JoomBlog component for Joomla
+* @version $Id: toolbar.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage toolbar.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+if(empty($active['blogs'])) $active['blogs'] = '';
+
+global $_JB_CONFIGURATION;
+$menu = JSite::getMenu();
+$menuItem = $menu->getActive();
+$itemId = JFactory::getApplication()->input->get('itemid');
+if (empty($itemId)) $itemId = jbGetItemId();
+$toolbarMenu = array(
+    'items'=>array(
+	$toolbar['homeLink'], $toolbar['blogsLink'], $toolbar['bloggersLink'], $toolbar['categoriesLink']
+    ),
+    'classes'=>array(
+	'Home', 'Blogs', 'Bloggers', 'Categories'
+    ),
+    'active'=>array(
+	$active['home'], $active['blogs'], $active['blogger'], $active['category']
+    ),
+    'titles'=>array(
+	$_JB_CONFIGURATION->get('titlePosts'), $_JB_CONFIGURATION->get('titleBlogs'), $_JB_CONFIGURATION->get('titleBloggers'), $_JB_CONFIGURATION->get('titleCategories')
+    ),
+    'shown'=>array(
+	$_JB_CONFIGURATION->get('showPosts'), $_JB_CONFIGURATION->get('showBlogs'), $_JB_CONFIGURATION->get('showBloggers'), $_JB_CONFIGURATION->get('showCategories')
+    ),
+    'order'=>array(
+	$_JB_CONFIGURATION->get('firstPositionT'), $_JB_CONFIGURATION->get('secondPositionT'), $_JB_CONFIGURATION->get('thirdPositionT'), $_JB_CONFIGURATION->get('fourthPositionT')
+    )
+);
+
+$registeredMenu = array(
+    'items'=>array(
+	),
+    'classes'=>array(
+    ),
+    'active'=>array(
+	'','','','','',''
+    ),
+    'titles'=>array(	
+    ),
+    'shown'=>array(
+	
+    ),
+    'order'=>array(	
+    )
+);
+
+
+
+$menuArray = array($toolbar['homeLink'], $toolbar['blogsLink'], $toolbar['searchLink'], $toolbar['bloggersLink'], $toolbar['categoriesLink'], $toolbar['archiveLink'], $toolbar['tagsLink']);
+$classArray = array('Home', 'Blogs', 'Bloggers', 'Categories', 'Archive', 'Tags');
+$activeArray = array($active['home'], @$active['blogs'], $active['search'], '', $active['account'], '', $active['blogger'], $active['category'], $active['tags']);
+$titleArray = array($_JB_CONFIGURATION->get('titlePosts'), $_JB_CONFIGURATION->get('titleBlogs'), $_JB_CONFIGURATION->get('titleSearch'), $_JB_CONFIGURATION->get('titleBloggers'), $_JB_CONFIGURATION->get('titleCategories'), $_JB_CONFIGURATION->get('titleArchive'), $_JB_CONFIGURATION->get('titleTags'));
+$showsArray = array($_JB_CONFIGURATION->get('showPosts'), $_JB_CONFIGURATION->get('showBlogs'), $_JB_CONFIGURATION->get('showSearch'), $_JB_CONFIGURATION->get('showBloggers'), $_JB_CONFIGURATION->get('showCategories'), $_JB_CONFIGURATION->get('showArchive'), $_JB_CONFIGURATION->get('showTags'));
+$orderArray = array($_JB_CONFIGURATION->get('firstPosition'), $_JB_CONFIGURATION->get('secondPosition'), $_JB_CONFIGURATION->get('thirdPosition'), $_JB_CONFIGURATION->get('fourthPosition'), $_JB_CONFIGURATION->get('fifthPosition'), $_JB_CONFIGURATION->get('sixthPosition'), $_JB_CONFIGURATION->get('seventhPosition'), $_JB_CONFIGURATION->get('eighthPosition'), $_JB_CONFIGURATION->get('ninthPosition'), $_JB_CONFIGURATION->get('tenthPosition'));
+
+?>
+
+<div id="joomBlog-head">
+    <h3><?php echo $title; ?></h3>
+    <div class="desc"><?php echo $summary; ?></div>
+    <!-- Blog Toolbar Navigation -->
+    
+    <div class="tools">
+		<ul class="jb-toolbar <?php if(!$_JB_CONFIGURATION->get('showIcons')){echo "jb-without-icons";} ?> <?php if($_JB_CONFIGURATION->get('showTabs')){echo "jb-tabs";} ?> <?php if($_JB_CONFIGURATION->get('showPanel')){echo "jb-panel";} ?> clearfix" id="joomBlog-toolbar">
+		    <?php
+		      $menuHTML = '';
+		      foreach($toolbarMenu['order'] as $order){
+			    if ($toolbarMenu['shown'][$order - 1]){
+				$menuHTML .= '<li class="toolbar'.$toolbarMenu['classes'][$order - 1].$toolbarMenu['active'][$order - 1].'" id="toolbar'.$toolbarMenu['classes'][$order - 1].'">';
+				$menuHTML .= '<a href="'.$toolbarMenu['items'][$order - 1].'"><span>'.$toolbarMenu['titles'][$order - 1].'</span></a>';
+				$menuHTML .= '</li>';
+			    }
+		      }
+
+		      echo $menuHTML;
+
+		    ?>
+			<?php if(JFactory::getUser()->id) : ?>
+			<div class="toolbarAdd" id="toolbarAdd">
+			    <a href="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&task=dashboard&Itemid='.$itemId, false); ?>"></a>
+			</div>
+			<?php endif; ?>
+		</ul>
+    </div>
+    <div class="hidden-tools">
+	<ul class="hidden-menu jb-icons">
+	</ul>
+    </div>
+</div>
+<?php 
+$task = JFactory::getApplication()->input->get('task');
+if(JFactory::getUser()->id) 
+{
+	if ($task == "dashboard" OR $task == "adminhome" OR $task=="showcomments" OR $task=="bloggerstats" OR $task=="editblog" OR $task=="bloggerpref" OR $task=="newblog" OR $task=="write")
+	{
+		echo "<script type='text/javascript'>document.getElementById('toolbarAdd').className ='toolbarAdd blogActive';</script>";
+	} 
+	else
+	{ 
+		echo "<script type='text/javascript'>document.getElementById('toolbarAdd').className ='toolbarAdd';</script>";
+	}
+}
+	  ?>

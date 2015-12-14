@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<title>User Interface Globalization &mdash; CKEditor Sample</title>
+	<meta charset="utf-8">
+	<script src="ckeditor.js"></script>
+	
+	
+</head>
+<body>
+	
+	<form action="" method="get">
+	
+		<p>
+			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+			<script>
+
+			
+				var editor;
+
+				function createEditor(  ) {
+					if ( editor )
+						editor.destroy();
+
+					// Replace the <textarea id="editor"> with an CKEditor
+					// instance, using default configurations.
+					editor = CKEDITOR.replace( 'editor1', {
+						language: 'en',
+						"imageBrowser_listUrl": "images_list.json"
+					});
+				}
+
+				// At page startup, load the default language:
+				createEditor();
+
+			</script>
+		</p>
+		<p>
+		<input type="submit" value="SUBMIT" />
+	</form>
+	
+</body>
+</html>

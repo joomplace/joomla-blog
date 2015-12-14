@@ -1,0 +1,172 @@
+﻿<!-- Blog Entries Start 
+/**
+* JoomBlog component for Joomla
+* @version $Id: index.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage index.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+-->
+<script language="javascript" src="<?php echo JURI::root();?>components/com_joomblog/js/scroll.js"></script>
+
+<div id="joomBlog-content" class="jb-content">
+<?php echo $headerHTML;?>
+<?php
+
+global $_JB_CONFIGURATION;
+jimport( 'joomla.filesystem.file' );
+
+$tmpl = JRequest::getVar('tmpl');
+if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';
+
+if($useDraganddrop && $modulesDisplay && $isHome){
+	if(JFile::exists(JPATH_SITE.DIRECTORY_SEPARATOR."components".DIRECTORY_SEPARATOR."com_joomdragdrop".DIRECTORY_SEPARATOR."joomdragdrop.php")){
+		require_once (JPATH_SITE.DIRECTORY_SEPARATOR."components".DIRECTORY_SEPARATOR."com_joomdragdrop".DIRECTORY_SEPARATOR."joomdragdrop.php");
+	}else{
+		echo JText::_('<strong><font color="red">Component drag&drop not found.<font></strong>');
+	}
+}elseif($modulesDisplay && $isHome ){
+  foreach ($modules as $value){
+    echo "<div class='module'><div><div><div><h3>".$value['title']."</h3>".$value['text']."</div></div></div></div>";
+  }
+  echo "<div class='clr clear'></div>";
+}
+//else
+{
+	if ($entry and is_array($entry) and count($entry) != 0)
+	{
+	
+		foreach ($entry as $e)
+		{
+            $sefUrl = $e['permalink'];
+            $e['permalink']=$sefUrl;
+            $defaultimage_filename = basename($e['defaultimage']);
+            $defaultimage_dirname = dirname($e['defaultimage']);
+            $defaultimage_thumb = 'media/com_joomblog/th_'.$defaultimage_filename;
+
+            if ( !empty($e['defaultimage'])
+                && !file_exists(JPATH_ROOT.'/'.$defaultimage_thumb)
+                && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$e['defaultimage'])
+                && filesize($_SERVER['DOCUMENT_ROOT'].'/'.$e['defaultimage']) > 0
+            )
+            {
+                jimport('joomla.image.image');
+                $image = new JImage();
+                $image->loadFile($_SERVER['DOCUMENT_ROOT'].'/'.$e['defaultimage']);
+                $image->resize(182, 182, false);
+                $image->toFile(JPATH_ROOT.'/'.$defaultimage_thumb, 70);
+            }
+
+         if ( !file_exists(JPATH_ROOT.'/'.$defaultimage_thumb) )
+         {
+            $defaultimage_thumb = false;
+         }
+         else
+         {
+            $defaultimage_thumb = JURI::root().'/'.$defaultimage_thumb;
+            $e['text'] = preg_replace('/<img[^>]+>/is', '', $e['text']);
+         }
+	?>
+    <!-- Entry -->
+    <div class="postSummary" id="post-<?php echo $e['id']; ?>">
+	<!-- Post Top Summary -->
+        <?php
+            if ( JFactory::getUser()->get('isRoot') || JFactory::getUser()->id == $e['created_by'] )
+                echo '<a class="jb-btn jb-blog-edit" href="'. JRoute::_('index.php?option=com_joomblog&task=write&id='.$e['id'].'&blogid='.$e['blogid'].'&Itemid='.jbGetItemId()) .'" title="'.JText::_('COM_JOOMBLOG_EDIT_POST').'" style="float: left; padding: 3px 9px; margin: 5px 5px 0px 0px;"><i class="jb-icon-pencil"></i></a>';
+        ?>
+	<h2 class="jb-entry-title">
+	    <?php if ($_JB_CONFIGURATION->get('showBlogTitle') == '1') : ?>
+	    <a href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$e['blogid'].'&view=blogger'.$tmpl);?>"><?php echo $e['blogtitle']."</a>";?> <span class="blog-sep">&#8594;</span>
+	    <?php endif; ?>
+	     <a class="blog" href="<?php echo $e['permalink']; ?>"><?php echo $e['title']; ?></a>
+	</h2>
+	<?php if( $categoryDisplay ){?><small class="jb-category-bgk"><?php echo ($e['multicats']?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')); ?> <?php echo $e['jcategory']; ?></small><?php }?>
+	<?php jbShowSocialButtons($e, 'top');	?>
+	<!-- Post Teaser Text -->
+	<div class="postSummary-teaser">
+	    <div class="jb-post-content clearfix">
+		<?php if(!empty($e['defaultimage'])) : ?>
+		<div class="jb-article-image"><img src="<?php echo ( !$defaultimage_thumb ? $e['defaultimage'] : $defaultimage_thumb); ?>" alt=""/></div>
+		<?php endif; ?>
+		<?php echo JHtml::_('content.prepare', $e['text']); ?>
+	    </div>
+
+	    <?php if ($e['readmore']=="1") : ?>
+	    <div class="jb-readmorelink"><br /><a href="<?php echo $e['permalink']; ?><?php echo $showAnchor; ?>" class="postSummary-readmore"><?php echo $e['readmorelink']?$e['readmorelink']:JText::_('COM_JOOMBLOG_READMORE');?></a></div>
+	    <?php endif; ?>
+	    
+	    <?php jbShowSocialButtons($e); ?>
+	    
+	    <?php if($_JB_CONFIGURATION->get('ShowUntaggedWithoutTags')) { ?>
+	    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+	    <?php } else if ($e['categories']!="<em>". JText::_('COM_JOOMBLOG_BLOG_UNTAGGED') ."</em>&nbsp;"){?>	
+	    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+	    <?php } ?>
+
+	    <div class="jb-bottom">
+		<div class="jb-votes">
+		    <span class="jb-count sumvote"><?php echo $e['sumvote']; ?></span>
+		    <a onclick="sendVote(<?php echo $e['id']; ?>,1)" href="javascript:void(0)" class="jb-vote-up">
+			<span class="jb-comcontrol"><i class="jb-icon-arrow2" title="<?php echo JText::_("COM_JOOMBLOG_LIKE"); ?>">&#9650;</i></span>
+		    </a>
+		    <a onclick="sendVote(<?php echo $e['id']; ?>,-1)" href="javascript:void(0)" class="jb-vote-down">
+			<span class="jb-comcontrol"><i class="jb-icon-arrow" title="<?php echo JText::_("COM_JOOMBLOG_DISLIKE"); ?>">&#9660;</i></span>
+		    </a>
+		</div>
+		
+		<div class="jb-dateposted"><?php echo $e['createdFormatted']; ?></div>
+            <?php //echo "<pre>"; print_r($e); die;?>
+		<?php
+			if ($e['comments']!="" && $_JB_CONFIGURATION->get('useComment') == "1"){
+		?>
+			<div class="jb-commenticon">
+                <a href="<?php echo $e['permalink']; ?>#comments">
+                    <span><?php echo $e['comments']; ?></span>
+                </a>
+            </div>
+		<?php
+			} else if($_JB_CONFIGURATION->get('useComment') == "2"){
+				echo '<div class="jb-commenticon">'.$e['comments'].'</div>';
+			}
+		?>
+		<?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>
+		    <div class="jb-authoricon">
+                <?php echo $e['avatar'];?> <a target="_blank" href="<?php echo $e['authorLink']; ?>"><?php echo $e['author']; ?></a>
+            </div>
+		<?php endif; ?>
+
+		<div class="jbBackToTop">
+		    <a onclick="scrollup()" href="javascript:void(0)">top <strong>&#8593;</strong></a>
+		    <div class="clr"></div>
+		</div>
+	    </div>
+	    <!-- Post Footer -->						
+	</div>
+
+	<span class="article_separator">&nbsp;</span>
+	<hr class="postEntry-divider">
+    </div>
+    
+	<?php
+		}
+	}
+	else
+	{
+	?>
+		<div><?php echo JText::_('COM_JOOMBLOG_NO_BLOG_ENTRY_CREATED');?></div>
+	<?php
+	}
+	?>
+
+<?php 
+}
+?>
+</div>
+<script type="text/javascript">
+function scrollup(){
+   window.scrollTo(0, 0);
+    return false;
+}
+</script>

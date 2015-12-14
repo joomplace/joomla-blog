@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldpath="/administrator/components/com_joomblog/models/fields">
+		<fieldset name="custom" label="COM_JOOMBLOG_FIELDSET_PROFILE">
+			<field name="avatar" type="avatar" class="inputbox" default="" label="COM_JOOMBLOG_FIELD_HEADING_AVATAR" required="false"/>
+			<field name="about" type="textarea" label="COM_JOOMBLOG_FIELD_HEADING_ABOUT" class="inputbox" cols="40" rows="8" required="false" default=""/>
+			<field name="birthday" type="birthday" class="inputbox" default="" label="COM_JOOMBLOG_FIELD_HEADING_BIRTHDAY" required="false"/>
+			<field name="twitter" type="text" label="COM_JOOMBLOG_FIELD_HEADING_TWITTER" size="40" class="inputbox" required="false" default=""/>
+			<field name="site" type="text" label="COM_JOOMBLOG_FIELD_HEADING_SITE" size="40" class="inputbox" required="false" default=""/>
+			<field name="facebook" type="text" label="COM_JOOMBLOG_FIELD_HEADING_FACEBOOK" size="40" class="inputbox" required="false" default=""/>
+			<field name="google_plus" type="text" label="COM_JOOMBLOG_FIELD_HEADING_GOOGLE_PLUS" size="40" class="inputbox" required="false" default=""/>
+		</fieldset>
+</form>

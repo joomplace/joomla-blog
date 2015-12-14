@@ -1,0 +1,47 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: users_header.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage users_header.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+global $_JB_CONFIGURATION;
+$user = $man[0];
+
+if ($user->site){
+	$user->site = (preg_match("/http:\/\//", $user->site, $match)) ? $user->site : "http://".$user->site;
+}
+?>
+
+<div class="jb-blogs">
+    <div class="jb-blogs-head clearfix jb-postsofblogger-head">
+	<div class="jb-blog-imgcont">
+	    <?php if ($_JB_CONFIGURATION->get('avatar')!= "none") : ?>
+		<img class="jb-blog-img" alt="<?php echo $user->name;?>" src="<?php echo $user->src;?>" />
+	    <?php else : ?>
+		<img class="jb-blog-img" alt="<?php echo $user->name;?>" src="<?php echo JURI::root().'components/com_joomblog/images/user.png';?>" />
+	    <?php endif; ?>
+	</div>
+
+	<div class="jb-blog-info">
+	    <h3 class="jb-blog-title">
+		<a href="<?php echo $user->link;?>"><?php echo $user->name;?></a><?php if ($user->title){echo ' <span class="blog-sep">→</span> '.$user->title; }?>
+		
+		<?php if ($user->site) : ?>
+		<span class="jb-usersite"><a class="jb-usersite-link" target="_blank" href="<?php echo $user->site;?>"><?php echo $user->site;?></a></span>
+		<?php endif; ?>
+		
+		<?php if ($user->description) : ?>
+		<div  class="jb-blog-desc">
+		    <?php echo $user->description;?>
+		</div>
+		<?php endif; ?>
+	    </h3>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,354 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: newblog.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+	JHtml::_('behavior.framework');
+	
+	$editor = JFactory::getEditor();
+global $_JB_CONFIGURATION;
+$blog_id = JFactory::getApplication()->input->get('blogid', 0);
+$blogid = JFactory::getApplication()->input->get('blogid', 0);
+JHTML::_( 'behavior.modal' );
+?>
+
+<script language="javascript" type="text/javascript">
+    function headerCustStart(el){
+        if(jQuery('.customize-header').hasClass('act')){
+            jQuery(el).html("Customize header-block");
+            jQuery('.customize-header').animate({"height": "0px"}, 800).css("height","0px").toggleClass('act');
+        <?php
+            switch ($_JB_CONFIGURATION->get('useMCEeditor')){
+                case '1':
+                    echo 'var text = CKEDITOR.instances.header.getData();';
+                    break;
+                case '2':
+                    echo 'var text = tinyMCE.activeEditor.getContent();';
+                    break;
+                default:
+                    echo 'var text = form.header.value;';
+                    break;
+            }
+            ?>
+            repreview(text);
+        }else{
+            jQuery(el).html("Preview header-block");
+            jQuery('.customize-header').animate({"height": "455px"}, 800).css("height","auto").toggleClass('act');
+        }
+    }
+
+    function str_replace ( search, replace, subject ) {
+
+        if(!(replace instanceof Array)){
+            replace=new Array(replace);
+            if(search instanceof Array){
+                while(search.length>replace.length){
+                    replace[replace.length]=replace[0];
+                }
+            }
+        }
+
+        if(!(search instanceof Array))search=new Array(search);
+        while(search.length>replace.length){
+            replace[replace.length]='';
+        }
+
+        if(subject instanceof Array){
+            for(k in subject){
+                subject[k]=str_replace(search,replace,subject[k]);
+            }
+            return subject;
+        }
+
+        for(var k=0; k<search.length; k++){
+            var i = subject.indexOf(search[k]);
+            while(i>-1){
+                subject = subject.replace(search[k], replace[k]);
+                i = subject.indexOf(search[k],i);
+            }
+        }
+
+        return subject;
+
+    }
+    function headerReset(){
+        var form = document.adminForm;
+        <?php
+            switch ($_JB_CONFIGURATION->get('useMCEeditor')){
+                case '1':
+                    echo "CKEDITOR.instances.header.setData('".$template."');";
+                    break;
+                case '2':
+                    echo "tinyMCE.activeEditor.setContent('".$template."');";
+                    break;
+                default:
+                    echo "form.header.value = '".$template."';";
+                    break;
+            }
+            ?>
+        repreview('<?php echo $template; ?>');
+    }
+    function repreview(text){
+        jQuery('.header-block-preview').html(text);
+        var sefo = new Array("{standart_blog_image}","{blog_title}","{blog_profile_link}","{blog_desc}");
+        var title = jQuery('#adminForm #jform_title').val();
+        var desc = jQuery('#adminForm #text').val();
+        var repla = new Array('<img class="jb-blog-img jb-blogcat-img" src="<?php echo JURI::root(); ?>components/com_joomblog/templates/default/images/document_pencil_64.png">',title,'<a><?php echo JFactory::getUser()->name; ?></a>',desc);
+        var curhtml = jQuery('.header-block-preview').html();
+        var newhtml = str_replace(sefo,repla,curhtml);
+        jQuery('.header-block-preview').html(newhtml);
+    }
+    function sendForm(pressbutton) {
+        var form = document.adminForm;
+
+    <?php
+        switch ($_JB_CONFIGURATION->get('useMCEeditor')){
+            case '1':
+                echo 'var text = CKEDITOR.instances.header.getData();';
+                break;
+            case '2':
+                echo 'var text = tinyMCE.activeEditor.getContent();';
+                break;
+            default:
+                echo 'var text = form.header.value;';
+                break;
+        }
+        ?>
+
+
+        if ( form.title.value == "" ) {
+            alert("<?php echo JText::_('COM_JOOMBLOG_ALERT_POST_MUST_HAVE_A_TITLE', true); ?>");
+            form.title.focus();
+        }
+        else {
+            Joomla.submitform(pressbutton, form);
+        }
+    }
+</script>
+
+<?php
+if($this->vars['validation_msg']) foreach ($this->vars['validation_msg'] as $msg) {
+echo '<div class="error">' . $msg . '</div>';
+}
+?>
+<script style="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery(".tm-input").tagsManager({
+                <?php if(count($this->vars['tags'])!=0): ?>
+        prefilled: [<?php echo('"'.implode('","', (array)$this->vars['tags']).'"');?>]
+        <?php endif; ?>
+    });
+    });
+
+
+
+    function btn_insertReadmore() {
+        if ( typeof CKEDITOR != "undefined") {
+            var content = CKEDITOR.instances.fulltext.getData();
+            if (content.match(/<hr\s+id=("|')system-readmore("|')\s*\/*>/i)) {
+                alert('<?php echo JText::_('COM_JOOMBLOG_READMORE_EXISTS'); ?>');
+                return false;
+            }
+            else {
+                CKEDITOR.instances.header.execCommand('pagebreak');
+            }
+        }
+        else {
+            if ( typeof jInsertEditorText != "undefined") {
+                var content = tinyMCE.get('Array').getContent();
+                if (content.match(/<hr\s+id=("|')system-readmore("|')\s*\/*>/i)) {
+                    alert('<?php echo JText::_('COM_JOOMBLOG_READMORE_EXISTS'); ?>');
+                    return false;
+                }
+                else {
+                    jInsertEditorText('<hr id="system-readmore" />', 'Array');
+                }
+            }
+        }
+    }
+
+    function cmtRemove(element) {
+        var oldNodesCount = jQuery('.custom_metatags > table > tbody').children().length;
+        element.parentNode.parentNode.parentNode.removeChild(element.parentNode.parentNode);
+        if ( oldNodesCount == 1 )
+            jQuery('.custom_metatags > table > tbody').append(
+                    '<tr id="ct_notags"><td colspan="3"><?php echo JText::_('COM_JOOMBLOG_BE_PUBLICATIONS_METADATA_CUSTOM_TAGS_NOTAGS'); ?></td>'
+    );
+    }
+
+    function cmtAdd() {
+        document.getElementById('jcustom_name').value = document.getElementById('jcustom_name').value.replace(/\"/g, '&quote;');
+        document.getElementById('jcustom_value').value = document.getElementById('jcustom_value').value.replace(/\"/g, '&quote;');
+
+        if ( document.getElementById('jcustom_name').value != '' && document.getElementById('jcustom_value').value != '') {
+            if ( document.getElementById('ct_notags') )
+                document.getElementById('ct_notags').parentNode.removeChild( document.getElementById('ct_notags') );
+
+            jQuery('.custom_metatags > table > tbody').append(
+                    '<tr><td>'+document.getElementById('jcustom_name').value+'</td>'
+                            +'<td>'+document.getElementById('jcustom_value').value+'</td>'
+                            +'<td><span class="btn-small btn btn-danger" onclick="cmtRemove(this);"> X </span>'
+                            +'<input type="hidden" name="cm_names[]" value="'+document.getElementById('jcustom_name').value+'" />'
+                            +'<input type="hidden" name="cm_values[]" value="'+document.getElementById('jcustom_value').value+'" />'
+                            +'</td>'
+                            +'</tr>'
+            );
+
+            document.getElementById('jcustom_name').value = '';
+            document.getElementById('jcustom_value').value = '';
+        }
+    }
+</script>
+	
+	<div class="jb-section"><?php echo JText::_('COM_JOOMBLOG_EDIT_BLOG');?></div>
+
+	    <form action="<?php echo Juri::root().'index.php?option=com_joomblog&task=editblog&blogid='.$blog_id ?>" method="post" name="adminForm" id="adminForm" class="jb-admin-form">
+                <div class="jb-buttons jb-buttons-top">
+                    <button class="jb-btn jb-btn-primary" type="button" onclick="sendForm('saveeditedblog')" id="save"> 
+                        <?php echo JText::_('COM_JOOMBLOG_SAVE_BLOG');?>
+                    </button>
+                    <a href="<?php echo Juri::root().'index.php?option=com_joomblog&task=adminhome&blogid='.$blog_id.'&Itemid='.jbGetItemId(); ?>" id="cancel" class="jb-cancel-link"><?php echo JText::_('COM_JOOMBLOG_FORM_CANCEL');?></a>
+                </div>
+                <div class="jb-formelm">
+                    <input type="text" class="jb-inputbox" size="60" name="jform[title]" id="jform_title" value="<?php echo $blogForm->getValue('title');?>" placeholder="<?php echo JText::_( 'COM_JOOMBLOG_FORM_TITLE' ); ?>"/>
+                </div>
+		
+		<div class="jb-formelm">
+		    <input id="jform_alias" placeholder="<?php echo JText::_('JFIELD_ALIAS_LABEL'); ?>" class="jb-inputbox" type="text" size="60" value="<?php echo $blogForm->getValue('alias');?>" name="jform[alias]">
+                </div>
+		
+                <div class="jb-formelm">
+                    <textarea id="text" name="jform[description]" rows="10" class="jb-textarea" placeholder="<?php echo JText::_( 'COM_JOOMBLOG_FORM_DESCRIPTION' ); ?>"><?php echo $blogForm->getValue('description');?></textarea>
+                </div>
+            <div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" onclick="headerReset();"><?php echo JText::_('COM_JOOMBLOG_RESET_BLOG_HEADER') ?></button>
+                    <button type="button" class="btn btn-default" onclick="headerCustStart(this);"><?php echo JText::_('COM_JOOMBLOG_CUTOMIZE_BLOG_HEADER') ?></button>
+                </div>
+                <div class="pull-right">
+                    <a class="modal btn btn-link" href="#howtousetip"><span class="icon-support"> </span> <?php echo JText::_('COM_JOOMBLOG_HELP_ON_USE') ?></a>
+                    <div style="display:none; visibility: hidden">
+                        <div id="howtousetip">
+                            Tips how to use
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="jb-formelm customize-header" style="overflow: hidden; height: 0px;">
+                <?php
+                $header_val=$data['header'];
+                switch ($_JB_CONFIGURATION->get('useMCEeditor')){
+                case '1':
+                echo $jEditor->getInput();
+                //echo $jEditor->getButtons();
+                break;
+                case '2':
+                echo $editor->display('header', $header_val, '100%', '400', '75', '20', $buttons=false, count($this->vars['editorsxtd']) > 0 ? $this->vars['editorsxtd'] : true, null, $this->vars['assets'], $this->vars['author']);
+                break;
+                default:
+                echo '<textarea rows="20" class="jb-textarea" name="header" id="header">' . $header_val . '</textarea>';
+                break;
+                }
+                ?>
+            </div>
+            <div class="header-block-preview">
+                <script>
+                repreview('<?php echo $header_val; ?>');
+                </script>
+            </div>
+                <div class="jb-tabbable">
+                    <ul class="jb-nav-tabs">
+                        
+                        <li>
+                            <a href="#tab2" data-toggle="tab" class="jb-btn">
+                                <span class="jb-caret jb-caret-down"></span><span class="jb-tab-item"><?php echo JText::_('COM_JOOMBLOG_PRIVACY'); ?></span>
+                            </a>
+                            <div class="jb-tab-pane">
+                                <div>
+
+                                    <div class="jb-formelm">
+                                        <label for="jb-viewpostrules" class="jb-label">
+                                            <?php echo JText::_( 'COM_JOOMBLOG_PRIVACY_POSTFORUSERS_LABEL' ); ?>:
+                                        </label>
+                                        <?php echo $blogForm->getInput('waccess'); ?>
+                                    </div>
+                                    <div class="jb-formelm">
+
+                                        <label for="jb-viewcommrules" class="jb-label">
+                                             <?php echo JText::_( 'COM_JOOMBLOG_PRIVACY_VIEWFORUSERS_LABEL' ); ?>:
+                                        </label>
+                                        <?php echo $blogForm->getInput('access'); ?>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="#tab3" data-toggle="tab" class="jb-btn">
+                                <span class="jb-caret jb-caret-down"></span><span class="jb-tab-item"><?php echo JText::_( 'COM_JOOMBLOG_FORM_META_PARAMETERS' ); ?></span>
+                            </a> 
+                            <div class="jb-tab-pane">
+                                <div>
+
+                                    <div class="jb-meta">
+                                        <div class="jb-formelm">
+                                            <label for="jb-metakey" class="jb-label">
+                                                <?php echo JText::_( 'COM_JOOMBLOG_FORM_METAKEY' ); ?>:
+                                            </label>
+                                            <textarea id="jb-metakey" class="jb-textarea meta_key" name="jform[metakey]" rows="3"><?php echo $blogForm->getValue('metakey');?></textarea>
+                                        </div>
+                                        <div class="jb-formelm">
+                                            <label for="jb-metadesc" class="jb-label">
+                                                <?php echo JText::_( 'COM_JOOMBLOG_FORM_METADESC' ); ?>:
+                                            </label>
+                                            <textarea id="jb-metadesc" class="jb-textarea meta_description" name="jform[metadesc]" rows="3"><?php echo $blogForm->getValue('metadesc');?></textarea>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <a href="#tab4" data-toggle="tab" class="jb-btn jb-danger">
+                                <span class="jb-caret jb-caret-down"></span><span class="jb-tab-item"><?php echo JText::_('COM_JOOMBLOG_DANGER_AREA' ); ?></span>
+                            </a> 
+                            <div class="jb-tab-pane">
+                                <div>
+                                    <div class="jb-danger-area">
+                                        <div class="jb-formelm">
+                                            <label for="jb-delete-blog" class="jb-label">
+                                                <?php echo JText::_( 'COM_JOOMBLOG_DELETE_BLOG_DESC' ); ?>
+                                            </label>
+                                            <button class="jb-btn jb-btn-danger" type="button" onclick="sendForm('deleteblog')" id="jb-delete-blog"> 
+                                                <?php echo JText::_('COM_JOOMBLOG_DELETE_BLOG');?>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>   
+                </div>
+                
+                <div class="jb-buttons  jb-buttons-bottom">
+                    <button class="jb-btn jb-btn-primary" type="button" onclick="sendForm('saveeditedblog')" id="save"> 
+                        <?php echo JText::_('COM_JOOMBLOG_SAVE_BLOG');?>
+                    </button>
+                    <a href="<?php echo Juri::root().'index.php?option=com_joomblog&task=adminhome&blogid='.$blog_id.'&Itemid='.jbGetItemId(); ?>" id="cancel" class="jb-cancel-link"><?php echo JText::_('COM_JOOMBLOG_FORM_CANCEL');?></a>
+                </div>
+		<input type="hidden" name="option" value="com_joomblog" />
+		<input type="hidden" name="task" value="editblog" />
+		<input type="hidden" name="jform[blogid]" value="<?php echo $blog_id; ?>" />
+		<?php echo JHTML::_( 'form.token' ); ?>
+            </form>

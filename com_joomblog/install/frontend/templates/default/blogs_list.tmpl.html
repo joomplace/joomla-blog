@@ -1,0 +1,35 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: category_list.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage category_list.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+
+?>
+<div id="blogs_list">
+    <form action="<?php echo JRoute::_(Juri::root().'index.php?option=com_joomblog&task=blogslist&Itemid='.$jbitemid, false);?>" method="post" name="adminForm" id="adminForm">
+
+    <?php 
+    if (count($blogs_list))
+    {
+    foreach($blogs_list as $blog)
+	    { 
+            $checked = (in_array($blog->id, $reading_blogs))?"checked":"";           
+            ?>
+            <div class="clearfix jb-blogs-list-container">
+                <input class="jb-blogs-list" type="checkbox" <?php  echo $checked; ?> name="cid[]" id="blog_id<?php echo $blog->id ;?>" value="<?php echo $blog->id ;?>"/>
+                <i class="jb-icon-checkbox-unchecked"></i>
+                <label for="blog_id<?php echo $blog->id ;?>" class="blog-label"><?php echo $blog->title;?> </label>
+            </div>
+	    <?php } ?>
+	    <input type="submit" value="<?php echo JText::_('COM_JOOMBLOG_SAVE');?>" class="jb-btn" />
+	    <input type="hidden" value="1" name="form_submit">   
+	    <?php } ?>
+    </form>
+</div>

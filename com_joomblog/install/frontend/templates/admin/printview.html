@@ -1,0 +1,50 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: printview.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage printview.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+$e = $entry;
+?>
+<style type="text/css">
+<!--
+h1{
+	font-size:150%;
+	line-height:150%;
+}
+
+body{
+	margin: 20px;
+}
+-->
+</style>
+<script type="text/javascript">
+if (document.addEventListener) {
+  document.addEventListener("DOMContentLoaded", window.print(), false);
+}
+</script>
+
+<h1><?php echo $e['title']; ?></h1>
+<hr/>
+<?php if(!empty($e['defaultimage'])) : ?>
+			    <div class="jb-article-image-details"><img src="<?php echo $e['defaultimage']; ?>" alt=""/></div>
+<?php endif; ?>
+<p>
+	<p>
+		<?php echo JText::_('COM_JOOMBLOG_AUTHOR'); ?>: <?php echo $e['author']; ?>
+		<?php echo JText::sprintf('COM_JOOMBLOG_POSTED_IN' , $e['jcategory'] ); ?>
+		<span class="post-date">
+			<?php echo JText::sprintf('COM_JOOMBLOG_POSTED_ON', $e['createdFormatted']); ?>
+		</span>
+  	</p>
+  	<div><?php echo JText::sprintf('COM_JOOMBLOG_IN_TAGS' , $e['categories'] ); ?></div>
+</p>
+<p>
+<?php echo $e['text']; ?>
+</p>
+
+<hr />

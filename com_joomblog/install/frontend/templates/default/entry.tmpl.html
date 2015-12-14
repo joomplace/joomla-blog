@@ -1,0 +1,179 @@
+﻿<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: entry.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage entry.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+$e = $entry;
+global $_JB_CONFIGURATION;
+$my	= JFactory::getUser();
+if(empty($e['multicats'])) $e['multicats']='';
+if(empty($entry['blogid'])) $entry['blogid']=$entry['blog_id'];
+?>
+<!-- Entry -->
+<a name="startOfPage" id="startOfPage"></a>
+
+
+
+ <!-- Entry -->
+                
+                
+<div class="postSummary" id="post-<?php echo $e['id']; ?>">
+    <!-- Display onBeforeDisplayContent mambots -->
+    <?php
+	    if(isset($entry['beforeContent']) && $entry['beforeContent'])
+	    {
+		    echo $entry['beforeContent'];
+	    }
+    ?>
+    <?php
+            if ( JFactory::getUser()->get('isRoot') || JFactory::getUser()->id == $entry['created_by'] )
+    echo '<a class="jb-btn jb-blog-edit" href="'. JRoute::_('index.php?option=com_joomblog&task=write&id='.$entry['id'].'&blogid='.$entry['blogid'].'&Itemid='.jbGetItemId()) .'" title="'.JText::_('COM_JOOMBLOG_EDIT_POST').'" style="float: left; padding: 3px 9px;"><i class="jb-icon-pencil"></i></a>';
+    ?>
+    
+    <h1 class="jb-entry-title">
+	<!-- <a class="blog" href="<?php echo $e['permalink']; ?>"><?php echo $e['title']; ?></a> -->
+	<?php echo $e['title']; ?>
+
+    </h1>
+    
+    <?php if( $categoryDisplay ){?><small class="jb-category-bgk"><?php echo ($e['multicats']?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')); ?> <?php echo $e['jcategory']; ?></small><?php }?>
+    
+    <?php jbShowSocialButtons($entry, 'top'); ?>
+    <!-- Post Content Text -->
+    <div class="postContent">
+			<div class="jb-post-content clearfix">
+			    <?php if(!empty($e['defaultimage'])) : ?>
+			    <div class="jb-article-image-details"><img src="<?php echo $e['defaultimage']; ?>" alt=""/></div>
+			    <?php endif; ?>
+			    <?php echo JHtml::_('content.prepare', $e['text']); ?>
+			    <?php ?>
+			</div>
+			<div id="jb-add-to-readinglist">
+				<?php if($my->id > 0 AND $entry['not_in_reading_list'])
+				{ ?>
+					<form id="adminForm" class="adminForm adminProfileForm" name="blogger-info" action="<?php echo JRoute::_($entry['permalink']);?>" method="POST" enctype="multipart/form-data">
+						<i class="jb-icon-heart-2"></i><button class="jb-btn-submit" type="submit" id="submit-blogger"><?php echo JText::_('COM_JOOMBLOG_ADD_BLOG_TO_READING_LIST');?></button>
+						<input type="hidden" name="reading_blog" value="<?php echo $entry['blog_id']; ?>"/>
+					</form>
+				<?php } ?>
+			</div>
+			<?php jbShowSocialButtons($entry); ?>
+			<?php if($_JB_CONFIGURATION->get('ShowUntaggedWithoutTags')) { ?>
+		    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+		    <?php } else if ($e['categories']!="<em>". JText::_('COM_JOOMBLOG_BLOG_UNTAGGED') ."</em>&nbsp;"){?>	
+		    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+		    <?php } ?>
+
+                <?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>    
+                    <div class="jb-postauthor-info-wrap">
+                        <div class="jb-postauthor-photo">
+                            <a target="_blank" href="<?php echo $entry['authorLink'];?>"><?php echo $entry['avatar']; ?></a>
+                        </div>
+                        <div class="jb-postauthor-info">
+                            <span class="jb-postauthor"><a target="_blank" href="<?php echo $entry['authorLink'];?>"><?php echo $entry['author'];?></a></span>
+                            <div class="jb-postauthor-desc">
+                                <p><?php echo $entry['author_about'];?></p>
+                            </div>
+
+                            <div class="jb-author-socials clearfix">
+
+                               <?php
+                                    if ($entry['author_site']) {
+                                        $entry['author_site'] = (preg_match("/http:\/\//", $entry['author_site'], $match)) ? $entry['author_site'] : "http://".$entry['author_site'];
+                                    ?>
+                                <span class="jb-authorsite"><i class="jb-icon-earth"></i><a class="jb-usersite-link" target="_blank" rel="nofollow" href="<?php echo $entry['author_site'];?>"><?php echo $entry['author_site'];?></a></span>
+                                <?php } ?>
+
+                                <?php if ($entry['author_twitter']) { ?>
+                                <span class="jb-authortwitter"><i class="jb-icon-tweet"></i><a class="jb-twitter-link" target="_blank" rel="nofollow" href="<?php echo 'https://twitter.com/'.$entry['author_twitter'];?>">@<?php echo $entry['author_twitter'];?></a></span>
+                                 <?php }
+                                 if ($entry['author_facebook']) { ?>
+                                <span class="jb-authorfacebook"><i class="jb-icon-facebook"></i><a class="jb-facebook-link" target="_blank" rel="nofollow" href="<?php echo 'https://www.facebook.com/'.$entry['author_facebook'];?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_FACEBOOK_PROFILE"); ?></a></span>
+                                 <?php }
+                                  if ($entry['author_googleplus']) { ?>
+                                <span class="jb-authorgoogleplus"><i class="jb-icon-google-plus-2"></i><a class="jb-googleplus-link" target="_blank" rel="nofollow" href="<?php echo 'https://plus.google.com/'.$entry['author_googleplus'].'?rel=author';?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_GOOGLE_PLUS_PROFILE"); ?></a></span>
+                                 <?php } ?>
+                            </div>
+                        </div>
+                    </div>          
+                <?php endif; ?>    
+		    <div class="jb-bottom">
+				<div class="jb-votes">
+				    <span class="jb-count sumvote"><?php echo $e['sumvote']; ?></span>
+				    <a onclick="sendVote(<?php echo $e['id']; ?>,1)" href="javascript:void(0)" class="jb-vote-up">
+					<span class="jb-comcontrol"><i class="jb-icon-arrow2" title="<?php echo JText::_("COM_JOOMBLOG_LIKE"); ?>">&#9650;</i></span>
+				    </a>
+				    <a onclick="sendVote(<?php echo $e['id']; ?>,-1)" href="javascript:void(0)" class="jb-vote-down">
+					<span class="jb-comcontrol"><i class="jb-icon-arrow" title="<?php echo JText::_("COM_JOOMBLOG_DISLIKE"); ?>">&#9660;</i></span>
+				    </a>
+				</div>
+				
+				<div class="jb-dateposted"><?php echo $e['createdFormatted']; ?></div>
+
+                <?php if($enableHits) : ?>
+                <div class="jb-hitsicon" style="margin-right: 5px;"><i class="jb-icon-eye" style="font-size: 20px; float: left; padding-right: 3px; margin-top: -1px;"></i> <?php echo $entry['hits']; ?></div>
+                <?php endif; ?>
+
+				<?php if($enablePrintLink) : ?>
+				    <div class="jb-printicon"><?php echo jbGetPrintLink($entry['id'],jbGetItemId()); ?></div>
+				<?php endif; ?>
+
+				<div class="jbBackToTop">
+				    <a onclick="scrollup()" href="javascript:void(0)">top <strong>&#8593;</strong></a>
+				    <div class="clr"></div>
+				</div>
+		    </div>
+
+			<!-- Post Footer -->	
+			<div class="jb-nav-panel">
+			    <ul class="jb-blog-navi clearfix">
+				<li class="jb-entry-prev">
+				    <?php if(!empty($prevURI) && !empty($prevTitle)) : ?>
+				    <a href="<?php echo($prevURI); ?>" title="<?php echo($prevTitle); ?>" class="jb-navi-btn"><img src="<?php echo JUri::root(); ?>components/com_joomblog/templates/default/images/navi-prev.png" alt=""/></a>
+				    <a href="<?php echo($prevURI); ?>" title="<?php echo($prevTitle); ?>"><?php echo($prevTitle); ?></a>
+				    <?php endif; ?>
+				</li>
+				<li class="jb-entry-random">
+				    <?php if(!empty($randURI)) : ?>
+					<a href="<?php echo($randURI); ?>" class="postSummary-readmore"><?php echo JText::_('COM_JOOMBLOG_RANDOM_POST'); ?></a>
+				    <?php endif; ?>
+				</li>
+				<li class="jb-entry-next">
+				    <?php if(!empty($nextURI) && !empty($nextTitle)) : ?>
+				    <a href="<?php echo($nextURI); ?>" title="<?php echo($nextTitle); ?>"><?php echo($nextTitle); ?></a>
+				    <a href="<?php echo($nextURI); ?>" title="<?php echo($nextTitle); ?>" class="jb-navi-btn"><img src="<?php echo JUri::root(); ?>components/com_joomblog/templates/default/images/navi-next.png" alt=""/></a>
+				    <?php endif; ?>
+				</li>
+			    </ul>
+			</div>
+	
+
+    <span class="article_separator">&nbsp;</span>
+    <hr class="postEntry-divider">
+
+
+    
+    
+    <div>
+        <?php echo $entry['comments']; ?>
+    </div>
+    <!-- Display onAfterDisplayContent mambots -->
+    <?php
+      if(isset($entry['afterContent']) && $entry['afterContent']){
+        echo $entry['afterContent'];
+      }
+    ?>
+</div>
+</div>
+<script type="text/javascript">
+function scrollup(){
+   window.scrollTo(0, 0);
+    return false;
+}
+</script>

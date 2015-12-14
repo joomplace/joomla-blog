@@ -1,0 +1,71 @@
+﻿<!--
+* JoomBlog component for Joomla
+* @version $Id: search.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage search.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+-->
+
+<div class="jb-section"><?php echo JText::_("COM_JOOMBLOG_SEARCH"); ?></div>
+
+<form action="<?php echo $searchURL; ?>" method="post" name="searchForm" id="searchForm" class="jb-search-form">
+    <div class="jb-formelm">
+	<input type="text" id="jb-keywords" class="jb-inputbox" name="keyword" value="<?php echo $keyword;?>" placeholder="<?php echo JText::_('COM_JOOMBLOG_SEARCH_BLOG_KEYWORDS'); ?>"/>
+    </div>
+
+    <div class="jb-formelm">
+	<input type="text" id="jb-blogger" class="jb-inputbox" name="blogger" value="<?php echo $blogger;?>" placeholder="<?php echo JText::_('COM_JOOMBLOG_SEARCH_BLOG_BLOGGER'); ?>"/>
+    </div>
+
+    <div class="jb-formelm">
+	<input type="text" id="jb-tag" class="jb-inputbox" name="tags" value="<?php echo $tags;?>" placeholder="<?php echo JText::_('COM_JOOMBLOG_SEARCH_BLOG_TAG'); ?>"/>
+    </div>
+
+    <div class="jb-buttons">
+	<button class="jb-btn jb-btn-primary" type="submit"> 
+	    <?php echo JText::_('COM_JOOMBLOG_SEARCH_BUTTON'); ?>
+	</button>
+    </div>
+    <div class="jb-formelm">                                       
+	<hr class="jb-hr"/>
+    </div>
+
+    
+  <?php
+  if($results)
+  {
+  ?>
+    
+    <div class="jb-blog-main clearfix">
+	<h4 class="jb-mbm"><?php echo JText::_("COM_JOOMBLOG_SEARCH_RESULT"); ?></h4>
+	<ul class="jb-blogposts-list ulrest">
+	<?php
+		foreach($results as $row)
+		{
+	?>
+	    <li id="post-<?php echo $row->id; ?>">
+		<h3 class="jb-recent-entry">
+		    <a href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$row->blogid.'&view=blogger');?>"><?php echo $row->blogtitle;?></a> <span class="blog-sep">&#8594;</span> <a href="<?php echo $row->link; ?>" class="jb-blogpost"><?php echo $row->title; ?></a>
+		</h3>
+		<div>
+		    <?php echo $row->text; ?>
+	        </div>
+		<small class="jb-category-bgk"><?php if( $categoryDisplay ){echo JText::_('COM_JOOMBLOG_CATEGORY').$row->jcategory; }?></small>
+	    </li>
+	<?php 
+		}
+	?>
+	</ul>
+
+    </div>
+    <div class="jb-pagenav"><?php echo $pagination; ?>	</div>
+  <?php
+  }
+  ?>
+
+    
+
+    <input type="hidden" name="limitstart" value="<?php echo $limitstart; ?>" />
+  </form>

@@ -1,0 +1,1845 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <field name="id" type="hidden" addfieldpath="/administrator/components/com_joomblog/models/fields" />
+
+    <fieldset name="main" label="COM_JOOMBLOG_SETTINGS_GLOBAL">
+        <field type="spacer" name="delimeter1" description="COM_JOOMBLOG_TITLE_AND_DESCRIPTION" />
+
+        <field name="mainBlogTitle"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_TITLE"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_TITLE_DESC"
+                class="inputbox"
+                default="JoomBlog"
+                size="70"
+                maxlength="300"
+                />
+
+        <field name="mainBlogDesc"
+                type="editor"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_DESC"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_DESC_DESC"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_GLOBAL_DESC_DEF"
+                buttons="false" height="100" width="500" editor="none" filter="raw"
+                />
+
+        <field type="spacer" name="delimeter2" description="COM_JOOMBLOG_RECENT_POSTS" />
+
+        <field name="BloggerRecentPosts"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RECENT_BLOGGER"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RECENT_BLOGGER_DESC"
+                class="inputbox"
+                default="5"
+                size="5"
+                maxlength="3"
+                />
+
+        <field name="CategoriesRecentPosts"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RECENT_CATEGORY"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RECENT_CATEGORY_DESC"
+                class="inputbox"
+                default="5"
+                size="5"
+                maxlength="3"
+                />
+
+        <field type="spacer" name="delimeter3" description="COM_JOOMBLOG_TAGS" />
+
+        <field name="allowDefaultTags"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_TAGS_DEFAULT"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_TAGS_DEFAULT_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="enableUserCreateTags"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_DASHBOARD_USER_TAGS"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="ShowUntaggedWithoutTags"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_UNTAG_LBL"
+               description="COM_JOOMBLOG_SETTINGS_UNTAG_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter4" description="COM_JOOMBLOG_COMMENTS" />
+
+        <field name="useComment"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_ENABLE">
+            <option value="0">JNO</option>
+            <option value="1">COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_JB_COMM_OPT</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_DISQUS</option>
+        </field>
+
+        <field name="allowModerateComment"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_AUTOAPPROVECOMMENTS_STATUS"
+               description="COM_JOOMBLOG_SETTINGS_AUTOAPPROVECOMMENTS_STATUS_DESCR">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="useDisqusComments"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_DISQUS_SHOWCOUNT">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="disqusSubDomain"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_DISQUS_SUBDOMAIN"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_DISQUS_SUBDOMAIN_DESC"
+               class="inputbox"
+               default=""
+                />
+
+        <field name="notifyCommentAdmin"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_NOTIFY_ADMIN"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_NOTIFY_ADMIN_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="notifyCommentAuthor"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_NOTIFY_AUTHOR"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_NOTIFY_AUTHOR_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="useCommentOnlyRegisteredUsers"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_REGISTERED_ONLY">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="limitComment"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_LIMIT"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_LIMIT_DESC"
+               class="inputbox"
+               default="10"
+               size="5"
+                />
+
+        <field name="collapseComments"
+               type="radio"
+               default="0"
+               class="btn-group"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENTS_COLLAPSED">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="firstlatestComments"
+               type="radio"
+               default="1"
+               class="btn-group"
+               label="COM_JOOMBLOG_SETTINGS_MENU_LATEST_COMMENTS">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="collapseCommentsThreshold"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_COLLAPSE_THRESHOLD"
+               class="inputbox"
+               default="-5"
+               size="5"
+                />
+
+        <field type="spacer" name="delimeter42" description="COM_JOOMBLOG_SETTINGS_CAPTCHA" />
+
+        <field name="useCommentCaptcha"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_CAPTCHA">
+            <option value="0">JNO</option>
+            <option value="1">COM_JOOMBLOG_SETTINGS_JB_COM_CAPTCHA_OPT</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_SHOWRECAPTCHA</option>
+        </field>
+
+        <field name="useCommentCaptchaRegisteredUsers"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COMMENT_CAPTCHA_REGISTERED">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="recaptcha_publickey"
+               type="text"
+               default=""
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_RECAPTCHA_PUBLIC"
+               description="COM_JOOMBLOG_SETTINGS_RECAPTCHA_PUBLIC"
+                />
+
+        <field name="recaptcha_privatekey"
+               type="text"
+               default=""
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_RECAPTCHA_PRIVATE"
+               description="COM_JOOMBLOG_SETTINGS_RECAPTCHA_PRIVATE"
+                />
+
+        <field type="spacer" name="delimeter5" description="COM_JOOMBLOG_RSS_FEEDS" />
+
+        <field name="useRSSFeed"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_ENABLE"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_ENABLE_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="rssFeedLimit"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_LIMIT"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_LIMIT_DESC"
+                class="inputbox"
+                default="10"
+                size="5"
+                maxlength="3"
+                />
+
+        <field name="titleFeed"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_FEED"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_FEED_DEF"
+                size="30"
+                />
+
+        <field name="useFeedBurnerIntegration"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_INTEGRATION"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_INTEGRATION_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="rssFeedBurnerLabel"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_URL_LABEL"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_URL_LABEL"
+                readonly="true"
+                size="80"
+                />
+
+        <field name="rssFeedBurner"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_DESC"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_FEEDBURNER_INTEGRATION_DEF"
+                size="80"
+                />
+
+        <field name="allowHTMLinRSS"
+                type="radio"
+                default="0"
+                class="btn-group"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_RSS_ALLOW_HTML">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showFeed"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_SHOW_FEED"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_SHOW_FEED_DESC">
+            <option value="0">COM_JOOMBLOG_SETTINGS_GLOBAL_SHOW_FEED_OPT1</option>
+            <option value="1">COM_JOOMBLOG_SETTINGS_GLOBAL_SHOW_FEED_OPT2</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_GLOBAL_SHOW_FEED_OPT3</option>
+        </field>
+
+        <field name="countOfChars"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_GLOBAL_COUNT_OF_CHARS"
+               description="COM_JOOMBLOG_SETTINGS_GLOBAL_COUNT_OF_CHARS_DESC"
+               class="inputbox"
+               size="5"
+                />
+
+        <field type="spacer" name="delimeter6" description="COM_JOOMBLOG_NOTIFICATION" />
+
+        <field name="allowNotification"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_NOTIFICATION_ENABLE"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_NOTIFICATION_ENABLE_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="adminEmail"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_NOTIFICATION_EMAIL"
+                description="COM_JOOMBLOG_SETTINGS_GLOBAL_NOTIFICATION_EMAIL_DESC"
+                class="inputbox"
+                default=""
+                size="40"
+                />
+
+        <field type="spacer" name="delimeter7" description="COM_JOOMBLOG_INTEGRATION" />
+
+        <field name="integrJoomSoc"
+                type="radio"
+                class="btn-group"
+                label="COM_JOOMBLOG_SETTINGS_INTEGRJOOMSOC"
+                description="COM_JOOMBLOG_SETTINGS_INTEGRJOOMSOC_DESC" default="0">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="layout" label="COM_JOOMBLOG_SETTINGS_LAYOUT">
+        <field name="template"
+                type="hidden"
+                class="inputbox"
+                default="default"
+                />
+
+        <field type="spacer" name="delimeter8" description="COM_JOOMBLOG_MAIN_PAGE" />
+
+        <field name="numEntry"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_ENTRY_NUM"
+                class="inputbox"
+                default="10"
+                />
+
+        <field name="categoryDisplay"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_CATEGORY_DISPLAY"
+                description="COM_JOOMBLOG_SETTINGS_LAYOUT_CATEGORY_DISPLAY_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="frontpageToolbar"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_TOOLBAR_DISPLAY"
+                description="COM_JOOMBLOG_SETTINGS_LAYOUT_TOOLBAR_DISPLAY_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showPrimaryTitles"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_TOOLBAR_PRIMARY_DISPLAY"
+                description="COM_JOOMBLOG_SETTINGS_LAYOUT_TOOLBAR_PRIMARY_DISPLAY_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="dateFormat"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_DATE_FORMAT"
+                description="COM_JOOMBLOG_SETTINGS_LAYOUT_DATE_FORMAT_DESC"
+                class="inputbox"
+                default="Y-m-d"
+                size="25"
+                />
+
+        <field name="enableBackLink"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_BACK_LINK" description="COM_JOOMBLOG_SETTINGS_LAYOUT_BACK_LINK_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="enablePrintLink"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_PRINT_LINK"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="enableHits"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_SHOW_HITS"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="modulesDisplay"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_MODULES_SHOW"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="mambotFrontpage"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_PLUGINS_FRONTPAGE"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showBlogTitle"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_SHOW_BLOG_TITLE"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showRandomPost"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_LAYOUT_SHOW_RANDOM_POST_BUTTON"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter9" description="COM_JOOMBLOG_AUTHOR_SETTINGS" />
+
+        <field name="avatar"
+               type="list"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_DESC"
+               class="inputbox"
+               default="juser"
+                >
+            <option value="none">JNONE</option>
+            <option value="juser">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_OPT2</option>
+            <option value="jomsocial">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_OPT3</option>
+            <option value="gravatar">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_OPT4</option>
+        </field>
+
+        <field name="showUserLink"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_LINK"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="useFullName"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USEFULLNAME"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USEFULLNAME_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="avatarWidth"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_WIDTH"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_WIDTH_DESC"
+               class="inputbox"
+               default="64"
+                />
+
+        <field name="avatarHeight"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_HEIGHT"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_HEIGHT_DESC"
+               class="inputbox"
+               default="64"
+                />
+
+        <field name="maxFileSize"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_MAX_FILE_SIZE"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_MAX_FILE_SIZE_DESC"
+               class="inputbox"
+               default="2"
+                />
+
+        <field name="linkAvatar"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_LINK"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AVATAR_LINK_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showAsAuthors"
+               type="radio"
+               default="1"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AUTHOR_IS"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AUTHOR_IS_DESC"
+                >
+            <option value="0">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AUTHOR_ALL_USERS</option>
+            <option value="1">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AUTHOR_POSTERS</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_LAYOUT_USER_AUTHOR_CREATORS</option>
+        </field>
+
+        <field type="spacer" name="delimeter10" description="COM_JOOMBLOG_RMS" />
+
+        <field name="useIntrotext"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_INTROTEXT"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_INTROTEXT_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="autoReadmorePCount"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_INTROTEXT_AUTO"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_INTROTEXT_AUTO_DESC"
+               class="inputbox"
+               default="3"
+                />
+
+        <field name="readMoreLink"
+               type="text"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_DESC"
+               class="inputbox"
+               default="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_DEF"
+                />
+
+        <field name="disableReadMoreTag"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_TAG_DIS"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_TAG_DIS_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="necessaryReadmore"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_NESS"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_NESS_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="anchorReadmore"
+               type="radio"
+               class="btn-group"
+               default="1"
+               label="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_ANCHOR"
+               description="COM_JOOMBLOG_SETTINGS_LAYOUT_READMORE_ANCHOR_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="dashboard" label="COM_JOOMBLOG_SETTINGS_DASHBOARD">
+
+        <field type="spacer" name="delimeter11" description="COM_JOOMBLOG_CONFIGURATIONS" />
+
+        <field name="autoapproveblogs"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_AUTOAPPROVEBLOGS_STATUS"
+                description="COM_JOOMBLOG_SETTINGS_AUTOAPPROVEBLOGS_STATUS_DESCR"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="defaultPublishStatus"
+                type="radio"
+                class="btn-group"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_DASHBOARD_PUBLISH_STATUS"
+                description="COM_JOOMBLOG_SETTINGS_DASHBOARD_PUBLISH_STATUS_DESCR"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="useMCEeditor"
+                type="radio"
+                class="inputbox"
+                default="1"
+                label="COM_JOOMBLOG_SETTINGS_DASHBOARD_USE_EDITOR"
+                description="COM_JOOMBLOG_SETTINGS_DASHBOARD_USE_EDITOR_DESC"
+                >
+            <option value="0">JNO</option>
+            <option value="1">COM_JOOMBLOG_SIMPLE_EDITOR</option>
+            <option value="2">COM_JOOMBLOG_DEFAULT_EDITOR</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="joomblogmenu" label="COM_JOOMBLOG_SETTINGS_MENU">
+
+        <field type="spacer" name="delimeter12" description="COM_JOOMBLOG_BASIC_CONFIGURATION" />
+
+        <field name="showIcons"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_ICONS"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showTabs"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TABS"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showPanel"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_PANEL"
+                description="COM_JOOMBLOG_SETTINGS_MENU_PANEL_DESC"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter13" description="COM_JOOMBLOG_ORDER_MENU_TOOLBAR_ITEMS" />
+
+        <field name="firstPositionT"
+               type="positiontoolbar"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_1"
+               class="inputbox"
+               default="1"
+                />
+
+        <field name="secondPositionT"
+               type="positiontoolbar"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_2"
+               class="inputbox"
+               default="2"
+                />
+
+        <field name="thirdPositionT"
+               type="positiontoolbar"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_3"
+               class="inputbox"
+               default="3"
+                />
+
+        <field name="fourthPositionT"
+               type="positiontoolbar"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_4"
+               class="inputbox"
+               default="4"
+                />
+
+        <field type="spacer" name="delimeter14" description="COM_JOOMBLOG_SHOW_MENU_TOOLBAR_ITEMS" />
+
+        <field name="showPosts"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_POSTS"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showBlogs"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_BLOGS"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showBloggers"
+               type="radio"
+               class="btn-group"
+               value="1"
+               label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_BLOGGERS"
+               default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showCategories"
+               type="radio"
+               class="btn-group"
+               value="1"
+               label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_CATEGORIES"
+               default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter15" description="COM_JOOMBLOG_ORDER_MENU_ICONS_ITEMS" />
+
+        <field name="firstPositionI"
+               type="positionicons"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_1"
+               class="inputbox"
+               default="1"
+                />
+
+        <field name="secondPositionI"
+               type="positionicons"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_2"
+               class="inputbox"
+               default="2"
+                />
+
+        <field name="thirdPositionI"
+               type="positionicons"
+               label="COM_JOOMBLOG_SETTINGS_MENU_ORDER_3"
+               class="inputbox"
+               default="3"
+                />
+
+        <field type="spacer" name="delimeter16" description="COM_JOOMBLOG_SHOW_MENU_ICONS_ITEMS" />
+
+        <field name="showSearch"
+                type="radio"
+                class="btn-group"
+                value="1"
+                label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_SEARCH"
+                default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showArchive"
+               type="radio"
+               class="btn-group"
+               value="1"
+               label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_ARCHIVE"
+               default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="showTags"
+               type="radio"
+               class="btn-group"
+               value="1"
+               label="COM_JOOMBLOG_SETTINGS_MENU_SHOW_TAGS"
+               default="1"
+                >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter17" description="COM_JOOMBLOG_TITLES_MENU_ITEMS" />
+
+        <field name="titlePosts"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_POSTS"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_DEF"
+                />
+
+        <field name="titleBlogs"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_BLOGS"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_BLOGS_DEF"
+                />
+
+        <field name="titleSearch"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_SEARCH"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_SEARCH_DEF"
+                />
+
+        <field name="titleBloggers"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_BLOGGERS"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_BLOGGERS_DEF"
+                />
+
+        <field name="titleCategories"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_CATEGORIES"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_CATEGORIES_DEF"
+                />
+
+        <field name="titleArchive"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_ARCHIVE"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_ARCHIVE_DEF"
+                />
+
+        <field name="titleTags"
+                type="text"
+                label="COM_JOOMBLOG_SETTINGS_MENU_TITLE_TAGS"
+                class="inputbox"
+                default="COM_JOOMBLOG_SETTINGS_MENU_TITLE_TAGS_DEF"
+                />
+    </fieldset>
+
+    <fieldset name="addThis">
+        <field type="spacer" name="delimeter37" description="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_SETT" />
+
+        <field name="useAddThis"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_GLOBAL_ADDTHIS">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="addThisName"
+                type="text"
+                label="COM_JOOMBLOG_ADDTHIS_PROFILEID"
+                description="COM_JOOMBLOG_ADDTHIS_PROFILEID_DESC"
+                class="inputbox"
+                default=""
+                />
+
+        <field name="addthis_language"
+                size="1"
+                type="list"
+                default="en"
+                label="COM_JOOMBLOG_ADDTHIS_LANG_LBL"
+                description="COM_JOOMBLOG_ADDTHIS_LANG_DESC">
+            <option value="en">COM_JOOMBLOG_SOCIAL_LANG_EN</option>
+            <option value="af">COM_JOOMBLOG_SOCIAL_LANG_AF</option>
+            <option value="sq">COM_JOOMBLOG_SOCIAL_LANG_SQ</option>
+            <option value="ar">COM_JOOMBLOG_SOCIAL_LANG_AR</option>
+            <option value="az">COM_JOOMBLOG_SOCIAL_LANG_AZ</option>
+            <option value="eu">COM_JOOMBLOG_SOCIAL_LANG_EU</option>
+            <option value="be">COM_JOOMBLOG_SOCIAL_LANG_BE</option>
+            <option value="bn">COM_JOOMBLOG_SOCIAL_LANG_BN</option>
+            <option value="bs">COM_JOOMBLOG_SOCIAL_LANG_BS</option>
+            <option value="bg">COM_JOOMBLOG_SOCIAL_LANG_BG</option>
+            <option value="ca">COM_JOOMBLOG_SOCIAL_LANG_CA</option>
+            <option value="zh">COM_JOOMBLOG_SOCIAL_LANG_ZH</option>
+            <option value="hr">COM_JOOMBLOG_SOCIAL_LANG_HR</option>
+            <option value="cs">COM_JOOMBLOG_SOCIAL_LANG_CS</option>
+            <option value="da">COM_JOOMBLOG_SOCIAL_LANG_DA</option>
+            <option value="nl">COM_JOOMBLOG_SOCIAL_LANG_NL</option>
+            <option value="et">COM_JOOMBLOG_SOCIAL_LANG_ET</option>
+            <option value="fo">COM_JOOMBLOG_SOCIAL_LANG_FO</option>
+            <option value="fi">COM_JOOMBLOG_SOCIAL_LANG_FI</option>
+            <option value="fr">COM_JOOMBLOG_SOCIAL_LANG_FR</option>
+            <option value="gl">COM_JOOMBLOG_SOCIAL_LANG_GL</option>
+            <option value="de">COM_JOOMBLOG_SOCIAL_LANG_DE</option>
+            <option value="dl">COM_JOOMBLOG_SOCIAL_LANG_DL</option>
+            <option value="he">COM_JOOMBLOG_SOCIAL_LANG_HE</option>
+            <option value="hi">COM_JOOMBLOG_SOCIAL_LANG_HI</option>
+            <option value="hu">COM_JOOMBLOG_SOCIAL_LANG_HU</option>
+            <option value="is">COM_JOOMBLOG_SOCIAL_LANG_IS</option>
+            <option value="id">COM_JOOMBLOG_SOCIAL_LANG_ID</option>
+            <option value="ga">COM_JOOMBLOG_SOCIAL_LANG_GA</option>
+            <option value="it">COM_JOOMBLOG_SOCIAL_LANG_IT</option>
+            <option value="ja">COM_JOOMBLOG_SOCIAL_LANG_JA</option>
+            <option value="ko">COM_JOOMBLOG_SOCIAL_LANG_KO</option>
+            <option value="lv">COM_JOOMBLOG_SOCIAL_LANG_LV</option>
+            <option value="lt">COM_JOOMBLOG_SOCIAL_LANG_LT</option>
+            <option value="lb">COM_JOOMBLOG_SOCIAL_LANG_LB</option>
+            <option value="mk">COM_JOOMBLOG_SOCIAL_LANG_MK</option>
+            <option value="ml">COM_JOOMBLOG_SOCIAL_LANG_ML</option>
+            <option value="mn">COM_JOOMBLOG_SOCIAL_LANG_MN</option>
+            <option value="ms">COM_JOOMBLOG_SOCIAL_LANG_MS</option>
+            <option value="nb">COM_JOOMBLOG_SOCIAL_LANG_NB</option>
+            <option value="no">COM_JOOMBLOG_SOCIAL_LANG_NO</option>
+            <option value="oc">COM_JOOMBLOG_SOCIAL_LANG_OC</option>
+            <option value="fa">COM_JOOMBLOG_SOCIAL_LANG_FA</option>
+            <option value="pl">COM_JOOMBLOG_SOCIAL_LANG_PL</option>
+            <option value="pt">COM_JOOMBLOG_SOCIAL_LANG_PT</option>
+            <option value="ro">COM_JOOMBLOG_SOCIAL_LANG_RO</option>
+            <option value="ru">COM_JOOMBLOG_SOCIAL_LANG_RU</option>
+            <option value="se">COM_JOOMBLOG_SOCIAL_LANG_SE</option>
+            <option value="sr">COM_JOOMBLOG_SOCIAL_LANG_SR</option>
+            <option value="sk">COM_JOOMBLOG_SOCIAL_LANG_SK</option>
+            <option value="sl">COM_JOOMBLOG_SOCIAL_LANG_SL</option>
+            <option value="sw">COM_JOOMBLOG_SOCIAL_LANG_SW</option>
+            <option value="es">COM_JOOMBLOG_SOCIAL_LANG_ES</option>
+            <option value="su">COM_JOOMBLOG_SOCIAL_LANG_SU</option>
+            <option value="sv">COM_JOOMBLOG_SOCIAL_LANG_SV</option>
+            <option value="tl">COM_JOOMBLOG_SOCIAL_LANG_TL</option>
+            <option value="ta">COM_JOOMBLOG_SOCIAL_LANG_TA</option>
+            <option value="te">COM_JOOMBLOG_SOCIAL_LANG_TE</option>
+            <option value="th">COM_JOOMBLOG_SOCIAL_LANG_TH</option>
+            <option value="tr">COM_JOOMBLOG_SOCIAL_LANG_TR</option>
+            <option value="uk">COM_JOOMBLOG_SOCIAL_LANG_UK</option>
+            <option value="ur">COM_JOOMBLOG_SOCIAL_LANG_UR</option>
+            <option value="vi">COM_JOOMBLOG_SOCIAL_LANG_VI</option>
+            <option value="cy">COM_JOOMBLOG_SOCIAL_LANG_CY</option>
+        </field>
+
+        <field type="spacer" name="delimeter38" description="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_INLIST" />
+
+        <field name="showAddThisInList"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_SHOW_INLIST">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="addthis_list_button_style"
+               type="radio"
+               default="style1"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_STYLE" description="">
+            <option value="style1"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style1.png"/></label><label class="hide">]]></option>
+            <option value="style2"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style2.png"/></label><label class="hide">]]></option>
+            <option value="style3"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style3.png"/></label><label class="hide">]]></option>
+            <option value="style5"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style4.png"/></label><label class="hide">]]></option>
+            <option value="style4"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style5.png"/></label><label class="hide">]]></option>
+            <option value="style6"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style7.png"/></label><label class="hide">]]></option>
+            <option value="style7"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style6.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="addThisListPosition"
+               type="list"
+               default="bottom"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter39" description="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_INPOST" />
+
+        <field name="showAddThisInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_SHOW_INPOST">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="addthis_post_button_style"
+               type="radio"
+               default="style1"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_INLIST"
+               description="">
+            <option value="style1"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style1.png"/></label><label class="hide">]]></option>
+            <option value="style2"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style2.png"/></label><label class="hide">]]></option>
+            <option value="style3"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style3.png"/></label><label class="hide">]]></option>
+            <option value="style5"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style4.png"/></label><label class="hide">]]></option>
+            <option value="style4"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style5.png"/></label><label class="hide">]]></option>
+            <option value="style6"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style7.png"/></label><label class="hide">]]></option>
+            <option value="style7"><![CDATA[<img src="components/com_joomblog/assets/images/social/addt_style6.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="addThisPostPosition"
+               type="list"
+               default="bottom"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_ADDTHIS_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="fb">
+
+        <field type="spacer" name="delimeter21" description="COM_JOOMBLOG_SETTINGS_INTEGR_FB_SETT" />
+
+        <field name="usefacebook"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_FACEBOOK">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="fb_sendbutton"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_FACEBOOK_SEND_BUTTON"
+                description="COM_JOOMBLOG_FACEBOOK_SEND_BUTTON_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="fbwidth"
+                type="text"
+                default="50"
+                class="inputbox"
+                label="COM_JOOMBLOG_FACEBOOK_WIDTH"
+                size="3"
+                description="COM_JOOMBLOG_FACEBOOK_WIDTH_DESC"
+                />
+
+        <field name="fbadmin"
+                type="text"
+                default=""
+                class="inputbox"
+                label="COM_JOOMBLOG_FACEBOOK_FBADMIN"
+                size="15"
+                description="COM_JOOMBLOG_FACEBOOK_FBADMIN_DESC"
+                />
+
+        <field name="fbappid"
+                type="text"
+                default=""
+                class="inputbox"
+                label="COM_JOOMBLOG_FACEBOOK_APPID"
+                size="15"
+                description="COM_JOOMBLOG_FACEBOOK_APPID_DESC"
+                />
+
+        <field name="og_defimage"
+                type="text"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_OG_DEF_IMG_LBL"
+                size="15"
+                description="COM_JOOMBLOG_SETTINGS_OG_DEF_IMG_DESC"
+                />
+
+        <field type="spacer" name="delimeter22" description="COM_JOOMBLOG_FACEBOOK_RECOMMENDATION_BAR" />
+
+        <field name="usefacebookrecommendbar"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_FACEBOOK_RECCOMEDATION_BAR">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="facebookrecommendbar_trigger"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_FACEBOOK_RECCOMEDATION_BAR_TRIGGER_TYPE">
+            <option value="0">COM_JOOMBLOG_FACEBOOK_RECCOMEDATION_BAR_TRIGGER_ONVISIBLE</option>
+            <option value="1">COM_JOOMBLOG_FACEBOOK_RECCOMEDATION_BAR_TRIGGER_X</option>
+        </field>
+
+        <field name="facebookrecommendbar_xtrigger"
+                type="text"
+                default="30"
+                class="inputbox"
+                label="COM_JOOMBLOG_RECCOMEDATION_BAR_TRIGGER_X_VALUE" size="15"
+                description="COM_JOOMBLOG_RECCOMEDATION_BAR_TRIGGER_X_VALUE_DESC"
+                />
+
+        <field name="facebookrecommendbar_readtime"
+                 type="text"
+                 default="30"
+                 class="inputbox"
+                label="COM_JOOMBLOG_RECCOMEDATION_BAR_READ_TIME" size="15"
+                description="COM_JOOMBLOG_RECCOMEDATION_BAR_READ_TIME_DESC"
+                />
+
+        <field name="facebookrecommendbar_num"
+                type="radio"
+                class="btn-group"
+                default="3"
+                label="COM_JOOMBLOG_USE_FACEBOOK_RECCOMEDATION_BAR_NUMBER_RECOMMENDATIONS">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </field>
+
+        <field type="spacer" name="delimeter23" description="COM_JOOMBLOG_SETTINGS_INTEGR_FB_INPOST" />
+
+        <field name="showfbInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_INPOST">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="fb_style_post"
+               type="radio"
+               default="none"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionfbInPost"
+               type="list"
+               default="top"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_POSITION_LBL">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter24" description="COM_JOOMBLOG_SETTINGS_INTEGR_FB_INLIST" />
+
+        <field name="showfbInList"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_SHOW_INLIST">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="fb_style_list"
+               type="radio"
+               default="none"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/fb_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionfbInList"
+               type="list"
+               default="bottom"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_FB_POSITION_LBL">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="tw">
+
+        <field type="spacer" name="delimeter18" description="COM_JOOMBLOG_SETTINGS_INTEGR_TW_SETT" />
+
+        <field name="usetwitter"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_TWITTER">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="twitterlang"
+                size="1"
+                type="list"
+                default="en"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_LANG_LBL"
+                description="COM_JOOMBLOG_SETTINGS_INTEGR_TW_LANG_DESC">
+            <option value="en">COM_JOOMBLOG_SOCIAL_LANG_EN</option>
+            <option value="id">COM_JOOMBLOG_SOCIAL_LANG_ID</option>
+            <option value="nl">COM_JOOMBLOG_SOCIAL_LANG_NL</option>
+            <option value="fr">COM_JOOMBLOG_SOCIAL_LANG_FR</option>
+            <option value="de">COM_JOOMBLOG_SOCIAL_LANG_DE</option>
+            <option value="it">COM_JOOMBLOG_SOCIAL_LANG_IT</option>
+            <option value="ja">COM_JOOMBLOG_SOCIAL_LANG_JA</option>
+            <option value="ko">COM_JOOMBLOG_SOCIAL_LANG_KO</option>
+            <option value="pt">COM_JOOMBLOG_SOCIAL_LANG_PT</option>
+            <option value="ru">COM_JOOMBLOG_SOCIAL_LANG_RU</option>
+            <option value="es">COM_JOOMBLOG_SOCIAL_LANG_ES</option>
+            <option value="tr">COM_JOOMBLOG_SOCIAL_LANG_TR</option>
+        </field>
+
+        <field name="twitterName"
+                type="text"
+                default=""
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_NAME_LBL"
+                />
+
+        <field type="spacer" name="delimeter19" description="COM_JOOMBLOG_SETTINGS_INTEGR_TW_INLIST" />
+
+        <field name="showtwitterInList"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_SHOW_INLIST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="twitterliststyle"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_none.png"/>]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_horizontal.png"/>]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_vertical.png"/>]]></option>
+        </field>
+
+        <field name="twitterfollowliststyle"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_FOL_BUT_STYLE_LBL">
+            <option value="none">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_BUT_DONT_SHOW</option>
+            <option value="twf1"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_flw1.png"/>]]></option>
+            <option value="twf2"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_flw2.png"/>]]></option>
+        </field>
+
+        <field name="positiontwitterInList"
+                type="list"
+                default="bottom"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter20" description="COM_JOOMBLOG_SETTINGS_INTEGR_TW_INPOST" />
+
+        <field name="showtwitterInPost"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_SHOW_INPOST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="twitterpoststyle"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_none.png"/>]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_horizontal.png"/>]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_vertical.png"/>]]></option>
+        </field>
+
+        <field name="twitterfollowpoststyle"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_FOL_BUT_STYLE_LBL">
+            <option value="none">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_BUT_DONT_SHOW</option>
+            <option value="twf1"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_flw1.png"/>]]></option>
+            <option value="twf2"><![CDATA[<img src="components/com_joomblog/assets/images/social/tw_flw2.png"/>]]></option>
+        </field>
+
+        <field name="positiontwitterInPost"
+                type="list"
+                default="top"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_TW_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="gp">
+        <field type="spacer" name="delimeter25" description="COM_JOOMBLOG_SETTINGS_INTEGR_GP_SETT" />
+
+        <field name="usegp"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_GP">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="gp_language"
+                size="1"
+                type="list"
+                default="en"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_LANG_LBL"
+                description="">
+            <option value="en">COM_JOOMBLOG_SOCIAL_LANG_EN</option>
+            <option value="af">COM_JOOMBLOG_SOCIAL_LANG_AF</option>
+            <option value="sq">COM_JOOMBLOG_SOCIAL_LANG_SQ</option>
+            <option value="ar">COM_JOOMBLOG_SOCIAL_LANG_AR</option>
+            <option value="az">COM_JOOMBLOG_SOCIAL_LANG_AZ</option>
+            <option value="eu">COM_JOOMBLOG_SOCIAL_LANG_EU</option>
+            <option value="be">COM_JOOMBLOG_SOCIAL_LANG_BE</option>
+            <option value="bn">COM_JOOMBLOG_SOCIAL_LANG_BN</option>
+            <option value="bs">COM_JOOMBLOG_SOCIAL_LANG_BS</option>
+            <option value="bg">COM_JOOMBLOG_SOCIAL_LANG_BG</option>
+            <option value="ca">COM_JOOMBLOG_SOCIAL_LANG_CA</option>
+            <option value="zh">COM_JOOMBLOG_SOCIAL_LANG_ZH</option>
+            <option value="hr">COM_JOOMBLOG_SOCIAL_LANG_HR</option>
+            <option value="cs">COM_JOOMBLOG_SOCIAL_LANG_CS</option>
+            <option value="da">COM_JOOMBLOG_SOCIAL_LANG_DA</option>
+            <option value="nl">COM_JOOMBLOG_SOCIAL_LANG_NL</option>
+            <option value="et">COM_JOOMBLOG_SOCIAL_LANG_ET</option>
+            <option value="fo">COM_JOOMBLOG_SOCIAL_LANG_FO</option>
+            <option value="fi">COM_JOOMBLOG_SOCIAL_LANG_FI</option>
+            <option value="fr">COM_JOOMBLOG_SOCIAL_LANG_FR</option>
+            <option value="gl">COM_JOOMBLOG_SOCIAL_LANG_GL</option>
+            <option value="de">COM_JOOMBLOG_SOCIAL_LANG_DE</option>
+            <option value="dl">COM_JOOMBLOG_SOCIAL_LANG_DL</option>
+            <option value="he">COM_JOOMBLOG_SOCIAL_LANG_HE</option>
+            <option value="hi">COM_JOOMBLOG_SOCIAL_LANG_HI</option>
+            <option value="hu">COM_JOOMBLOG_SOCIAL_LANG_HU</option>
+            <option value="is">COM_JOOMBLOG_SOCIAL_LANG_IS</option>
+            <option value="id">COM_JOOMBLOG_SOCIAL_LANG_ID</option>
+            <option value="ga">COM_JOOMBLOG_SOCIAL_LANG_GA</option>
+            <option value="it">COM_JOOMBLOG_SOCIAL_LANG_IT</option>
+            <option value="ja">COM_JOOMBLOG_SOCIAL_LANG_JA</option>
+            <option value="ko">COM_JOOMBLOG_SOCIAL_LANG_KO</option>
+            <option value="lv">COM_JOOMBLOG_SOCIAL_LANG_LV</option>
+            <option value="lt">COM_JOOMBLOG_SOCIAL_LANG_LT</option>
+            <option value="lb">COM_JOOMBLOG_SOCIAL_LANG_LB</option>
+            <option value="mk">COM_JOOMBLOG_SOCIAL_LANG_MK</option>
+            <option value="ml">COM_JOOMBLOG_SOCIAL_LANG_ML</option>
+            <option value="mn">COM_JOOMBLOG_SOCIAL_LANG_MN</option>
+            <option value="ms">COM_JOOMBLOG_SOCIAL_LANG_MS</option>
+            <option value="nb">COM_JOOMBLOG_SOCIAL_LANG_NB</option>
+            <option value="no">COM_JOOMBLOG_SOCIAL_LANG_NO</option>
+            <option value="oc">COM_JOOMBLOG_SOCIAL_LANG_OC</option>
+            <option value="fa">COM_JOOMBLOG_SOCIAL_LANG_FA</option>
+            <option value="pl">COM_JOOMBLOG_SOCIAL_LANG_PL</option>
+            <option value="pt">COM_JOOMBLOG_SOCIAL_LANG_PT</option>
+            <option value="ro">COM_JOOMBLOG_SOCIAL_LANG_RO</option>
+            <option value="ru">COM_JOOMBLOG_SOCIAL_LANG_RU</option>
+            <option value="se">COM_JOOMBLOG_SOCIAL_LANG_SE</option>
+            <option value="sr">COM_JOOMBLOG_SOCIAL_LANG_SR</option>
+            <option value="sk">COM_JOOMBLOG_SOCIAL_LANG_SK</option>
+            <option value="sl">COM_JOOMBLOG_SOCIAL_LANG_SL</option>
+            <option value="sw">COM_JOOMBLOG_SOCIAL_LANG_SW</option>
+            <option value="es">COM_JOOMBLOG_SOCIAL_LANG_ES</option>
+            <option value="su">COM_JOOMBLOG_SOCIAL_LANG_SU</option>
+            <option value="sv">COM_JOOMBLOG_SOCIAL_LANG_SV</option>
+            <option value="tl">COM_JOOMBLOG_SOCIAL_LANG_TL</option>
+            <option value="ta">COM_JOOMBLOG_SOCIAL_LANG_TA</option>
+            <option value="te">COM_JOOMBLOG_SOCIAL_LANG_TE</option>
+            <option value="th">COM_JOOMBLOG_SOCIAL_LANG_TH</option>
+            <option value="tr">COM_JOOMBLOG_SOCIAL_LANG_TR</option>
+            <option value="uk">COM_JOOMBLOG_SOCIAL_LANG_UK</option>
+            <option value="ur">COM_JOOMBLOG_SOCIAL_LANG_UR</option>
+            <option value="vi">COM_JOOMBLOG_SOCIAL_LANG_VI</option>
+            <option value="cy">COM_JOOMBLOG_SOCIAL_LANG_CY</option>
+        </field>
+
+        <field type="spacer" name="delimeter26" description="COM_JOOMBLOG_SETTINGS_INTEGR_GP_INLIST" />
+
+        <field name="showgpInList"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_SHOW_INLIST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="gp_style_list"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positiongpInList"
+               type="list"
+               default="bottom"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter27" description="COM_JOOMBLOG_SETTINGS_INTEGR_GP_INPOST" />
+
+        <field name="showgpInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_SHOW_INPOST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="gp_style_post"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/gp_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positiongpInPost"
+                type="list"
+                default="top"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_GP_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="pi">
+        <field type="spacer" name="delimeter28" description="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_SETT" />
+
+        <field name="usepi"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_PI">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="pi_language"
+                size="1"
+                type="list"
+                default="en"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_LNG_LBL"
+                description="">
+            <option value="en">COM_JOOMBLOG_SOCIAL_LANG_EN</option>
+            <option value="af">COM_JOOMBLOG_SOCIAL_LANG_AF</option>
+            <option value="sq">COM_JOOMBLOG_SOCIAL_LANG_SQ</option>
+            <option value="ar">COM_JOOMBLOG_SOCIAL_LANG_AR</option>
+            <option value="az">COM_JOOMBLOG_SOCIAL_LANG_AZ</option>
+            <option value="eu">COM_JOOMBLOG_SOCIAL_LANG_EU</option>
+            <option value="be">COM_JOOMBLOG_SOCIAL_LANG_BE</option>
+            <option value="bn">COM_JOOMBLOG_SOCIAL_LANG_BN</option>
+            <option value="bs">COM_JOOMBLOG_SOCIAL_LANG_BS</option>
+            <option value="bg">COM_JOOMBLOG_SOCIAL_LANG_BG</option>
+            <option value="ca">COM_JOOMBLOG_SOCIAL_LANG_CA</option>
+            <option value="zh">COM_JOOMBLOG_SOCIAL_LANG_ZH</option>
+            <option value="hr">COM_JOOMBLOG_SOCIAL_LANG_HR</option>
+            <option value="cs">COM_JOOMBLOG_SOCIAL_LANG_CS</option>
+            <option value="da">COM_JOOMBLOG_SOCIAL_LANG_DA</option>
+            <option value="nl">COM_JOOMBLOG_SOCIAL_LANG_NL</option>
+            <option value="et">COM_JOOMBLOG_SOCIAL_LANG_ET</option>
+            <option value="fo">COM_JOOMBLOG_SOCIAL_LANG_FO</option>
+            <option value="fi">COM_JOOMBLOG_SOCIAL_LANG_FI</option>
+            <option value="fr">COM_JOOMBLOG_SOCIAL_LANG_FR</option>
+            <option value="gl">COM_JOOMBLOG_SOCIAL_LANG_GL</option>
+            <option value="de">COM_JOOMBLOG_SOCIAL_LANG_DE</option>
+            <option value="dl">COM_JOOMBLOG_SOCIAL_LANG_DL</option>
+            <option value="he">COM_JOOMBLOG_SOCIAL_LANG_HE</option>
+            <option value="hi">COM_JOOMBLOG_SOCIAL_LANG_HI</option>
+            <option value="hu">COM_JOOMBLOG_SOCIAL_LANG_HU</option>
+            <option value="is">COM_JOOMBLOG_SOCIAL_LANG_IS</option>
+            <option value="id">COM_JOOMBLOG_SOCIAL_LANG_ID</option>
+            <option value="ga">COM_JOOMBLOG_SOCIAL_LANG_GA</option>
+            <option value="it">COM_JOOMBLOG_SOCIAL_LANG_IT</option>
+            <option value="ja">COM_JOOMBLOG_SOCIAL_LANG_JA</option>
+            <option value="ko">COM_JOOMBLOG_SOCIAL_LANG_KO</option>
+            <option value="lv">COM_JOOMBLOG_SOCIAL_LANG_LV</option>
+            <option value="lt">COM_JOOMBLOG_SOCIAL_LANG_LT</option>
+            <option value="lb">COM_JOOMBLOG_SOCIAL_LANG_LB</option>
+            <option value="mk">COM_JOOMBLOG_SOCIAL_LANG_MK</option>
+            <option value="ml">COM_JOOMBLOG_SOCIAL_LANG_ML</option>
+            <option value="mn">COM_JOOMBLOG_SOCIAL_LANG_MN</option>
+            <option value="ms">COM_JOOMBLOG_SOCIAL_LANG_MS</option>
+            <option value="nb">COM_JOOMBLOG_SOCIAL_LANG_NB</option>
+            <option value="no">COM_JOOMBLOG_SOCIAL_LANG_NO</option>
+            <option value="oc">COM_JOOMBLOG_SOCIAL_LANG_OC</option>
+            <option value="fa">COM_JOOMBLOG_SOCIAL_LANG_FA</option>
+            <option value="pl">COM_JOOMBLOG_SOCIAL_LANG_PL</option>
+            <option value="pt">COM_JOOMBLOG_SOCIAL_LANG_PT</option>
+            <option value="ro">COM_JOOMBLOG_SOCIAL_LANG_RO</option>
+            <option value="ru">COM_JOOMBLOG_SOCIAL_LANG_RU</option>
+            <option value="se">COM_JOOMBLOG_SOCIAL_LANG_SE</option>
+            <option value="sr">COM_JOOMBLOG_SOCIAL_LANG_SR</option>
+            <option value="sk">COM_JOOMBLOG_SOCIAL_LANG_SK</option>
+            <option value="sl">COM_JOOMBLOG_SOCIAL_LANG_SL</option>
+            <option value="sw">COM_JOOMBLOG_SOCIAL_LANG_SW</option>
+            <option value="es">COM_JOOMBLOG_SOCIAL_LANG_ES</option>
+            <option value="su">COM_JOOMBLOG_SOCIAL_LANG_SU</option>
+            <option value="sv">COM_JOOMBLOG_SOCIAL_LANG_SV</option>
+            <option value="tl">COM_JOOMBLOG_SOCIAL_LANG_TL</option>
+            <option value="ta">COM_JOOMBLOG_SOCIAL_LANG_TA</option>
+            <option value="te">COM_JOOMBLOG_SOCIAL_LANG_TE</option>
+            <option value="th">COM_JOOMBLOG_SOCIAL_LANG_TH</option>
+            <option value="tr">COM_JOOMBLOG_SOCIAL_LANG_TR</option>
+            <option value="uk">COM_JOOMBLOG_SOCIAL_LANG_UK</option>
+            <option value="ur">COM_JOOMBLOG_SOCIAL_LANG_UR</option>
+            <option value="vi">COM_JOOMBLOG_SOCIAL_LANG_VI</option>
+            <option value="cy">COM_JOOMBLOG_SOCIAL_LANG_CY</option>
+        </field>
+
+        <field type="spacer" name="delimeter29" description="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_INLIST" />
+
+        <field name="showpiInList"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_SHOW_INLIST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="pi_style_list"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_3.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_1.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_2.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionpiInList"
+                type="list"
+                default="bottom"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter30" description="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_INPOST" />
+
+        <field name="showpiInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_SHOW_INPOST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="pi_style_post"
+               type="radio"
+               default="none"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_3.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_1.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/pi_2.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionpiInPost"
+                type="list"
+                default="top"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_PINT_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="li">
+        <field type="spacer" name="delimeter31" description="COM_JOOMBLOG_SETTINGS_INTEGR_LI_SETT" />
+
+        <field name="useln"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_LN">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter32" description="COM_JOOMBLOG_SETTINGS_INTEGR_LI_INLIST" />
+
+        <field name="showlnInList"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_SHOW_INLIST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="ln_style_list"
+                type="radio"
+                default="none"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionlnInList"
+                type="list"
+                default="bottom"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_BUT_POSITION_LBL">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter33" description="COM_JOOMBLOG_SETTINGS_INTEGR_LI_INPOST" />
+
+        <field name="showlnInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_SHOW_INPOST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="ln_style_post"
+               type="radio"
+               default="none"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_BUT_STYLE_LBL">
+            <option value="none"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_1.png"/></label><label class="hide">]]></option>
+            <option value="horizontal"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_2.png"/></label><label class="hide">]]></option>
+            <option value="vertical"><![CDATA[<img src="components/com_joomblog/assets/images/social/ln_3.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionlnInPost"
+                type="list"
+                default="top"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_LI_BUT_POSITION_LBL">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="su">
+        <field type="spacer" name="delimeter34" description="COM_JOOMBLOG_SETTINGS_INTEGR_SU_SETT" />
+
+        <field name="usesu"
+                type="radio"
+                class="btn-group"
+                default="0"
+                label="COM_JOOMBLOG_USE_SU">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field type="spacer" name="delimeter35" description="COM_JOOMBLOG_SETTINGS_INTEGR_SU_INLIST" />
+
+        <field name="showsuInList"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_SHOW_INLIST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="su_style_list"
+                type="radio"
+                default="su_1"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_BUT_STYLE_LBL">
+            <option value="su_1"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_1.png"/></label><label class="hide">]]></option>
+            <option value="su_2"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_2.png"/></label><label class="hide">]]></option>
+            <option value="su_3"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_3.png"/></label><label class="hide">]]></option>
+            <option value="su_4"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_4.png"/></label><label class="hide">]]></option>
+            <option value="su_5"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_5.png"/></label><label class="hide">]]></option>
+            <option value="su_6"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_6.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionsuInList"
+                type="list"
+                default="bottom"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter36" description="COM_JOOMBLOG_SETTINGS_INTEGR_SU_INPOST" />
+
+        <field name="showsuInPost"
+               type="radio"
+               class="btn-group"
+               default="0"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_SHOW_INPOST_LBL">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="su_style_post"
+               type="radio"
+               default="su_1"
+               class="inputbox"
+               label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_BUT_STYLE_LBL">
+            <option value="su_1"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_1.png"/></label><label class="hide">]]></option>
+            <option value="su_2"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_2.png"/></label><label class="hide">]]></option>
+            <option value="su_3"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_3.png"/></label><label class="hide">]]></option>
+            <option value="su_4"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_4.png"/></label><label class="hide">]]></option>
+            <option value="su_5"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_5.png"/></label><label class="hide">]]></option>
+            <option value="su_6"><![CDATA[<img src="components/com_joomblog/assets/images/social/su_6.png"/></label><label class="hide">]]></option>
+        </field>
+
+        <field name="positionsuInPost"
+                type="list"
+                default="top"
+                class="inputbox"
+                label="COM_JOOMBLOG_SETTINGS_INTEGR_SU_BUT_POSITION">
+            <option value="top">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT1</option>
+            <option value="bottom">COM_JOOMBLOG_SETTINGS_SOCIAL_INTEGR_POS_OPT2</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="rules" label="COM_JOOMBLOG_SETTINGS_RULES">
+        <field type="spacer" name="delimeter40" description="COM_JOOMBLOG_GENERAL_PERMISSIONS" />
+
+        <field name="allowedPosters"
+                type="textarea"
+                label="COM_JOOMBLOG_SETTINGS_RULES_POST_FROM_USERS"
+                description="COM_JOOMBLOG_SETTINGS_RULES_POST_FROM_USERS_DESC"
+                class="inputbox"
+                default=""
+                cols="30"
+                rows="3"
+                />
+
+        <field name="disallowedPosters"
+                type="textarea"
+                label="COM_JOOMBLOG_SETTINGS_RULES_POST_FROM_USERS_DIS"
+                description="COM_JOOMBLOG_SETTINGS_RULES_POST_FROM_USERS_DIS_DESC"
+                class="inputbox"
+                default=""
+                cols="30"
+                rows="3"
+                />
+
+        <field name="allowedPublishers"
+                type="textarea"
+                label="COM_JOOMBLOG_SETTINGS_RULES_PUBLISH_FROM_USERS"
+                description="COM_JOOMBLOG_SETTINGS_RULES_PUBLISH_FROM_USERS_DESC"
+                class="inputbox"
+                default=""
+                cols="30"
+                rows="3"
+                />
+
+        <field name="viewIntro"
+                type="list"
+                label="COM_JOOMBLOG_SETTINGS_RULES_VIEW_INTRO"
+                class="inputbox"
+                default=""
+                >
+            <option value="1">COM_JOOMBLOG_SETTINGS_RULES_OPT1</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_RULES_OPT2</option>
+        </field>
+
+        <field name="viewEntry"
+                type="list"
+                label="COM_JOOMBLOG_SETTINGS_RULES_VIEW_ENTRY"
+                class="inputbox"
+                default=""
+                >
+            <option value="1">COM_JOOMBLOG_SETTINGS_RULES_OPT1</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_RULES_OPT2</option>
+        </field>
+
+        <field name="viewComments"
+                type="list"
+                label="COM_JOOMBLOG_SETTINGS_RULES_VIEW_COMMENTS"
+                class="inputbox"
+                default=""
+                >
+            <option value="1">COM_JOOMBLOG_SETTINGS_RULES_OPT1</option>
+            <option value="2">COM_JOOMBLOG_SETTINGS_RULES_OPT2</option>
+        </field>
+
+        <field type="spacer" name="delimeter41" description="JCONFIG_PERMISSIONS_LABEL" />
+
+        <field name="rules"
+                type="rules"
+                label="Permissions"
+                translate_label="false"
+                class="inputbox"
+                filter="rules"
+                component="com_joomblog"
+                section="component"
+                validate="rules"
+                />
+
+        <field name="asset_id" type="hidden" filter="unset"/>
+    </fieldset>
+</form>

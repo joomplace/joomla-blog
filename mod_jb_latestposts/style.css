@@ -1,0 +1,21 @@
+.jb_mod_latest_title
+{
+	font-weight:bold;
+}
+
+.jb_mod_latest_date
+{
+	font-size:75%;
+}
+
+.jb_mod_latest_introtext
+{
+	padding-top: 5px;
+}
+
+.jb_mod_latest_readmore
+{
+	font-weight:bold; 
+	padding: 0; 
+	margin: 0;
+}

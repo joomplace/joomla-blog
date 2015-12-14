@@ -1,0 +1,201 @@
+<!--
+* JoomBlog component for Joomla
+* @version $Id: comments.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage comments.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+-->
+
+<?php
+			    
+    global $_JB_CONFIGURATION;
+    $my = JFactory::getUser();
+    if ($_JB_CONFIGURATION->get('useCommentCaptcha') == 2)
+    {
+	  	?>
+	  	<script type="text/javascript">
+		 var RecaptchaOptions = {
+		    theme : 'custom',
+    		custom_theme_widget: 'recaptcha_widget'
+		 };
+		 </script>
+		 <?php
+	    require_once( JB_LIBRARY_PATH . DIRECTORY_SEPARATOR . 'recaptchalib.php' );
+	    $publickey = $_JB_CONFIGURATION->get('recaptcha_publickey');
+		if (empty($publickey))
+		{
+		  $publickey = "6LefN9USAAAAAHVCVvvaIXxEDcsJ4_YKqLcb3FC_"; 
+		}
+ 	}
+?>
+
+<!--Comments-->
+<div id="comments">
+	<?php if($my->id)
+	{ ?>
+        <div class="jb-contentheading"><?php echo JText::_('COM_JOOMBLOG_COMMENT_LIST'); ?></div>
+		<div class="jb-comment-form">
+        <form name="commentForm" id="commentForm" action="" method="post">
+            <input type="text" class="jb-inputbox jb-small-field" placeholder="<?php echo JText::_('COM_JOOMBLOG_COMMENT_LEAVE_COMMENT'); ?>" id="jb-instead-editor" name="jb-instead-editor" /> 
+            <div class="jb-editor">
+                <textarea cols="80" id="comment" name="comment" rows="5" style="max-width: 100%;" class="jb-textarea jb-comment-textarea" placeholder="Leave your comment..."></textarea>
+                <?php //echo $jEditor->getInput(); ?>
+            </div>
+
+            <input type="hidden" value="<?php echo $e['name']; ?>" id="name" name="name">
+		    <input type="hidden" value="<?php echo $e['email']; ?>" id="email" name="email">
+            <input type="hidden" value="<?php echo $e['id']; ?>" id="contentid" name="contentid">
+            <input type="hidden" value="addcomment" id="task" name="task">
+            <input type="hidden" value="com_joomblog" id="option" name="option">
+
+            <div class="jb-unreg-fields">
+
+    		    <?php if ($_JB_CONFIGURATION->get('useCommentCaptchaRegisteredUsers')): ?>
+    		    	<?php if ($_JB_CONFIGURATION->get('useCommentCaptcha') == 2): ?>
+    		    		<div class="jb-captcha-field clearfix">
+    		    		<?php echo recaptcha_get_html($publickey);?>
+    					</div>
+    		    	<?php endif ?> 
+    		    	<?php if ($_JB_CONFIGURATION->get('useCommentCaptcha') == 1): ?>
+    		    		<div class="jb-captcha-field clearfix">
+    					    <div class="jb-captcha">
+    							<img alt="" class="imcap" src="<?php echo JURI::base()."index.php?option=com_joomblog&task=captcha"; ?>"/>
+    				    	</div>
+    				    	<input type="text" class="jb-inputbox jb-small-field" placeholder="<?php echo JText::_('COM_JOOMBLOG_SECURITY_CODE'); ?>" id="captchacode" name="captchacode">
+                        </div>
+    		    	<?php endif ?>
+    		    <?php endif ?>
+
+    		    <div class="jb-namereg-field clearfix" style="display: block;">
+    				<button class="jb-btn jb-comment-btn jb-btn-primary" type="button" onclick="Addcomment(document.commentForm); return false;"><?php echo JText::_('COMMENT_ADD_COMMENT'); ?></span></button>
+    		    </div>
+            </div>
+
+        </form>
+</div>
+	<?php }
+	if($my->id == 0 AND !$_JB_CONFIGURATION->get('useCommentOnlyRegisteredUsers'))
+	{ ?>
+                <div class="jb-contentheading"><?php echo JText::_('COM_JOOMBLOG_COMMENT_LIST'); ?></div>
+                <div class="jb-comment-form">
+                <form name="commentForm" id="commentForm" action="" method="post">
+                        <input type="text" class="jb-inputbox jb-small-field" placeholder="<?php echo JText::_('COM_JOOMBLOG_COMMENT_LEAVE_COMMENT'); ?>" id="jb-instead-editor" name="jb-instead-editor" /> 
+                        <div class="jb-editor">
+                            <textarea cols="80" id="comment" name="comment" rows="5" style="max-width: 100%;" class="jb-textarea jb-comment-textarea" placeholder="Leave your comment..."></textarea>
+                            <?php //echo $jEditor->getInput(); ?>
+                        </div>
+                    
+                        <div class="jb-unreg-fields">
+
+                            <div class="jb-name-field">
+                                <input type="text" class="jb-inputbox jb-small-field jb-comment-name" placeholder="<?php echo JText::_('Name'); ?>"  value="<?php echo $e['name']; ?>" id="name" name="name" />
+                            </div>
+                            <div class="jb-email-field">
+                                <input type="text" class="jb-inputbox jb-small-field" placeholder="<?php echo JText::_('Email'); ?>" id="email" name="email"/>
+                            </div>
+
+                            <?php if	($_JB_CONFIGURATION->get('useCommentCaptcha') == 2)
+                            { ?>
+                            <div class="jb-captcha-field clearfix">
+                            <?php echo recaptcha_get_html($publickey);?>
+                            </div>
+                            <?php } 
+                            if ($_JB_CONFIGURATION->get('useCommentCaptcha') == 1)
+                            { ?>
+                            <div class="jb-captcha-field clearfix">
+                                <div class="jb-captcha">
+                                    <img alt="" class="imcap" src="<?php echo JURI::base()."index.php?option=com_joomblog&task=captcha"; ?>"/>
+                                </div>
+                                <input type="text" class="jb-inputbox jb-small-field" placeholder="<?php echo JText::_('COM_JOOMBLOG_SECURITY_CODE'); ?>" id="captchacode" name="captchacode">
+                            </div>
+                            <?php } ?> 
+
+                            <button class="jb-btn jb-comment-btn jb-btn-primary" type="button" onclick="Addcomment(document.commentForm); return false;"><?php echo JText::_('COMMENT_ADD_COMMENT'); ?></button>
+
+                        </div>
+		    	<input type="hidden" value="<?php echo $e['id']; ?>" id="contentid" name="contentid">
+                        <input type="hidden" value="addcomment" id="task" name="task">
+                        <input type="hidden" value="com_joomblog" id="option" name="option">
+            </form>
+            </div>            
+	<?php } 
+if ($my->id == 0 AND $_JB_CONFIGURATION->get('useCommentOnlyRegisteredUsers'))
+{ ?>
+	<div id="write_comment_title" class="jb-contentheading"><?php echo JText::_('COMMENT_NEED_TO_REGISTER_TO_LEAVE_A_COMMENT'); ?></div>
+<?php }
+
+if($e['comment']): ?>
+	     <form name="commentListForm" id="commentListForm" action="" method="post" class="jb-comadded">
+		      <?php foreach($e['comment'] as $value){ ?>
+			<div class="jb-post-comment" id="comment<?php echo $value->id; ?>">
+                            <div class="jb-comment-info">
+                                <div class="jb-comment-infoblock">                                
+                                <div class="jb-avatar"><?php echo $value->avatar; ?></div>
+                                <span class="jb-comuser-name">
+				    <?php if($value->username){ ?>
+				      <a href="<?php echo JRoute::_('index.php?option=com_joomblog&user='.$value->username); ?>"><?php echo $value->name; ?></a>
+				    <?php }else{ ?>
+				    <a href="javascript:void(0)"><?php echo $value->name; ?></a>
+				    <?php } ?>
+				</span>
+                                <a href="<?php echo Juri::current();?>#comment<? echo $value->id;?>"><span class="jb-post-date"><?php echo $value->createdFormatted; ?></span></a>
+                                </div>
+                                <div class="jb-comcollapse">
+                                    <a href="#" title="Collapse" class="jb-collapse" id="jb-collapse-<?php echo $value->id; ?>">-</a>
+                                </div>
+                            </div>
+
+                            <div class="jb-commenttext" id="desc-comment-<?php echo $value->id; ?>">
+				<?php echo trim(nl2br($value->comment)); ?>
+                            </div>
+    
+			    <div class="jb-edit-share">
+                                <ul class="jb-edshare-menu clearfix">
+                                    <li class="jb-voting" data-role="voting">
+                                        <span class="jb-count sumcommentvote"><?php echo $value->voted; ?></span>
+                                        <a href="javascript:void(0)" class="jb-vote-up">
+                                            <span class="jb-comcontrol" onclick="sendCommentVote(<?php echo $value->id; ?>,1)" title="<?php echo JText::_("COM_JOOMBLOG_LIKE"); ?>"><i class="jb-icon-arrow2">&#9650;</i></span>
+                                        </a>
+                                        <a href="javascript:void(0)" class="jb-vote-down">
+                                            <span class="jb-comcontrol" onclick="sendCommentVote(<?php echo $value->id; ?>,-1)" title="<?php echo JText::_("COM_JOOMBLOG_DISLIKE"); ?>"><i class="jb-icon-arrow">&#9660;</i></span>
+                                        </a>
+                                    </li>
+				    <?php if($value->isedit){ ?>
+					<li><span class="jb-dot">&middot;</span></li>
+					<li class="jb-comedit" id="save-comment-<?php echo $value->id; ?>" style="display: none;"><a onclick="Savecomment()" href="javascript:void(0)"><?php echo JText::_('COMMENT_SAVE'); ?></a></li>
+					<li class="jb-comedit" id="edit-comment-<?php echo $value->id; ?>"><a onclick="Editcomment(<?php echo $value->id; ?>)" href="javascript:void(0)"><?php echo JText::_('COMMENT_EDIT'); ?></a></li>
+				    <?php } ?>
+				    <?php if(jbGetUserCanPublish()){?>
+					<li><span class="jb-dot">&middot;</span></li>
+					<li class="jb-comedit" id="save-comment-<?php echo $value->id; ?>"><a onclick="Publishedcomment(<?php echo $value->id; ?>,<?php echo $value->published?'0':'1'; ?>)" href="javascript:void(0)">
+	<?php echo $value->published?JText::_('COM_JOOMBLOG_COMMENT_UNPUBLISH_COMMENT'):JText::_('COM_JOOMBLOG_COMMENT_PUBLISH_COMMENT'); ?></a></li>
+				    <?php } ?>
+                                                                       
+                                </ul>
+                            </div>
+                        </div>
+			<?php if($_JB_CONFIGURATION->get('collapseComments', 0) == 1 && $value->voted <= $_JB_CONFIGURATION->get('collapseCommentsThreshold', -5) ) : ?>
+			<script type="text/javascript">
+			    (function($){
+				$(document).ready(function(){
+				    hideComment($('#jb-collapse-<?php echo $value->id; ?>'));
+				});
+			    })(jQuery.noConflict());
+			</script>
+			<?php endif; ?>
+
+			  <?php } ?>
+
+			  <div class="pagination pagination-centered" id="pageNavComment">
+			  <?php echo $e['page']; ?>
+			  </div>
+				<input type="hidden" value="" id="task" name="task">
+				<input type="hidden" value="0" id="id" name="id">
+				<input type="hidden" value="<?php echo $e['id']; ?>" id="contentid" name="contentid">
+				<input type="hidden" value="" id="params" name="params">
+	  </form>
+    <?php endif; ?>
+			    
+                </div>

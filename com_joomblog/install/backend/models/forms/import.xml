@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_joomblog/models/fields"
+>
+		<field
+			name="importFile"
+			type="file"
+			label="COM_JOOMBLOG_IMPORT_SELECT_FILE"
+			class="inputbox"
+			accept="text/xml"
+			required="true"
+		 />
+		<field
+			name="published"
+			type="radio"
+			label="COM_JOOMBLOG_IMPORT_DEFAULT_STATUS"
+			description="COM_JOOMBLOG_IMPORT_DEFAULT_STATUS_DESC"
+			class="inputbox"
+			size="1"
+			default="0"
+		>
+			<option	value="2">COM_JOOMBLOG_IMPORT_DEFAULT_STATUS_AS_XML</option>
+			<option	value="1">JPUBLISHED</option>
+			<option	value="0">JUNPUBLISHED</option>
+		</field>
+		<field
+			name="user_id"
+			type="user"
+			label="COM_JOOMBLOG_IMPORT_DEFAULT_AUTHOR"
+			description="COM_JOOMBLOG_IMPORT_DEFAULT_AUTHOR_DESC"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+		<field name="catid"
+			type="categorypost"
+			extension="com_joomblog" 
+			label="COM_JOOMBLOG_IMPORT_DEFAULT_CATEGORY"
+			description="COM_JOOMBLOG_IMPORT_DEFAULT_CATEGORY_DESC"
+			size="3"
+			class="selectlist jb-selectlist jb-cat-selec"
+			required="true"
+			action="create">
+			<option value="" >COM_JOOMBLOG_OPTION_SELECT_CATEGORY</option>
+		</field>
+		<field
+			name="updateExisting"
+			type="radio"
+            class="btn-group"
+			label="COM_JOOMBLOG_IMPORT_UPDATE_FOUND_IDS"
+			description="COM_JOOMBLOG_IMPORT_UPDATE_FOUND_IDS_DESC"
+			size="1"
+			default="0"
+		>
+			<option	value="1">JYES</option>
+			<option	value="0">JNO</option>
+		</field>
+
+
+
+    <field
+            name="article_published"
+            type="radio"
+            label="COM_JOOMBLOG_IMPORT_DEFAULT_STATUS"
+            description="COM_JOOMBLOG_IMPORT_DEFAULT_STATUS_DESC"
+            class="inputbox"
+            size="1"
+            default="0"
+            >
+        <option	value="2">COM_JOOMBLOG_IMPORT_DEFAULT_STATUS_AS_XML</option>
+        <option	value="1">JPUBLISHED</option>
+        <option	value="0">JUNPUBLISHED</option>
+    </field>
+    <field
+            name="article_user_id"
+            type="user"
+            label="COM_JOOMBLOG_IMPORT_DEFAULT_AUTHOR"
+            description="COM_JOOMBLOG_IMPORT_DEFAULT_AUTHOR_DESC"
+            class="inputbox"
+            required="true"
+            default=""
+            />
+    <field name="article_blog_id"
+           type="blogpost"
+           label="COM_JOOMBLOG_FIELD_HEADING_BLOG"
+           size="1"
+           class="selectlist jb-selectlist jb-small-select"
+            >
+        <option value="" >COM_JOOMBLOG_OPTION_SELECT_BLOG</option>
+    </field>
+
+    <field name="article_default_catid"
+           type="categorypost"
+           extension="com_joomblog"
+           label="COM_JOOMBLOG_IMPORT_DEFAULT_CATEGORY"
+           description="COM_JOOMBLOG_IMPORT_DEFAULT_CATEGORY_DESC"
+           class="selectlist jb-selectlist jb-cat-selec"
+           action="create">
+        <option value="" >COM_JOOMBLOG_OPTION_SELECT_CATEGORY</option>
+    </field>
+
+    <fieldset name="globalcat" addfieldpath="/administrator/components/com_categories/models/fields">
+
+        <field name="article_catid" type="categoryedit" extension="com_content"
+               label="JCATEGORY" description="JFIELD_CATEGORY_DESC"
+               class="inputbox" required="true"
+               multiple="multiple"
+               size="20"
+                >
+        </field>
+    </fieldset>
+</form>
+

@@ -1,0 +1,70 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: blog_header.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage blog_header.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+global $_JB_CONFIGURATION;
+$blog	=& $blogs[0];
+if($blog){
+$userlink = '';
+if ($_JB_CONFIGURATION->get('showUserLink')) {
+    if ($_JB_CONFIGURATION->get('useFullName'))
+    {
+    $userlink = $blog->name;
+    }
+    else $userlink = $blog->username;
+    $userlink = '<a href="'.$blog->authorLink.'">'.$userlink.'</a>';
+}
+
+$header = $blog->header;
+if(!$header) $header = $template = '<div class="jb-blogs"> <div class="jb-blogs-head clearfix jb-postsofblog-head"><div class="jb-blog-imgcont">{standart_blog_image}</div><div class="jb-blog-info"><h3 class="jb-blog-title">'.JText::_('COM_JOOMBLOG_BLOG').': '.' {blog_title}</h3><div class="jb-blog-authors">{blog_profile_link}</div> <div class="jb-blog-desc">{blog_desc}</div></div></div></div>';
+$ser = array('{standart_blog_image}','{blog_title}','{blog_profile_link}','{blog_desc}');
+$rep = array('<img class="jb-blog-img jb-blogcat-img" src="'.JURI::root().'components/com_joomblog/templates/default/images/document_pencil_64.png">',$blog->title,$userlink,$blog->description);
+
+$header = str_replace($ser,$rep,$header);
+
+ echo $header;
+        /*
+ ?>
+<div class="jb-blogs">
+    <div class="jb-blogs-head clearfix jb-postsofblog-head">
+<!-- 	<div class="jb-blog-imgcont">
+	    <?php if ($_JB_CONFIGURATION->get('avatar')!='none'){?>
+		    <?php if($_JB_CONFIGURATION->get('linkAvatar')){?><a href="<?php echo $blog->authorLink;?>"><?php } ?><img src="<?php echo $blog->src;?>" class="jb-blog-img" /><?php if($_JB_CONFIGURATION->get('linkAvatar')){?></a><?php } ?>
+	    <?php } ?>
+	</div>
+ -->
+ 	<div class="jb-blog-imgcont">
+	    <img class="jb-blog-img jb-blogcat-img" <?php echo 'src="'.JURI::root().'components/com_joomblog/templates/default/images/document_pencil_64.png"';?>>
+	</div>
+
+	<div class="jb-blog-info">
+	    <h3 class="jb-blog-title">
+		<?php echo JText::_('COM_JOOMBLOG_BLOG').': ';?><?php echo $blog->title;?>
+	    </h3>
+	    <div class="jb-blog-authors">
+		<?php if ($_JB_CONFIGURATION->get('showUserLink')) { ?>
+			<a href="<?php echo $blog->authorLink;?>"><?php if ($_JB_CONFIGURATION->get('useFullName')) 
+                        { 
+                        	echo $blog->name;
+                        }	
+                        else echo $blog->username;?></a>
+		<?php } ?>
+	    </div>
+	    <div  class="jb-blog-desc">
+		<?php echo $blog->description;?>
+	    </div>
+	</div>
+    </div>
+</div>
+<?php
+*/
+} ?>
+<div style="clear:both;"></div>

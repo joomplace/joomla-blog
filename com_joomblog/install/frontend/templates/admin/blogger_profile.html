@@ -1,0 +1,134 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: blogger_profile.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage blogger_profile.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+defined('_JEXEC') or die('Restricted access');
+
+$my = JFactory::getUser();
+$user	= $user[0];
+global $_JB_CONFIGURATION;
+?>
+<div id="joomblog">
+<div class="componentheading"><?php echo JText::_('COM_JOOMBLOG_ADMIN_MENU_PREFERENCES');?></div>
+
+<script type="text/javascript">
+function checkname () {
+    var user_name = document.getElementById('jb_user_fullname');
+
+    if (user_name.value == '') {
+        alert ("<?php echo JText::_('COM_JOOMBLOG_EMPTY_USERNAME');?>");
+        user_name.value = '<?php echo $user_fullname; ?>';
+        user_name.focus();
+    }
+}
+
+function testField(field) {
+    var regExpr = new RegExp("^[0-9]+$");
+    var error = "<?php echo JText::_('COM_JOOMBLOG_POST_COUNT_INTEGER');?>";
+    if (!regExpr.test(field.value)) {
+      // Case of error
+      alert (error);
+      field.value = "";
+    }
+}
+</script>
+<?php //print_r ($_SERVER['HTTP_HOST'].JRequest::getURI()); ?>
+    <div class="profileDivForm">
+        <form id="adminForm" class="adminForm adminProfileForm" name="blogger-info" action="<?php echo JRequest::getURI();?>" method="POST" enctype="multipart/form-data">
+            <div class="jb-avatar-aboutme">
+                <?php echo $avatar->getInput(); ?>
+
+                <div class="jb-profdetails-aboutme">
+                    <textarea name="blog-aboutme" class="jb-textarea jb-textarea-aboutme" id="blog-aboutme" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_ABOUT_ME');?>"><?php echo ($user->about ? stripslashes( $user->about ) : ''); ?></textarea>
+                </div>
+                <div class="jb-profdet-item">
+                    <label for="jb_user_fullname" class="jb-user-fullname" title="<?php echo JText::_('COM_JOOMBLOG_USER_FULLNAME');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_USER_FULLNAME');?>
+                    </label>
+                    <input style="width:245px;" id="jb_user_fullname" onchange="checkname();" type="text" class="jb-inputbox" value="<?php echo $user_fullname; ?>" name="user-fullname"/>
+                </div>
+            </div>
+
+            <div class="jb-profdet-item clearfix">
+                <label class="jb-label-birthday"><?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_BIRTHDAY');?></label>
+                <div class="jb-calendar">
+                    <select class="jb-selectlist" id="day" name="blog-day">
+                        <option value="0"><?php echo JText::_('COM_JOOMBLOG_DAY'); ?>&nbsp</option>
+                        <?php for($i = 1; $i < 32 ;$i++){ ?>
+                            <option <?php if( $user->day == $i ){echo "selected"; } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php } ?>
+                    </select>
+                    <select class="jb-selectlist" id="month" name="blog-month">
+                        <option value="0"><?php echo JText::_('COM_JOOMBLOG_MONTH'); ?>&nbsp;</option>
+                        <?php for($i = 1; $i <= 12 ;$i++){ ?>
+                            <option <?php if( $user->month == $i ){echo "selected";} ?> value="<?php echo $i; ?>"><?php echo JText::_(date("F",strtotime("1970-".sprintf("%02d",$i)."-00 00:00:00"))); ?></option>
+                        <?php } ?>
+                    </select>
+                    <select class="jb-selectlist" id="year" name="blog-year">
+                        <option value="0"><?php echo JText::_('COM_JOOMBLOG_YEAR'); ?>&nbsp</option>
+                        <?php for($i = 10; $i >= 0 ;$i--){ ?>
+                            <option <?php if( $user->year == "20".$i ){echo "selected"; } ?> value="20<?php echo sprintf("%02d",$i); ?>">20<?php echo sprintf("%02d",$i); ?>&nbsp</option>
+                        <?php } ?>
+                        <?php for($i = 99; $i > 9 ;$i--){ ?>
+                            <option <?php if($user->year == "19".$i ){echo "selected"; } ?> value="19<?php echo sprintf("%02d",$i); ?>">19<?php echo sprintf("%02d",$i); ?>&nbsp</option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="jb-profdet-item jb-site-twitter">
+                <div>
+                    <label class="jb-label-site" title="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_FACEBOOKPATH_DESC');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_SITE');?>
+                    </label>
+                    <input type="text" class="jb-inputbox" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_SITE');?>" value="<?php echo $user->site; ?>" name="blog-site"/>
+                </div>
+                <br/>
+                <div>
+                    <label class="jb-label-facebook" title="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_FACEBOOKPATH_DESC');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_FACEBOOKPATH');?></label>
+                    <input type="text" class="jb-inputbox" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_FACEBOOK');?>" value="<?php echo $user->facebook; ?>" name="blog-facebook"/>
+                </div>
+
+                <div>
+                    <label class="jb-label-twitter" title="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_TWITTERPATH_DESC');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_TWITTERPATH');?>
+                    </label>
+                    <input type="text" class="jb-inputbox" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_TWITTER');?>" value="<?php echo $user->twitter; ?>" name="blog-twitter"/>
+                </div>
+
+                <div>
+                    <label class="jb-label-googleplus" title="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_GOOGLEPLUSPATH_DESC');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_GOOGLEPLUSPATH');?>
+                    </label>
+                    <input type="text" class="jb-inputbox" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_GOOGLEPLUS');?>" value="<?php echo $user->google_plus; ?>" name="blog-googleplus"/>
+                </div>
+                <br/>
+                <div>
+                    <?php if ( $showFeedburner ) { ?>
+                        <input type="text" class="jb-inputbox" placeholder="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_FEEDBURNER_URL');?>" value="<?php echo $user->feedburner; ?>" name="feedburnerURL"/>
+                    <?php } ?>
+                </div>
+
+                <div>
+                    <label class="jb-label-postcount" title="<?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_POST_COUNT_DESC');?>">
+                        <?php echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_PREFERENCES_POST_COUNT');?>
+                    </label>
+                    <input type="text" class="jb-inputbox" placeholder="5" value="<?php echo $user->post_count; ?>" default="5" name="post_count" id="post_count" onblur="testField(this);"/>
+                </div>
+            </div>
+
+            <br/>
+
+            <div>
+                <button class="jb-btn" type="submit" id="submit-blogger"><?php echo JText::_('COM_JOOMBLOG_SUBMIT_PROFILE_DETAILS');?></button>
+            </div>
+        </form>
+    </div>
+</div>

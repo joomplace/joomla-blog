@@ -1,0 +1,62 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: category_list.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage category_list.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+
+$tags = $tags[0];
+
+?>
+
+
+<div class="jb-section"><?php echo JText::_('COM_JOOMBLOG_TAGS');?></div>
+
+    <div class="jb-tags-list">
+	<form action="#" method="post" name="tag-form" id="tag-form" class="jb-tag-form">
+	    <div class="tag-sort-order clearfix pbm">
+		<ul class="ulrest flist fleft clearfix">
+		<li class="sorting-item title">
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_joomblog&task=viewtags&sort=name&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_TAGS_NAME');?></a>
+		</li>
+		<li class="sorting-item posts">
+			<a href="<?php echo JRoute::_('index.php?option=com_joomblog&task=viewtags&sort=weight&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_TAGS_TAG_WEIGHT');?></a>
+		</li>
+		<li class="ordering-item asc">
+			<a href="<?php echo JRoute::_('index.php?option=com_joomblog&task=viewtags&order=asc&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_TAGS_ASC');?></a>
+		</li>
+		<li class="ordering-item des">
+			<a class="active" href="<?php echo JRoute::_('index.php?option=com_joomblog&task=viewtags&order=desc&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_TAGS_DESC');?></a>
+		</li>
+		<li class="tag-search">
+			<input type="text" class="jb-inputbox" name="filter-tags" value="<?php if (isset($filtertags)){ echo strip_tags($filtertags);} ?>" id="filter-tags">
+		</li>
+		<li>
+			<button class="jb-btn" type="submit"> 
+			    <?php echo JText::_('COM_JOOMBLOG_TAGS_SEARCH')?>
+			</button>
+		</li>
+		</ul>
+	    </div>
+	    <?php if (count($tags)){?>
+	    <ul class="jbtags tags post-tags column3 clearfix" id="jbtags">
+		<?php foreach($tags as $tag){ 
+		$articleLink = JRoute::_('index.php?option=com_joomblog&task=tag&tag='.$tag->name.'&Itemid='.$Itemid)
+		?>
+			<li><a href="<?php echo $articleLink;?>"><span><?php echo $tag->name;?></span><sup class="gray-sup"><?php echo $tag->count;?></sup></a></li>
+		<?php }?>
+		</ul>
+	    <?php } else {?>
+		    <span><?php echo JText::_('COM_JOOMBLOG_TAGS_NO_TAGS');?></span>
+	    <?php } ?>
+	    <input type="hidden" name="option" value="com_joomblog"/>
+	    <input type="hidden" name="task" value="viewtags"/>
+	    </form>
+    </div>
+

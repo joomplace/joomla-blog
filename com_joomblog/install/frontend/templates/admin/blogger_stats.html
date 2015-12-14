@@ -1,0 +1,54 @@
+<!--
+
+* JoomBlog component for Joomla
+* @version $Id: blogger_stats.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage blogger_stats.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+
+-->
+<!-- <br/> -->
+
+<div class="jb-wrap" id="jb-wrap">
+<div class="clearfix">
+    <h2 class="jb-blog-name"><span><?php echo $blog_title ;?></span><span class="jb-seporator-gt"> &#62; </span></h2>
+    <div  class="jb-btns-dropdown">
+        <button class="jb-btn jb-show-info"><i class="jb-icon-stats-bars"></i> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?> <i class="jb-icon-sort-down"></i></button>
+        <ul class="jb-dropdown-menu">                                                    
+            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=adminhome&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?></a></li>
+            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_ADMIN_COMMENTS');?></a></li>
+            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=editblog&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
+        </ul>
+    </div>
+</div>
+<div class="jb-btn-group jb-stats-btn-group clearfix">
+  <?php echo '<span class="jb-stat_label">'.JText::_('COM_JOOMBLOG_BLOG_ADMIN_STATS_TOTAL_ENTRIES').'</span><span>'.$num_entries .'</span><br />';?>
+  <?php
+  if(isset($jomcomment))
+  {    
+    echo '<span class="jb-stat_label">'.JText::_( 'COM_JOOMBLOG_BLOG_ADMIN_STATS_TOTAL_COMMENTS').'</span><span>'.$num_comments.'</span><br />';
+  }
+  ?>
+  <div><?php  echo '<span class="jb-stat_label">'.JText::_( 'COM_JOOMBLOG_BLOG_ADMIN_STATS_TOTAL_HITS').'</span><span>'.$num_hits.'</span>';  ?></div>
+  <?php if ($tags)
+  {
+    $total	= count( $tags );
+    $i		= 1;
+    $html	= '';
+    
+    foreach($tags as $tag)
+    { 
+      $tag_name = str_replace(' ','_',$tag->name);
+      $url	= JRoute::_('index.php?option=com_joomblog&task=tag&tag=' . $tag_name.'&Itemid='.$Jbitemid);
+      $html	.= '<a href="' . $url . '">' . $tag->name . '</a>';
+      $html	.= ( $i == $total ) ? '.' : ', ';
+      
+      $i++;
+    }
+  ?>
+  <div><?php echo '<span class="jb-stat_label">'.JText::_( 'COM_JOOMBLOG_BLOG_ADMIN_STATS_TAGS_USED').'</span><span>'.$html.'</span>';  ?></div>
+  <?php } ?>
+</div>
+</div>

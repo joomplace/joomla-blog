@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" method="upgrade" group="user" version="3.0">
+	<name>Joomblog bloggers synchronisation plugin</name>
+	<author>JoomPlace Team</author>
+	<creationDate>March 2011</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.2.0 (build 001)</version>
+	<description>Bloggers synchronisation plugin</description>
+	<files>
+		<filename plugin="joombloguser">joombloguser.php</filename>
+		<filename>index.html</filename>
+	</files>
+</extension>

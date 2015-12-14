@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0.0" method="upgrade">
+	<name>Categories a blogs</name>
+	<author>JoomPlace Team</author>
+	<creationDate>November 2010</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.2.0 (build 001)</version>
+	<description></description>
+	<files>
+		<filename module="mod_jb_categories">mod_jb_categories.php</filename>
+		<filename module="mod_jb_categories">index.html</filename>
+		<filename module="mod_jb_categories">tmpl/default.php</filename>
+		<filename module="mod_jb_categories">tmpl/index.html</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+			</fieldset>
+			<fieldset name="advanced">
+					<field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+						<option value="1">Use global</option>
+						<option value="0">No caching</option>
+					</field>
+					<field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMBLOG_CATEGORY_LAYOUT">
+		<message>COM_JOOMBLOG_CATEGORY_LAYOUT_DESC</message>
+	</layout>
+	<state>
+		<name>COM_JOOMBLOG_MENU_CATEGORY_LAYOUT</name>
+		<description>COM_JOOMBLOG_MENU_CATEGORY_LAYOUT_DESCR</description>
+	</state>
+	
+	<fields name="params" >
+		<fieldset name="basic" label="JoomBlog Parameters" addfieldpath="/administrator/components/com_joomblog/models/fields">		
+			<field name="category" type="category" default="0" label="Select category" extension="com_joomblog" description="">
+			</field>
+			
+		</fieldset>
+	</fields>
+</metadata>

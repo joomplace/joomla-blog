@@ -1,0 +1,152 @@
+﻿<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: profile.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage profile.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+$user = $user[0];
+global $_JB_CONFIGURATION;
+$tmpl = JRequest::getVar('tmpl');
+		if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';
+?>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#viewTabs a:first').tab('show');
+    });
+</script>
+
+<div class="jb-user-profile jb-blogs-head clearfix">
+    <div class="jb-blog-imgcont">
+        <img class="jb-author-avatar" alt="" src="<?php echo $user->src;?>"/>
+    </div>
+
+    <div class="jb-blog-info">
+        <h3 class="jb-blog-title">
+            <?php echo jbGetAuthorName($user->user_id, $_JB_CONFIGURATION->get('useFullName')); ?>
+        </h3>
+
+        <div  class="jb-author-desc jb-author-desc-short">
+            <div class="jb-author-desc-inner"><?php echo str_replace("\n", "<br/>", $user->about);?>
+                <a href="" class="jb-read-more-link"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_MORE');?></a>
+                <!--There should be Read more link-->
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <?php
+                if ($user->site):
+                    $user->site = (preg_match("/http:\/\//", $user->site, $match)) ? $user->site : "http://".$user->site;
+                ?>
+                <span class="jb-authorsite"><i class="jb-icon-earth"></i><a class="jb-usersite-link" target="_blank" rel="nofollow" href="<?php echo $user->site;?>"><?php echo $user->site;?></a></span>
+            <?php endif;?>
+
+            <?php if ($user->twitter): ?>
+                <span class="jb-authortwitter"><i class="jb-icon-tweet"></i><a class="jb-usertwitter-link" target="_blank" rel="nofollow" href="<?php echo 'https://twitter.com/'.$user->twitter;?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_TWITTER_PROFILE");?></a></span>
+            <?php endif;?>
+
+            <?php if ($user->facebook): ?>
+            <span class="jb-authorfacebook"><i class="jb-icon-facebook"></i><a class="jb-userfacebook-link" target="_blank" rel="nofollow" href="<?php echo 'https://www.facebook.com/'.$user->facebook;?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_FACEBOOK_PROFILE"); ?></a></span>
+            <?php endif;?>
+
+            <?php if ($user->google_plus): ?>
+                <span class="jb-authorgoogleplus"><i class="jb-icon-google-plus-2"></i><a class="jb-usergoogleplus-link" target="_blank" rel="nofollow" href="<?php echo 'https://plus.google.com/'.$user->google_plus.'?rel=author';?>"><?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_GOOGLE_PLUS_PROFILE"); ?></a></span>
+            <?php endif; ?>
+        </div>
+        <br/>
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="viewTabs">
+    <li><a href="#tab_userinfo" data-toggle="tab"><i class="icon-user"></i> <?php echo  JText::_("COM_JOOMBLOG_USER_INFO_TAB_LBL");?></a></li>
+    <li><a href="#tab_posts" data-toggle="tab"><i class="icon-file-2"></i> <?php echo  JText::_("COM_JOOMBLOG_USER_POSTS_TAB_LBL");?></a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane" id="tab_userinfo">
+        <div class="jb-userprof-item clearfix">
+            <div class="jb-userprof-titlecont author-birthday">
+               <?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_BIRTHDAY");  ?>:
+            </div>
+
+            <div class="jb-userprof-info">
+                <div>
+                    <?php echo date("d F Y",strtotime($user->birthday." 00:00")); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="jb-userprof-item clearfix">
+            <div class="jb-userprof-titlecont author-register">
+                <?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_REGISTERED");  ?>:
+            </div>
+
+            <div class="jb-userprof-info">
+                <div>
+                    <?php echo date("d F Y, H:i",strtotime($user->registered)); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="jb-userprof-item clearfix">
+            <div class="jb-userprof-titlecont author-visit">
+                <?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_LAST_VISIT");  ?>:
+            </div>
+
+            <div class="jb-userprof-info">
+                <div>
+                    <?php echo date("d F Y, H:i",strtotime($user->lastvisit)); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tab_posts">
+        <div class="jb-blog-main clearfix">
+            <h4 class="jb-mbm"><?php echo JText::_('COM_JOOMBLOG_RECENT_POST');?></h4>
+            <?php if (!empty($lastPosts)): ?>
+            <ul class="jb-blogposts-list ulrest">
+                <?php foreach($lastPosts as $blogger): ?>
+                <?php
+                    $blogLink = JRoute::_('index.php?option=com_joomblog&blogid='.$blogger->bid.'&Itemid='.$Itemid.'&view=blogger');
+                    $articleLink = JRoute::_('index.php?option=com_joomblog&show='.$blogger->id.'&Itemid='.$Itemid);
+                    ?>
+                <li>
+                    <h3 class="jb-recent-entry">
+                        <a href="<?php echo $blogLink;?>"><?php echo $blogger->btitle;?></a> <span class="blog-sep">&#8594;</span> <a href="<?php echo $articleLink; ?>" class="jb-blogpost"><?php echo $blogger->title?></a>
+                    </h3>
+                    <div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$blogger->categories;?></div>
+                    <small class="jb-created-bgk"><?php echo $blogger->created;?></small>
+                    <small class="jb-category-bgk">
+                        <?php
+                            if( $categoryDisplay ) {
+	                        	echo ($blogger->multicats?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')).$blogger->jcategory;
+                            }
+                            ?>
+                    </small>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <small class="jb-show-all">
+                <a href="<?php echo JRoute::_('index.php?option=com_joomblog&user='.$user->username.'&Itemid='.$Itemid);?>"><?php echo JText::_('COM_JOOMBLOG_SHOW_ALL');?> (<?php echo $totalArticle;?>)</a>
+            </small>
+            <?php else: ?>
+                <?php echo '<ul class="jb-blogposts-list ulrest"><li>'.$user->name.' '.JText::_('COM_JOOMBLOG_HAS_NOT_CREATED_ANY_BLOG_POST').'</li></ul>'; ?>
+            <?php endif; ?>
+        </div>
+
+<!--        <div class="jb-userprof-item clearfix">
+            <div class="jb-userprof-titlecont">
+                <?php echo JText::_("COM_JOOMBLOG_USER_PROFILE_POSTS");  ?>:
+            </div>
+
+            <div class="jb-userprof-info">
+                <div>
+                    <a href="<?php echo JRoute::_(" index.php?option=com_joomblog&user=".$user->username).$tmpl;?>"><?php echo JText::_("COM_JOOMBLOG_USER_POSTS");  ?></a>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>

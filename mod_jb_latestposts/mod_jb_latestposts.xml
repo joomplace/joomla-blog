@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade">
+	<name>Latest Joomblog posts</name>
+	<author>JoomPlace Team</author>
+	<creationDate>November 2010</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.0.0</version>
+	<description></description>
+	<files>
+		<filename module="mod_jb_latestposts">mod_jb_latestposts.php</filename>
+		<filename module="mod_jb_latestposts">helper.php</filename>
+		<filename module="mod_jb_latestposts">index.html</filename>
+		<filename module="mod_jb_latestposts">style.css</filename>
+		<filename module="mod_jb_latestposts">tmpl/default.php</filename>
+		<filename module="mod_jb_latestposts">tmpl/index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_jb_latestposts.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+				<field name="titleMaxLength" type="text" default="20" label="Max title length" description="" />
+				<field name="numLatestEntries" type="text" default="5" label="Count latest posts" description="" />
+
+                <field name="displayMode"
+                       type="radio"
+                       class="btn-group btn-group-yesno"
+                       default="1"
+                       label="Display mode"
+                       description="Choose whether you want to display latest posts or the posts from a specific category. Don't forget /  Make sure to select category when choosing the second option">
+                    <option value="1">Show latest posts</option>
+                    <option value="2">Show posts from a category</option>
+                </field>
+
+                <field name="jbCat" type="category" extension="com_joomblog" label="Select a category" description="Choose category ONLY when 'Show posts from a category' mode is selected" />
+
+                <field name="orderByPost" type="list" default="0" label="Order posts by">
+                    <option value="0">Date DESC (latest first)</option>
+                    <option value="1">Date ASC (older first)</option>
+                    <option value="2">Hits DESC (most popular first)</option>
+                    <option value="3">Hits ASC (not rated first)</option>
+                </field>
+
+                <field name="orderByPost" type="list" default="0" label="Order posts by">
+                    <option value="0">Date DESC (latest first)</option>
+                    <option value="1">Date ASC (older first)</option>
+                    <option value="2">Hits DESC (most popular first)</option>
+                    <option value="3">Hits ASC (not rated first)</option>
+                </field>
+
+				<field name="showIntro" type="radio" class="btn-group btn-group-yesno" default="1" label="Show introtext">
+					<option value="1">show</option>
+					<option value="0">hide</option>
+				</field>
+
+				<field name="showDate" type="radio" class="btn-group btn-group-yesno" default="1" label="Show date">
+					<option value="1">show</option>
+					<option value="0">hide</option>
+				</field>
+
+				<field name="showReadmore" type="radio" class="btn-group btn-group-yesno" default="1" label="Show readmore link">
+					<option value="1">show</option>
+					<option value="0">hide</option>
+				</field>
+				
+				<field name="showAuthor" type="radio" class="btn-group btn-group-yesno" default="1" label="Show fullname" description="PARAMFRONTPAGEITEMS">
+					<option value="1">show</option>
+					<option value="0">hide</option>
+				</field>
+
+				<field name="latestEntriesPostedBy" type="radio" class="btn-group btn-group-yesno" default="1" label="Use fullname" description="PARAMFRONTPAGEITEMS">
+					<option value="1">show</option>
+					<option value="0">hide</option>
+				</field>
+
+				<field name="dateFormat" type="text" default="d M Y, H.m" label="Date format" />
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+					<option value="1">Use global</option>
+					<option value="0">No caching</option>
+				</field>
+				<field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

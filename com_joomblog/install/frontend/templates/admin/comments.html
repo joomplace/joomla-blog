@@ -1,0 +1,126 @@
+<!--
+
+* JoomBlog component for Joomla
+* @version $Id: comments.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage comments.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+
+-->
+<?php 
+global $_JB_CONFIGURATION;
+if ($_JB_CONFIGURATION->get('useComment') == 2)
+{
+    echo JText::_('COM_JOOMBLOG_DISQUS_INTEGRATION_ENABLED'); 
+} else { 
+?>
+<!-- <br/> -->
+<form action="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&Itemid='.$itemId;?>" method="post" name="adminForm" id="adminForm">
+    <div class="jb-wrap" id="jb-wrap">
+        <div class="jb-content"> 
+            <div class="clearfix">
+                <div class="jb-left-blogname clearfix">
+                    <h2 class="jb-blog-name"><span><?php echo $blog_title ?></span><span class="jb-seporator-gt"> &#62; </span></h2>
+                    <div  class="jb-btns-dropdown">
+                        <button class="jb-btn jb-show-info"><i class="jb-icon-comments"></i> <?php echo JText::_('COM_JOOMBLOG_ADMIN_COMMENTS');?> <i class="jb-icon-sort-down"></i></button>
+                        <ul class="jb-dropdown-menu">                                                    
+                            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=adminhome&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?></a></li>
+                            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=bloggerstats&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?></a></li>
+                            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=editblog&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jb-search">
+                    <input type="text" onkeydown="if (event.keyCode == 13) this.form.submit();" title="<?php echo JText::_('COM_JOOMBLOG_SEARCH_COMMENT'); ?>"  name="filter_search" class="jb-search-input" id="filter_search" value="<?php echo $search; ?>"/>
+                    <div class="jb-search-clear-group">
+                        <button class="jb-btn btn-mini" type="submit"><i class="jb-icon-search"></i></button><button class="jb-btn btn-mini" onclick="document.getElementById('filter_search').value=''; document.getElementById('sort_comments').value='Published'; this.form.submit();" type="button"><i class="jb-icon-cross"></i></button>
+                    </div>
+                </div>
+                <div class="jb-right-selects">
+                    <select class="jb-sort-comments" id="sort_comments" name="comments_state" onChange="this.form.submit();">
+                        <option <?php if ($comments_state == 'Published' OR empty($comments_state)) echo 'selected'; ?> value="Published"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_PUBLISHED').' ('.$published_count.')';?></option>
+                        <option <?php if ($comments_state == 'Spam') echo 'selected'; ?> value="Spam"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SPAM').' ('.$spam_count.')';?> </option>
+                    </select>
+                </div>
+            </div>
+            <?php if ($comments): ?>
+                <div class="jb-btn-group jb-comment-btn-group clearfix">
+                    <span class="jb-check-all"><input class="jb-check-post jb-check-all" type="checkbox" value="on" id="jb-check-all-comments"><i class="jb-icon-checkbox-unchecked"></i><label for="jb-check-all-comments" /></label></span>
+                    <?php if ($comments_state == 'Published' OR empty($comments_state)): ?>
+                        <button class="jb-btn jb-btn-remove-content" onclick="document.getElementById('comm_action').value='content_remove'; this.form.submit();"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_REMOVE_CONTENT');?></button>
+                        <button class="jb-btn jb-trash-comment-btn" onclick="document.getElementById('comm_action').value='delete'; this.form.submit();"><i class="jb-icon-trash"></i></button>
+                        <button class="jb-btn jb-btn-spam" onclick="document.getElementById('comm_action').value='spam_comm'; this.form.submit();"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SPAM');?></button>
+                    <?php else: ?>
+                        <button class="jb-btn jb-btn-notspam" onclick="document.getElementById('comm_action').value='notspam_comm'; this.form.submit();"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_NOT_SPAM');?></button>
+                        <button class="jb-btn jb-trash-comment-btn" onclick="document.getElementById('comm_action').value='delete'; this.form.submit();"><i class="jb-icon-trash"></i></button>
+                    <?php endif; ?>      
+                </div>
+                <div class="jb-postslist-container">
+                    <?php foreach ($comments AS $comment): ?>
+                        <div class="jb-blog-contouter jb-outer-postslist">
+                            <div class="jb-blog-continner">
+                                <div class="clearfix">
+                                    <div class="jb-left-msgpart jb-left-msgpart-comment"> 
+                                        <div class="clearfix">
+                                            <input class="jb-check-post jb-checkpost-list" type="checkbox" name="cid[]" id="comment_id" value="<?php echo $comment->id ;?>"/><i class="jb-icon-checkbox-unchecked comment-check"></i><label for="comment_id" class="comment-label"><?php echo $comment->comment.' '.Jtext::_('COM_JOOMBLOG_COMMENT_ON')
+                                            .'<a target="_blank" href="'.$comment->referer.'">'.$comment->content_title.'</a>';?> </label>
+                                        </div>
+                                        <div class="jb-edit-links">
+                                            <?php if ($comments_state == 'Published' OR empty($comments_state)): ?>
+                                                <a title="Remove content" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=content_remove&comment_id='.$comment->id.'&Itemid='.$itemId;?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_REMOVE_CONTENT');?></a>
+                                                &nbsp;|&nbsp;
+                                                <a title="Delete" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=delete&comment_id='.$comment->id.'&Itemid='.$itemId;?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DEL');?></a>
+                                                &nbsp;|&nbsp;
+                                                <a title="Spam" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=spam_comm&comment_id='.$comment->id.'&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SPAM');?></a>
+                                            <?php else: ?>
+                                                <a title="Remove content" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=content_remove&comment_id='.$comment->id.'&Itemid='.$itemId;?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_REMOVE_CONTENT');?></a>
+                                                &nbsp;|&nbsp;
+                                                <a title="Delete" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=delete&comment_id='.$comment->id.'&Itemid='.$itemId;?>"> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_DEL');?></a>
+                                                &nbsp;|&nbsp;
+                                                <a title="Spam" href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&comm_action=notspam_comm&comment_id='.$comment->id.'&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_NOT_SPAM');?></a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="jb-right-msgpart jb-right-msgpart-comment">                   
+                                        <span class="jb-published"></span>
+                                        <?php if ($comment->user_id == 0) {
+                                                echo '<span class="jb-author-text">'.Jtext::_('COM_JOOMBLOG_GUEST').'</span>';
+                                            } else {
+                                                echo '<a target="_blank" href="index.php?option=com_joomblog&Itemid='.$itemId.'&user='.$comment->author_username.'" class="jb-author-link">'.$comment->author_name.'</a>';
+                                            } ?>
+                                        <span class="jb-creation-date">
+                                            <?php   $date = new JDate( $comment->created );
+                                                    $comment_published = $date->format('M d, Y');
+                                                    echo $comment_published;
+                                            ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="jb-postslist-container">
+                    <div class="jb-blog-contouter jb-outer-postslist">
+                        <div class="jb-blog-continner">
+                            <div class="clearfix" style="text-align:center; padding-bottom:20px;">
+                                <?php   if ($comments_state == 'Published' OR empty($comments_state)) echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_NO_COMMENTS'); 
+                                        else echo JText::_('COM_JOOMBLOG_BLOG_ADMIN_NO_SPAM_COMMENTS'); 
+                                ?>
+                            </div>
+                        </div>
+                    </div>                       
+                </div>
+            <?php endif; ?>
+        </div>     
+    </div>
+    
+    <input type="hidden" value="" id="comm_action" name="comm_action">           
+</form>
+<div class="jb-pagenav"><?php echo $pagination;?></div>
+
+<?php } ?>
+

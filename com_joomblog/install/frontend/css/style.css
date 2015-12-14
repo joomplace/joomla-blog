@@ -1,0 +1,123 @@
+#joomBlog-wrap form#adminForm {
+    border: 0 solid #000000;
+}
+
+#joomBlog-wrap .formelm-buttons {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#joomBlog-wrap form#adminForm fieldset {
+    margin: 10px 0 15px;
+    padding: 20px 15px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: none repeat scroll 0 0 transparent;
+	border: 1px solid #C8C8C8;
+
+}
+
+#joomBlog-wrap form#adminForm legend {
+    font-weight: bold;
+    padding: 3px 5px;
+}
+
+#joomBlog-wrap .formelm {
+    margin: 12px 0;
+}
+
+#joomBlog-wrap .formelm label {
+    display: inline-block;
+    vertical-align: top;
+    width: 13em;
+}
+
+#joomBlog-wrap .formelm #state0-lbl{
+	width:30px;
+}
+
+#joomBlog-wrap .jbbutton{
+	border:1px solid #777;
+	/*padding:4px 4px 4px 4px;*/
+	margin:1px 1px 1px 1px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor:pointer;
+}
+
+#joomBlog-wrap .inputbox, 
+#joomBlog-wrap textarea, 
+#joomBlog-wrap input {
+	border:1px solid #777;
+	height: 20px;
+}
+
+
+
+#joomBlog-wrap #editor-xtd-buttons {
+    padding: 0;
+}
+
+#joomBlog-wrap .button2-left {
+    margin-left: 5px;
+}
+
+#joomBlog-wrap .button2-left, 
+#joomBlog-wrap .button2-right, 
+#joomBlog-wrap .button2-left div, 
+#joomBlog-wrap .button2-right div {
+    float: left;
+}
+
+#joomBlog-wrap .button2-left a, 
+#joomBlog-wrap .button2-left span {
+    padding: 0 24px 0 6px;
+}
+
+#joomBlog-wrap .button2-left a, 
+#joomBlog-wrap .button2-right a, 
+#joomBlog-wrap .button2-left span, 
+#joomBlog-wrap .button2-right span {
+    color: #666666;
+    cursor: pointer;
+    display: block;
+    float: left;
+}
+
+#joomBlog-wrap .button2-left a:hover, 
+#joomBlog-wrap .button2-right a:hover,
+#joomBlog-wrap .button2-left .blank a:hover,
+#joomBlog-wrap .button2-left .readmore a:hover,
+#joomBlog-wrap .button2-left a:focus, 
+#joomBlog-wrap .button2-right a:focus,
+#joomBlog-wrap .button2-left .blank a:focus,
+#joomBlog-wrap .button2-left .readmore a:focus {
+    background: none repeat scroll 0 0 #FFF !important;
+    color: #666666;
+}
+
+#joomBlog-wrap a.modal-button, 
+#joomBlog-wrap .button2-left .blank a, 
+#joomBlog-wrap .button2-left a, 
+#joomBlog-wrap .button2-left div.readmore a {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C8C8C8;
+    font-weight: bold;
+    line-height: 1.2em;
+    padding: 4px !important;
+    text-decoration: none;
+}
+
+#joomBlog-wrap #adminForm .mceEditor table.mceLayout
+{
+	margin-bottom:10px;
+}
+
+.blogcreatelink
+{
+	background: none repeat scroll 0 0 #F8F9FA;
+    border: 1px solid #C8C8C8;
+    border-radius: 4px 4px 4px 4px;
+}

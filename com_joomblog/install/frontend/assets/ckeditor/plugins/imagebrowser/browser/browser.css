@@ -1,0 +1,167 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	padding-top: 30px;
+	margin: 0 auto -60px;
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: center;
+}
+
+.folder-switcher {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+	padding: 5px 10px;
+	list-style: none;
+	background-color: #e3e3e3;
+	border-bottom: 1px solid #b7b7b7;
+}
+
+.folder-switcher li {
+	display: inline-block;
+	margin: 5px;
+	padding: 5px 10px;
+	border: 1px solid #b7b7b7;
+	border-radius: 4px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	color: #333;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.folder-switcher li:hover {
+	color: #0576b7;
+	border-color: #0576b7;
+}
+
+.folder-switcher li.active {
+	color: #fff;
+	background-color: #0576b7;
+	border-color: #0576b7;
+	box-shadow: none;
+}
+
+.images-container {
+	padding: 5px 10px;
+}
+
+.js-image-link {
+	float: left;
+	height: 120px;
+	margin: 7px;
+	vertical-align: middle;
+	width: 120px;
+	position: relative;
+	overflow: hidden;
+}
+
+.js-image-link img {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
+.btn-uploader {
+	position: absolute;
+	right: 15px;
+	top: 12px;
+}
+
+.fileinput-button {
+	position: relative;
+	overflow: hidden;
+}
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity=0)';
+	font-size: 200px;
+	direction: ltr;
+	cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+	.fileinput-button input {
+		filter: alpha(opacity=0);
+		font-size: 100%;
+		height: 100%;
+	}
+}
+
+#uploader {
+	background-color: #F5F5F5;
+	color: #888888;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.uploaderIcon {
+	border: 3px dashed;
+	border-radius: 20px;
+	height: 170px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-top: 25px;
+	text-align: center;
+	width: 170px;
+
+}
+
+.uploaderIcon span {
+	font-size: 110px;
+	text-shadow: 0px 0px 4px rgba(150, 150, 150, 0.55);
+}
+
+.uploaderHelpText {
+	color: #666666;
+	font-size: 35px;
+	padding-top: 10px;
+	text-align: center;
+	text-shadow: 0 0 4px rgba(150, 150, 150, 0.55);
+}
+
+.control-buttons {
+	height: 60px;
+	padding: 10px 20px;
+	text-align: right;
+}
+
+#files {
+	height: 100px;
+	overflow: auto;
+	text-align: left;
+	color: #000000;
+}
+
+.delete { margin-right: 10px; }
+
+.images-container a span{
+background: #fff;
+position: absolute;
+bottom: 0px;
+font-size: 10px;
+text-align: center;
+left: 0px;
+right: 0px;
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_joomblog/models/fields"
+>
+	<fieldset
+		name="details"
+		label="COM_JOOMBLOG_FIELDSET_DETAILS"
+	>
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="comment"
+			type="textarea"
+			label="COM_JOOMBLOG_FIELD_HEADING_COMMENT"
+			cols="40"
+			rows="8"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+		<field
+			name="contentid"
+			type="sql"
+			label="COM_JOOMBLOG_FIELD_HEADING_POST"
+			query="SELECT jb.id, c.title, jb.content_id FROM #__joomblog_blogs AS jb LEFT JOIN #__joomblog_posts AS c ON c.id=jb.content_id"
+			key_field="content_id"
+			value_field="title"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+		<field
+			name="published"
+			type="radio" 
+			class="btn-group"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
+			size="1"
+			default="1"
+		>
+			<option	value="1">JPUBLISHED</option>
+			<option	value="0">JUNPUBLISHED</option>
+		</field>
+		<field
+			name="created"
+			type="calendar"
+			label="COM_JOOMBLOG_FIELD_HEADING_DATE"
+			class="inputbox" size="22"
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+		/>
+	</fieldset>
+	<fieldset
+		name="author"
+		label="COM_JOOMBLOG_FIELDSET_AUTHOR"
+	>
+		<field
+			name="user_id"
+			type="user"
+			label="COM_JOOMBLOG_FIELD_HEADING_AUTHOR"
+			class="inputbox"
+			default=""
+		/>
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMBLOG_FIELD_HEADING_AUTHOR2"
+			size="20"
+			class="inputbox"
+			default=""
+		/>
+		<field
+			name="email"
+			type="text"
+			label="COM_JOOMBLOG_FIELD_HEADING_EMAIL"
+			size="20"
+			class="inputbox"
+			default=""
+		/>
+	</fieldset>
+</form>
+

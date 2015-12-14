@@ -1,0 +1,44 @@
+
+dl.accordion
+{
+	width: auto;
+}
+
+dl.accordion dt
+{
+	position: relative;
+	height: 15px;
+	padding: 5px 0 2px 5px;
+	cursor: pointer;
+
+}
+
+* html dl.accordion dt
+{
+	cursor: hand;
+	background-image: none;
+}
+
+* html dl.accordion dt.open
+{
+	background-image: none;
+}
+
+dl.accordion dd
+{
+	position: relative;
+	overflow: hidden;
+}
+
+
+dl.accordion dd.accordion_content
+{
+	padding: 0 5px 0 5px;
+	margin: 0;
+}
+
+dl.accordion dd.accordion_content p
+{
+	padding: 5px 0 7px 0;
+}
+

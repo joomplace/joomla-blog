@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<access component="com_joomblog" >
+	<section name="component" >
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="COM_JOOMBLOG_PERMISSIONS_GLOBAL_CREATE" description="COM_JOOMBLOG_PERMISSIONS_GLOBAL_CREATE_DESCR" />
+        <action name="post" title="COM_JOOMBLOG_PERMISSIONS_BLOG_POST" description="COM_JOOMBLOG_PERMISSIONS_BLOG_POST_DESCR" />
+        <action name="blog_create" title="COM_JOOMBLOG_PERMISSIONS_BLOG_CREATE" description="COM_JOOMBLOG_PERMISSIONS_BLOG_POST_DESCR" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
+	</section>
+	<section name="category" >
+		<action name="core.create" title="COM_JOOMBLOG_ACL_CATEGORY_CREATE" description="COM_JOOMBLOG_ACL_CATEGORY_CREATE_DESC" />
+		    <action name="core.createblog" title="COM_JOOMBLOG_ACL_CATEGORY_CREATE_BLOG" description="COM_JOOMBLOG_ACL_CATEGORY_CREATE_BLOG_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="COM_CATEGORIES_ACCESS_DELETE_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="COM_CATEGORIES_ACCESS_EDIT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="COM_CATEGORIES_ACCESS_EDITSTATE_DESC" />
+		<action name="core.edit.own" title="JACTION_EDITOWN" description="COM_CATEGORIES_ACCESS_EDITOWN_DESC" />
+	</section>
+	<section name="post" >
+		<action name="core.delete" title="JACTION_DELETE" description="COM_JOOMBLOG_ACCESS_DELETE_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="COM_JOOMBLOG_ACCESS_EDIT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="COM_JOOMBLOG_ACCESS_EDITSTATE_DESC" />
+	</section>
+	<section name="blog" >
+		<action name="core.create" title="COM_JOOMBLOG_ACL_BLOG_CREATE" description="COM_JOOMBLOG_ACL_BLOG_CREATE_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="COM_JOOMBLOG_ACCESS_DELETE_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="COM_JOOMBLOG_ACCESS_EDIT_DESC" />
+	</section>
+</access>

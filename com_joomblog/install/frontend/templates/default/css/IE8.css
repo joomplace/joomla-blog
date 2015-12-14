@@ -1,0 +1,8 @@
+.jb-inputbox,
+.jb-textarea,
+.jb-inputbox:focus, 
+.jb-textarea:focus {
+    behavior: url('js/PIE.htc');   
+    position: relative;
+}
+.jb-wrap {position: relative; z-index: 2;}

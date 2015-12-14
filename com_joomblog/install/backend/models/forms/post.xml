@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldpath="/administrator/components/com_joomblog/models/fields" >
+	<fieldset
+		name="details"
+		label="COM_JOOMBLOG_FIELDSET_POST"
+	>
+		<field name="id"  type="hidden" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+			description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" 
+			readonly="true"  />
+
+		<field name="asset_id" type="hidden" filter="unset" />
+
+		<field name="title" type="text" label="JGLOBAL_TITLE"
+			description="JFIELD_TITLE_DESC" class="inputbox" size="45"
+			required="true" />
+
+		<field name="alias" type="text" label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC" class="inputbox" size="45" />
+		<field name="catid"
+            type="categorypost"
+            multiple="true"
+            extension="com_joomblog" 
+			label="JCATEGORY"
+            description="JFIELD_CATEGORY_DESC"
+            size="3"
+            class="selectlist jb-selectlist jb-cat-selec"
+            required="true"
+			action="create">
+			<option value="" >COM_JOOMBLOG_OPTION_SELECT_CATEGORY</option>
+		</field>
+
+        <field name="blog_id" 
+		type="blogpost" 
+		label="COM_JOOMBLOG_FIELD_HEADING_BLOG"  
+		size="1"	
+		class="selectlist jb-selectlist jb-small-select" 
+		required="true">
+            <option value="" >COM_JOOMBLOG_OPTION_SELECT_BLOG</option>
+		</field>
+
+		<field name="created_by" type="user"
+			label="COM_JOOMBLOG_FIELD_HEADING_AUTHOR" />
+
+		<field name="tags" type="textarea" 
+			label="COM_JOOMBLOG_FIELD_HEADING_TAGS"
+			class="inputbox" required="false"
+			cols="40" rows="8"
+		/>
+
+		<field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL"
+			description="COM_CONTENT_FIELD_LANGUAGE_DESC" class="selectlist jb-selectlist jb-small-select"
+		>
+			<option value="*">JALL</option>
+		</field>
+
+		<field name="state" type="list" label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC" class="inputbox"
+			filter="intval" size="1" default="1"
+		>
+			<option value="1">
+				JPUBLISHED</option>
+			<option value="0">
+				JUNPUBLISHED</option>
+			<option value="-2">
+				JDRAFT</option>
+		</field>
+
+		<field name="created" type="calendar" label="COM_JOOMBLOG_FIELD_HEADING_DATE"
+			class="inputbox" size="22"
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+		
+		<field name="publish_up" type="calendar" label="COM_JOOMBLOG_FIELD_PUBLISH_DATE"
+			class="inputbox" size="22" 
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+			
+		<field name="publish_down" type="calendar" label="COM_JOOMBLOG_FIELD_EXPIRE_DATE"
+			class="inputbox" size="22"
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+
+		<field name="defaultimage" type="jbmedia" directory="joomblog" hide_default="yes" size="40"
+			 class="jb-inputbox jb-readmore-label" label="COM_JOOMBLOG_POST_DEFAULT_IMAGE" />
+
+		<field name="articletext" type="editor" class="inputbox"
+			label="COM_JOOMBLOG_FIELD_HEADING_TEXT"
+			buttons="true" height="500" required="true" filter="raw" />
+
+        <field name="alternative_readmore" type="inputbox"
+               label="COM_JOOMBLOG_READMORE_LABEL"
+               description="COM_JOOMBLOG_READMORE_DESC"
+               class="inputbox" size="25" />
+
+        <field name="hits" type="text" label="JGLOBAL_HITS"
+               description="COM_CONTENT_FIELD_HITS_DESC" class="readonly" size="6"
+               readonly="true" filter="unset" />
+
+	</fieldset>
+	<fields name="metadata">
+		<fieldset
+			name="metadata"
+			label="COM_JOOMBLOG_FIELDSET_METADATA"
+
+		>
+			<field name="metakey" type="textarea"
+				label="JFIELD_META_KEYWORDS_LABEL" description="JFIELD_META_KEYWORDS_DESC"
+				class="inputbox" rows="3" cols="30" />
+
+			<field name="metadesc" type="textarea"
+				label="JFIELD_META_DESCRIPTION_LABEL" description="JFIELD_META_DESCRIPTION_DESC"
+				class="inputbox" rows="3" cols="30" />
+			<field name="page_image" type="text" class="inputbox"
+			size="84" label="COM_JOOMBLOG_META_PICTURE"
+			description="COM_JOOMBLOG_META_PICTURE_DESC" />
+
+			<field name="ogdesc" type="textarea"
+				label="COM_JOOMBLOG_OG_DESCRIPTION_LABEL" description="COM_JOOMBLOG_OG_DESCRIPTION_DESC"
+				class="inputbox" rows="3" cols="30" />
+			
+	</fieldset>
+	</fields>
+	
+	<fieldset
+		name="rules"
+		label="JCONFIG_PERMISSIONS_LABEL"
+	>
+		<field name="access" type="accessleveljs" jbtype='post' label="COM_JOOMBLOG_PRIVACY_POSTAV_LABEL"
+			class="inputbox" required="false" />
+			
+		<field name="caccess" type="accessleveljs" jbtype='post'
+			label="COM_JOOMBLOG_PRIVACY_COMMENT_LABEL" 
+			class="inputbox" required="false" />
+			
+		<field name="rules" type="rules" label="Permissions"
+			translate_label="false" class="inputbox" filter="rules" 
+			component="com_joomblog" section="post" validate="rules"
+		/>
+	</fieldset>
+</form>

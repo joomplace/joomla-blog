@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" method="upgrade" group="system" version="3.0">
+	<name>Joomblog system</name>
+	<author>JoomPlace Team</author>
+	<creationDate>November 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>support@jomplace.com</authorEmail>
+	<authorUrl>www.jomplace.com</authorUrl>
+	<version>1.0.0</version>
+	<description></description>
+	<files>
+		<filename plugin="joomblog">joomblog.php</filename>
+		<filename plugin="joomblog">index.html</filename>
+	</files>
+	<config>
+	</config>
+</extension>

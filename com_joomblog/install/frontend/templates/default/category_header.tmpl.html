@@ -1,0 +1,38 @@
+<?php
+/**
+* JoomBlog component for Joomla
+* @version $Id: category_list.tmpl.html 2011-03-16 17:30:15
+* @package JoomBlog
+* @subpackage category_list.tmpl.html
+* @author JoomPlace Team
+* @Copyright Copyright (C) JoomPlace, www.joomplace.com
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+*/
+
+defined('_JEXEC') or die('Restricted access');
+global $_JB_CONFIGURATION;
+$category = $category[0];
+$cat_image = '';
+$params = json_decode($category->params);
+if (!empty($params->image)) $cat_image = Juri::root().$params->image;
+?>
+
+<div class="jb-blogs" id="item-<?php echo $category->id;?>">
+    <div class="jb-blogs-head clearfix jb-postsofcat-head">
+	<div class="jb-blog-imgcont">
+	    <img class="jb-blog-img jb-blogcat-img" alt="<?php echo $category->title;?>" <?php echo (empty($cat_image))? 'src="'.JURI::root().'components/com_joomblog/templates/default/images/document_pencil_64.png"':'src="'.$cat_image.'"';?>>
+	</div>
+
+	<div class="jb-blog-info">
+	    <h3 class="jb-blog-title">
+		<a href="<?php echo $category->link;?>"><?php echo $category->title;?></a>
+	    </h3>
+	    <div  class="jb-blog-desc jb-count-catposts">
+		<?php echo $category->count;?>&nbsp;<?php echo JText::_('COM_JOOMBLOG_POSTS_IN_CAT');?>
+	    </div>
+	    <div class="jb-blog-desc">
+            <?php echo $category->description;?>
+        </div>
+	</div>
+    </div>
+</div>

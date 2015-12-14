@@ -1,0 +1,125 @@
+<?php // no direct access
+defined('_JEXEC') or die('Restricted access');
+$calendar = $calendar[0];
+
+?>
+
+<div class="rc_container rc_container_gray calendar">
+	<div class="cn tl"></div>
+	<div class="cn tr"></div>
+	<div class="rc_container_inner">
+		<h2 class="container_heading" style="position: relative">
+		<div class="left_arrow">
+		<a href="javascript: void(0);" onclick="javascript: refresh_calendar('<?php echo JURI::root(); ?>index.php?option=com_joomblog&task=archive&action=refresh_calendar&date=<?php echo $prev_month?>');">&nbsp;
+		</a>
+		</div>
+		&nbsp;
+		<?php echo $calendar_header; ?>
+		<div class="right_arrow">
+		<a href="javascript: void(0);" onclick="javascript: refresh_calendar('<?php echo JURI::root(); ?>index.php?option=com_joomblog&task=archive&action=refresh_calendar&date=<?php echo $next_month?>');">&nbsp;
+		</a>
+		</div>
+		&nbsp;
+		</h2>
+					
+
+<div id="mt_loading_cal_indicator" style="left:35%;cursor: wait;display:none; z-index:1002; padding:1px; margin:1px; position:absolute; top:45%; background: #ffffff;">
+	<img src="<?php echo JURI::root();?>components/com_joomblog/templates/default/images/progress.gif" alt="Loading calendar..." title="Loading calendar..." style="border:none !important;" />
+</div>
+
+<table cellpadding="0" cellspacing="0" class="calendar_table" id="calendar_table">
+<tr style="text-align:center;">
+	<td class="week_names" id="mon"><?php echo JText::_('COM_JOOMBLOG_MON')?></td>
+	<td class="week_names" id="tue"><?php echo JText::_('COM_JOOMBLOG_TUE')?></td>
+	<td class="week_names" id="wed"><?php echo JText::_('COM_JOOMBLOG_WED')?></td>
+	<td class="week_names" id="thu"><?php echo JText::_('COM_JOOMBLOG_THU')?></td>
+	<td class="week_names" id="fri"><?php echo JText::_('COM_JOOMBLOG_FRI')?></td>
+	<td class="week_names" id="sat"><?php echo JText::_('COM_JOOMBLOG_SAT')?></td>
+	<td class="week_names" id="sun"><?php echo JText::_('COM_JOOMBLOG_SUN')?></td>
+</tr>
+
+<?php 
+	$rownum = 0;
+	foreach ($calendar as $row) :
+	$rownum++;
+	?>
+<tr> 
+	<?php foreach ($row as $i=>$day) :?>
+
+		<td id="td<?php echo $rownum.'_'.$i; ?>" class="<?php echo $day['class']; if ($rownum == 1) echo " first_row";if ($i==6) echo " last_col";?>" <?php echo $day['style'];?> <?php echo $day['tip'];?>>
+			<div class="cell">
+				<?php echo $day['html'] ?>
+			</div>
+		</td>
+
+	<?php endforeach; ?>
+</tr>
+<?php endforeach; ?>
+</table>
+
+</div>
+	<div class="cn bl"></div>
+	<div class="cn br"></div>
+</div>
+<script type="text/javascript">		
+		jb_JQuery(document).ready(function(){
+			
+			jb_JQuery(".qtip").each(function(){
+		    	
+		    	var tipShow  = true;
+		    	var tipHide	 = {fixed: true, when: {event: 'mouseout'}, effect: {length: 10}}
+
+		    	// Split the title and the content
+		    	var title = '';
+		    	var content = jb_JQuery(this).attr('title');
+				if (typeof(content) !== 'undefined')
+		    	{
+		    	var contentArray = [];
+				contentArray = content.split('::');
+				// Remove the 'title' attributes from the existing .jomTips classes
+				jb_JQuery( this ).attr('title' , '' );
+
+				if(contentArray.length == 2)
+				{
+					content = contentArray[1];
+					title = {text: contentArray[0]} ;
+				} else
+					title = title = {text: ''} ;
+
+		    	jb_JQuery(this).qtip({
+		    		content: {
+					   text: content
+					},
+					style: { 
+						width: 250,
+						padding: 5,
+						background: '#eeeeee',
+						color: 'black',
+						textAlign: 'center',
+						border: {
+							width: 1,
+							radius: 3,
+							color: '#C8C8C8'
+						}
+					},
+					position: {
+						corner: {
+							target: 'topMiddle',
+							tooltip: 'bottomMiddle'
+						}
+					},
+					hide: tipHide,
+					show: {solo: true, effect: {length: 100, type: 'slide'}}
+			 	});
+		    }
+			});
+			
+		});
+		
+		function refresh_calendar(url) {
+			jb_JQuery('table#calendar_table').get(0).style.visibility = 'hidden';
+			jb_JQuery('div#mt_loading_cal_indicator').get(0).style.display = '';
+			jb_JQuery('div#mt_calendar').load(url);
+		}
+		
+</script>
