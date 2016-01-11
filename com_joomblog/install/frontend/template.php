@@ -71,7 +71,7 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 		/* cached false by default to allow rewrite */
 		$this->cached = false;
 		/* cached experation (Joomla settings by default) */
-		$this->expire = ($cache_timeout)?$cache_timeout:JFactory::getConfig()->get('cachetime');
+		$this->expire = ($cache_timeout)?$cache_timeout:JFactory::getConfig()->get('cachetime')*60;
 	}
 
 	function is_cached()
