@@ -2228,10 +2228,14 @@ function jbBlogNotifyAdmin($row, $isNew)
 
 function jbCacheChecker($jbFunction, $sql, $Result = false, $cacheTime = 30)
 {
+	$config = JFactory::getConfig();	
+	if ($config->get('caching') != 0)
+	{
 	// cacheTime in seconds
-	$cacheTime = 1;
+	$cacheTime = $config->get('cachetime')*60;
 	// prepare Dir
 	$cacheDir = JPATH_ROOT . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'joomblog' . DIRECTORY_SEPARATOR;
+	
 	if ( !file_exists($cacheDir) ) {
 		@mkdir($cacheDir, 0757);
 		if ( !file_exists($cacheDir) )
@@ -2266,5 +2270,6 @@ function jbCacheChecker($jbFunction, $sql, $Result = false, $cacheTime = 30)
 		$fileContent = @serialize(array('sqlCount' => $sqlCount, 'Result' => $Result));
 		if ( $fileContent )
 			file_put_contents($cacheFile, $fileContent);
+	}
 	}
 }
