@@ -63,7 +63,7 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 	var $cached;
 	var $file;
 
-	function JoomblogCachedTemplate($cache_id = "", $cache_timeout = 900)
+	function JoomblogCachedTemplate($cache_id = "", $cache_timeout = 0)
 	{
 		$this->JoomblogTemplate();
 		/* cache filename */
