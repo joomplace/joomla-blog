@@ -63,29 +63,35 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 	var $cached;
 	var $file;
 
-	function JoomblogCachedTemplate($cache_id = "", $cache_timeout = 1000)
+	function JoomblogCachedTemplate($cache_id = "", $cache_timeout = 900)
 	{
 		$this->JoomblogTemplate();
+		/* cache filename */
 		$this->cache_id = JB_CACHE_PATH . "/cache__" . md5($cache_id);
+		/* cached false by default to allow rewrite */
 		$this->cached = false;
-		$this->expire = $cache_timeout;
+		/* cached experation (Joomla settings by default) */
+		$this->expire = ($cache_timeout)?$cache_timeout:JFactory::getConfig()->get('cachetime');
 	}
 
 	function is_cached()
 	{
-
-		return false; //cache is always off
+		if(!JFactory::getConfig()->get('caching')){
+			return false; //cache off
+		}
+		/* already checked by self */
 		if ($this->cached) return true;
+		/* no filename */
 		if (!$this->cache_id) return false;
+		/* no file */
 		if (!file_exists($this->cache_id)) return false;
+		/* couldn`t get modified time */
 		if (!($mtime = filemtime($this->cache_id))) return false;
-		if (($mtime + $this->expire) < time())
-		{
+		/* cache is expired (no need to check time zone because cache is created with servertime) */
+		if (($mtime + $this->expire) < time()){
 			@unlink($this->cache_id);
 			return false;
-		}
-
-		else
+		}else
 		{
 			$this->cached = true;
 			return true;
@@ -94,16 +100,11 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 
 	function fetch_cache($file, $processFunc = '')
 	{
-		//cache is always off
-		// $contents = $this->fetch($file);
-		//if($processFunc) $contents = $processFunc($contents);
-		//return $contents;
-		//end always off
-
 		$contents = "";
 
 		if ($this->is_cached())
 		{
+			/* read cache */
 			$fp = fopen($this->cache_id, 'r');
 			if ($fp)
 			{
@@ -121,6 +122,7 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 		}
 		else
 		{
+			/* create cache */
 			$contents = $this->fetch($file);
 
 			if ($processFunc)
@@ -132,10 +134,11 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 				{
 					fwrite($fp, $contents);
 					fclose($fp);
+					$this->cached = true;
 				}
 				else
 				{
-
+					$this->cached = false;
 				}
 			}
 		}
