@@ -218,7 +218,7 @@ class JbblogBrowseBase extends JbblogBaseController
 	{
 		$searchby = array();
 		$jinput = JFactory::getApplication()->input;
-		$category = $jinput->get('category', '', 'REQUEST');
+		$category = $jinput->get('category', JFactory::getApplication()->getParams()->get('category',0), 'REQUEST');
 
 		if (!empty($category))
 		{

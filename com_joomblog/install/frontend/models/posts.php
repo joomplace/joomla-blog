@@ -89,7 +89,7 @@ class JoomblogModelPosts extends JModelList
 		{
 			$this->setState('filter.tag_name', $tag);
 		}
-		$category = JFactory::getApplication()->input->get('category', '', 'string');
+		$category = JFactory::getApplication()->input->get('category', JFactory::getApplication()->getParams()->get('category',0), 'string');
 
 		if (!empty($category))
 		{
