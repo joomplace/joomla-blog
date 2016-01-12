@@ -76,73 +76,91 @@ if($useDraganddrop && $modulesDisplay && $isHome){
             if ( JFactory::getUser()->get('isRoot') || JFactory::getUser()->id == $e['created_by'] )
                 echo '<a class="jb-btn jb-blog-edit" href="'. JRoute::_('index.php?option=com_joomblog&task=write&id='.$e['id'].'&blogid='.$e['blogid'].'&Itemid='.jbGetItemId()) .'" title="'.JText::_('COM_JOOMBLOG_EDIT_POST').'" style="float: left; padding: 3px 9px; margin: 5px 5px 0px 0px;"><i class="jb-icon-pencil"></i></a>';
         ?>
-	<h2 class="jb-entry-title">
-	    <?php if ($_JB_CONFIGURATION->get('showBlogTitle') == '1') : ?>
-	    <a href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$e['blogid'].'&view=blogger'.$tmpl);?>"><?php echo $e['blogtitle']."</a>";?> <span class="blog-sep">&#8594;</span>
-	    <?php endif; ?>
-	     <a class="blog" href="<?php echo $e['permalink']; ?>"><?php echo $e['title']; ?></a>
-	</h2>
-	<?php if( $categoryDisplay ){?><small class="jb-category-bgk"><?php echo ($e['multicats']?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')); ?> <?php echo $e['jcategory']; ?></small><?php }?>
+	<a href="<?php echo $e['permalink']; ?>">
+		<h3 class="h2">
+			<?php /* if ($_JB_CONFIGURATION->get('showBlogTitle') == '1') : ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$e['blogid'].'&view=blogger'.$tmpl);?>"><?php echo $e['blogtitle']."</a>";?> <span class="blog-sep">&#8594;</span>
+			<?php endif; */ ?>
+			<?php echo $e['title']; ?>
+		</h2>
+	</a>
+	<?php if( $categoryDisplay ){?>
+		<p>
+			<small><a href="<?php echo JRoute::_('index.php?option=com_joomblog&blogid='.$e['blogid'].'&view=blogger'.$tmpl);?>"><?php echo $e['blogtitle']."</a>";?></small>
+			<br/>
+			<small><?php echo ($e['multicats']?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')); ?> <?php echo $e['jcategory']; ?></small>
+		</p>
+	<?php }?>
 	<?php jbShowSocialButtons($e, 'top');	?>
 	<!-- Post Teaser Text -->
 	<div class="postSummary-teaser">
-	    <div class="jb-post-content clearfix">
-		<?php if(!empty($e['defaultimage'])) : ?>
-		<div class="jb-article-image"><img src="<?php echo ( !$defaultimage_thumb ? $e['defaultimage'] : $defaultimage_thumb); ?>" alt=""/></div>
-		<?php endif; ?>
-		<?php echo JHtml::_('content.prepare', $e['text']); ?>
+	    <div class="post-content row-fluid clearfix">
+			<?php if(!empty($e['defaultimage'])) : ?>
+			<div class="span4 col-xs-12 col-sm-4">
+				<img src="<?php echo ( !$defaultimage_thumb ? $e['defaultimage'] : $defaultimage_thumb); ?>" alt=""/>
+			</div>
+			<?php endif; ?>
+			<div class="<?php echo (!empty($e['defaultimage']))?'span8 col-xs-12 col-sm-8':'span12 col-xs-12' ?>">
+				<?php echo JHtml::_('content.prepare', $e['text']); ?>
+				 <?php if ($e['readmore']=="1") : ?>
+					<div class="jb-readmorelink text-right">
+						<a class="btn btn-default" href="<?php echo $e['permalink']; ?><?php echo $showAnchor; ?>" class="postSummary-readmore"><?php echo $e['readmorelink']?$e['readmorelink']:JText::_('COM_JOOMBLOG_READMORE');?></a>
+					</div>
+				<?php endif; ?>
+			</div>
 	    </div>
-
-	    <?php if ($e['readmore']=="1") : ?>
-	    <div class="jb-readmorelink"><br /><a href="<?php echo $e['permalink']; ?><?php echo $showAnchor; ?>" class="postSummary-readmore"><?php echo $e['readmorelink']?$e['readmorelink']:JText::_('COM_JOOMBLOG_READMORE');?></a></div>
-	    <?php endif; ?>
 	    
 	    <?php jbShowSocialButtons($e); ?>
 	    
 	    <?php if($_JB_CONFIGURATION->get('ShowUntaggedWithoutTags')) { ?>
-	    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+			<p ><?php echo $e['categories']; ?></p>
 	    <?php } else if ($e['categories']!="<em>". JText::_('COM_JOOMBLOG_BLOG_UNTAGGED') ."</em>&nbsp;"){?>	
-	    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
+			<p><?php echo $e['categories']; ?></p>
 	    <?php } ?>
 
-	    <div class="jb-bottom">
-		<div class="jb-votes">
-		    <span class="jb-count sumvote"><?php echo $e['sumvote']; ?></span>
-		    <a onclick="sendVote(<?php echo $e['id']; ?>,1)" href="javascript:void(0)" class="jb-vote-up">
-			<span class="jb-comcontrol"><i class="jb-icon-arrow2" title="<?php echo JText::_("COM_JOOMBLOG_LIKE"); ?>">&#9650;</i></span>
-		    </a>
-		    <a onclick="sendVote(<?php echo $e['id']; ?>,-1)" href="javascript:void(0)" class="jb-vote-down">
-			<span class="jb-comcontrol"><i class="jb-icon-arrow" title="<?php echo JText::_("COM_JOOMBLOG_DISLIKE"); ?>">&#9660;</i></span>
-		    </a>
-		</div>
-		
-		<div class="jb-dateposted"><?php echo $e['createdFormatted']; ?></div>
-            <?php //echo "<pre>"; print_r($e); die;?>
-		<?php
-			if ($e['comments']!="" && $_JB_CONFIGURATION->get('useComment') == "1"){
-		?>
-			<div class="jb-commenticon">
-                <a href="<?php echo $e['permalink']; ?>#comments">
-                    <span><?php echo $e['comments']; ?></span>
-                </a>
-            </div>
-		<?php
-			} else if($_JB_CONFIGURATION->get('useComment') == "2"){
-				echo '<div class="jb-commenticon">'.$e['comments'].'</div>';
-			}
-		?>
-		<?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>
-		    <div class="jb-authoricon">
-                <?php echo $e['avatar'];?> <a target="_blank" href="<?php echo $e['authorLink']; ?>"><?php echo $e['author']; ?></a>
-            </div>
-		<?php endif; ?>
+	    <div class="well post-teas-bottom">
+			<div class="row-fluid row">
+				<div class="span2 col-xs-6 col-sm-2 text-center">
+					<a onclick="sendVote(<?php echo $e['id']; ?>,1)" href="javascript:void(0)" class="jb-vote-up">
+						<span class="jb-comcontrol"><i class="icon-thumbs-up" title="<?php echo JText::_("COM_JOOMBLOG_LIKE"); ?>"></i></span>
+					</a>
+					<span class="jb-count sumvote"><?php echo $e['sumvote']; ?></span>
+					<a onclick="sendVote(<?php echo $e['id']; ?>,-1)" href="javascript:void(0)" class="jb-vote-down">
+						<span class="jb-comcontrol"><i class="icon-thumbs-down" title="<?php echo JText::_("COM_JOOMBLOG_DISLIKE"); ?>"></i></span>
+					</a>
+				</div>
+				
+				<div class="span4 col-xs-6 col-sm-4 text-center">
+					<i class="icon-clock"></i><?php echo $e['createdFormatted']; ?>
+				</div>
+					<?php //echo "<pre>"; print_r($e); die;?>
+				<?php
+					if ($e['comments']!="" && $_JB_CONFIGURATION->get('useComment') == "1"){
+				?>
+					<div class="span1 col-xs-6 col-sm-1 text-center">
+						<a href="<?php echo $e['permalink']; ?>#comments">
+							<i class="icon-bubble-quote"></i>
+							<span><?php echo $e['comments']; ?></span>
+						</a>
+					</div>
+				<?php
+					} else if($_JB_CONFIGURATION->get('useComment') == "2"){
+						echo '<div class="span1 col-xs-6 col-sm-1 text-center"><i class="icon-bubble-quote"></i>'.$e['comments'].'</div>';
+					}
+				?>
+				<?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>
+					<div class="span3 col-xs-6 col-sm-3 text-center">
+						<?php echo $e['avatar'];?> <a target="_blank" href="<?php echo $e['authorLink']; ?>"><?php echo $e['author']; ?></a>
+					</div>
+				<?php endif; ?>
 
-		<div class="jbBackToTop">
-		    <a onclick="scrollup()" href="javascript:void(0)">top <strong>&#8593;</strong></a>
-		    <div class="clr"></div>
+				<div class="span2 col-xs-12 col-sm-2 text-right">
+					<a onclick="scrollup()" href="javascript:void(0)">top <strong>&#8593;</strong></a>
+					<div class="clr"></div>
+				</div>
+			</div>
+			<!-- Post Footer -->						
 		</div>
-	    </div>
-	    <!-- Post Footer -->						
 	</div>
 
 	<span class="article_separator">&nbsp;</span>

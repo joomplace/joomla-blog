@@ -121,3 +121,13 @@
     border: 1px solid #C8C8C8;
     border-radius: 4px 4px 4px 4px;
 }
+
+/* refresh */
+.post-teas-bottom{
+    font-size: 14px;
+    line-height: 1.5em;
+}
+.post-teas-bottom img{
+    width: 1.4em;
+    vertical-align: top;
+}

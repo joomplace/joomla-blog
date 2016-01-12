@@ -908,13 +908,13 @@ function jbCategoriesURLGet($contentid, $linkCats = true, $task = "")
 
 		foreach ($result as $row) {
 			if ( $link != "" )
-				$link .= ",&nbsp;";
+				$link .= "&nbsp;&nbsp;";
 
 			if ( $linkCats ) {
 				$tmpl = JFactory::getApplication()->input->get('tmpl');
 				if ( $tmpl == 'component' ) $tmpl = '&tmpl=component'; else $tmpl = '';
 				$url = JRoute::_('index.php?option=com_joomblog' . $task . '&tag=' . urlencode($row->slug) . '&Itemid=' . $Itemid . $tmpl);
-				$link .= "<a href=\"$url\">$row->name</a>";
+				$link .= "<a class=\"label label-default\" href=\"$url\">$row->name</a>";
 			} else {
 				$link .= $row->name;
 			}

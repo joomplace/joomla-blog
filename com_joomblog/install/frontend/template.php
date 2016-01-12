@@ -128,7 +128,7 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 			if ($processFunc)
 				$contents = $processFunc($contents);
 
-			if (!empty($contents))
+			if (!empty($contents) && JFactory::getConfig()->get('caching'))
 			{
 				if ($fp = fopen($this->cache_id, 'w'))
 				{

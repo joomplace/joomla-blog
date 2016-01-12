@@ -39,6 +39,7 @@ textarea{
 #jb-wrap hr {
     margin: 0;
     padding: 0;
+    line-height: 1.5em;
 }
 
 .topFeed {
@@ -631,11 +632,6 @@ select#year {
     float:left;
     padding:4px;
 } 
-
-#jb-wrap .postSummary-teaser ,
-#jb-wrap .postContent-text {
-    padding: 5px 0 25px;
-}
 
 
 #jb-wrap .postSummary-teaser .jb-readmorelink,
@@ -2366,9 +2362,6 @@ label[for="jform_defaultimage"] {
     .jb-readinglist-text{
         margin-left: 0 !important;
     }
-    .jb-wrap{
-        min-width: 426px;
-    }
 }
 @media (max-width: 469px) {
     .jb-readinglist-postimgcont{
@@ -2378,7 +2371,6 @@ label[for="jform_defaultimage"] {
         margin-left: 0 !important;
     }
     .jb-wrap{
-        /*min-width: 426px;*/
         width: auto;
     }
     h2 {
@@ -3805,3 +3797,20 @@ margin-top: 5px;
 	color: #FFFFFF;
 }
 /* ---------------------- */
+
+
+
+/* refresh */
+.post-teas-bottom{
+    font-size: 14px;
+    line-height: 2em;
+}
+.post-teas-bottom img{
+    width: 1.4em;
+    vertical-align: text-bottom;
+}
+
+.postSummary:not(:first-child) {
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}

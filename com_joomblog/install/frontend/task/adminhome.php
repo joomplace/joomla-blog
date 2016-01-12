@@ -25,9 +25,9 @@ class JbblogAdminhomeTask extends JbblogBaseController
 		$document = JFactory::getDocument();
 		$my	= JFactory::getUser();
 		$db	= JFactory::getDBO();
-		$blogid = JFactory::getApplication()->input->get('blogid');
+		$blogid = JFactory::getApplication()->input->get('blogid',0);
 		//Get blog title
-		$query = "SELECT `title` FROM `#__joomblog_list_blogs` WHERE `id`=".$blogid;
+		$query = "SELECT `title` FROM `#__joomblog_list_blogs` WHERE `id`= '".$blogid."'";
 		$db->setQuery($query);
 		$blog_title = $db->loadResult();
 		$itemid = JFactory::getApplication()->input->get('itemid');

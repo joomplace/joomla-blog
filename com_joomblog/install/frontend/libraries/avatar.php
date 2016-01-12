@@ -57,12 +57,12 @@ class JBAvatarBase
 		if($this->_link() && $_JB_CONFIGURATION->get('linkAvatar'))
 		{
 			$content	= '<a href="' . $link . '">'
-						. '<img src="' . $url . '" border="0" alt="' . $alt . '" width="' . $this->_width . '" height="' . $this->_height . '" />'
+						. '<img src="' . $url . '" alt="' . $alt . '" />'
 						. '</a>';
 		}
 		else
 		{
-			$content	= '<img src="' . $url . '" border="0" alt="' . $alt . '" width="' . $this->_width . '" height="' . $this->_height . '" />';
+			$content	= '<img src="' . $url . '" alt="' . $alt . '" />';
 		}
 		
 		return $content;

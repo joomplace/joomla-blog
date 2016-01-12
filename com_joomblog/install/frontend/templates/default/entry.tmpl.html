@@ -37,9 +37,7 @@ if(empty($entry['blogid'])) $entry['blogid']=$entry['blog_id'];
     ?>
     
     <h1 class="jb-entry-title">
-	<!-- <a class="blog" href="<?php echo $e['permalink']; ?>"><?php echo $e['title']; ?></a> -->
-	<?php echo $e['title']; ?>
-
+		<?php echo $e['title']; ?>
     </h1>
     
     <?php if( $categoryDisplay ){?><small class="jb-category-bgk"><?php echo ($e['multicats']?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')); ?> <?php echo $e['jcategory']; ?></small><?php }?>
