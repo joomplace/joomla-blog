@@ -33,7 +33,7 @@ class JoomBlogTableSettings extends JTable
                 return parent::bind($array, $ignore);
         }
 	
-	function store()
+	function store($updateNulls = false)
 	{
 		$options = array();
 		$db     = JFactory::getDBO();
