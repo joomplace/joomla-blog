@@ -22,12 +22,19 @@ class JbblogBloggerstatsTask extends JbblogBaseController
 		$blogid = JFactory::getApplication()->input->get('blogid');
 		$itemId = JFactory::getApplication()->input->get('Itemid');
 		$user	= JFactory::getUser();
+		$db		= JFactory::getDBO();
+		
 		if (empty($user->id))
 		{
 			$mainframe->redirect(JRoute::_('index.php?option=com_joomblog&view=default',false));
 		}
-		$db		= JFactory::getDBO();
-
+		
+		//Get blog titles
+		
+		$query = "SELECT `id`, `title` FROM `#__joomblog_list_blogs` WHERE `user_id`=".$user->get('id');
+		$db->setQuery($query);
+		$blog_titles = $db->loadObjectList();
+		
 		$db->setQuery("SELECT `title` FROM #__joomblog_list_blogs WHERE id='$blogid'");
 		$blog_title = $db->loadResult();
 		
@@ -39,6 +46,7 @@ class JbblogBloggerstatsTask extends JbblogBaseController
 		$tpl	= new JoomblogTemplate();
 
 		$tpl->set('num_entries', JbCountBlogEntry($blogid));
+		$tpl->set('blog_titles', $blog_titles);
 		$tpl->set('blog_title', $blog_title);
 		$tpl->set('blogid', $blogid);
 				
@@ -51,7 +59,7 @@ class JbblogBloggerstatsTask extends JbblogBaseController
 		
 		$tpl->set('num_hits', JbCountBlogHits($blogid));
 		$tpl->set('tags', jbGetBlogUsedTags($blogid));
-		$tpl->set('Jbitemid', $itemId);
+		$tpl->set('itemId', $itemId);
 		$html = $tpl->fetch(JB_TEMPLATE_PATH."/admin/blogger_stats.html");
 		return $html;
 	}

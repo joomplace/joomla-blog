@@ -23,13 +23,19 @@ class JbblogShowcommentsTask extends JbblogBaseController
 		$mainframe = JFactory::getApplication(); 
 		$blogid = JFactory::getApplication()->input->get('blogid');
 		$itemId = JFactory::getApplication()->input->get('Itemid');
+		$db		= JFactory::getDBO();
+		$user	= JFactory::getUser();
+		//Get blog titles
+		
+		$query = "SELECT `id`, `title` FROM `#__joomblog_list_blogs` WHERE `user_id`=".$user->get('id');
+		$db->setQuery($query);
+		$blog_titles = $db->loadObjectList();
 		
 		// get List of content id by this blogger
 		$cats = implode(',',jbGetCategoryArray($_JB_CONFIGURATION->get('managedSections')));
 		$pathway = $mainframe->getPathway();
-
-		$db		= JFactory::getDBO();
-		$user	= JFactory::getUser();
+		
+		
 		$db->setQuery("SELECT `title` FROM #__joomblog_list_blogs WHERE id='$blogid'");
 		$blog_title = $db->loadResult();
 
@@ -232,6 +238,7 @@ class JbblogShowcommentsTask extends JbblogBaseController
 		$tpl->set('spam_count', $spam_count);
 		$tpl->set('blogid', $blogid);
 		$tpl->set('blog_title', $blog_title);
+		$tpl->set('blog_titles', $blog_titles);
 		$tpl->set('itemId', $itemId);
 		$tpl->set('filter_search', $search);
 		$tpl->set('comments_state',$comments_state);

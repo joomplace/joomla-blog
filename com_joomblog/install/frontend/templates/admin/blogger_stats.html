@@ -9,19 +9,35 @@
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 
 -->
+<?php 
+global $_JB_CONFIGURATION;
+if ($_JB_CONFIGURATION->get('useComment') == 2)
+{
+    echo JText::_('COM_JOOMBLOG_DISQUS_INTEGRATION_ENABLED'); 
+} else { 
+?>
 <!-- <br/> -->
-
+<form action="<?php echo Juri::root().'index.php?option=com_joomblog&task=bloggerstats&Itemid='.$itemId;?>" method="post" name="adminForm" id="adminForm">
 <div class="jb-wrap" id="jb-wrap">
 <div class="clearfix">
-    <h2 class="jb-blog-name"><span><?php echo $blog_title ;?></span><span class="jb-seporator-gt"> &#62; </span></h2>
-    <div  class="jb-btns-dropdown">
-        <button class="jb-btn jb-show-info"><i class="jb-icon-stats-bars"></i> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?> <i class="jb-icon-sort-down"></i></button>
-        <ul class="jb-dropdown-menu">                                                    
-            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=adminhome&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?></a></li>
-            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=showcomments&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_ADMIN_COMMENTS');?></a></li>
-            <li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=editblog&Itemid='.$Jbitemid;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
-        </ul>
-    </div>
+	   <div class="jb-left-blogname clearfix">
+		<div class="jb-right-selects">
+		<select id="blogid" class="jb-sort-posts" name="blogid" onChange="this.form.submit();">
+				<?php foreach ($blog_titles AS $blog_title)
+				{
+				echo ($blog_title->id == $blogid)?'<option selected value="'.$blog_title->id.'">'.$blog_title->title.'</option>':'<option value="'.$blog_title->id.'">'.$blog_title->title.'</option>';
+				} ?>
+		</select>
+		</div>
+		<div  class="jb-btns-dropdown">
+			<button class="jb-btn jb-show-info"><i class="jb-icon-stats-bars"></i> <?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?> <i class="jb-icon-sort-down"></i></button>
+			<ul class="jb-dropdown-menu">                                                    
+				<li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=adminhome&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_POSTS');?></a></li>
+				<li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=bloggerstats&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_STATS');?></a></li>
+				<li><a href="<?php echo Juri::root().'index.php?option=com_joomblog&blogid='.$blogid.'&task=editblog&Itemid='.$itemId;?>"><?php echo JText::_('COM_JOOMBLOG_USER_DASHBOARD_SETS');?></a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <div class="jb-btn-group jb-stats-btn-group clearfix">
   <?php echo '<span class="jb-stat_label">'.JText::_('COM_JOOMBLOG_BLOG_ADMIN_STATS_TOTAL_ENTRIES').'</span><span>'.$num_entries .'</span><br />';?>
@@ -41,7 +57,7 @@
     foreach($tags as $tag)
     { 
       $tag_name = str_replace(' ','_',$tag->name);
-      $url	= JRoute::_('index.php?option=com_joomblog&task=tag&tag=' . $tag_name.'&Itemid='.$Jbitemid);
+      $url	= JRoute::_('index.php?option=com_joomblog&task=tag&tag=' . $tag_name.'&Itemid='.$itemId);
       $html	.= '<a href="' . $url . '">' . $tag->name . '</a>';
       $html	.= ( $i == $total ) ? '.' : ', ';
       
@@ -52,3 +68,6 @@
   <?php } ?>
 </div>
 </div>
+    <input type="hidden" value="" id="comm_action" name="comm_action">           
+</form>
+<?php } ?>

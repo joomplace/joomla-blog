@@ -28,4 +28,12 @@ class JoomBlogTableComment extends JTable
 
 		return parent::delete($pk);
 	}
+	public function store($updateNulls = false){
+	
+	if (!$this->created) $this->created = date('Y-m-d H:i:s');
+	if (!$this->created=='0000-00-00 00:00:00') $this->created = date('Y-m-d H:i:s');
+	
+	return parent::store($updateNulls);
+	}
+	
 }

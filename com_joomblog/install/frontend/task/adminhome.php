@@ -13,23 +13,30 @@ require_once( JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR .
 
 class JbblogAdminhomeTask extends JbblogBaseController
 {
-	function JbblogAdminhomeTask()
+
+    function JbblogAdminhomeTask()
 	{
 		$this->toolbar	= JB_TOOLBAR_ACCOUNT;
 	}
 
 	function display()
-	{
+	{  
 		global $_JB_CONFIGURATION;
 		$mainframe	= JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$my	= JFactory::getUser();
 		$db	= JFactory::getDBO();
-		$blogid = JFactory::getApplication()->input->get('blogid',0);
-		//Get blog title
-		$query = "SELECT `title` FROM `#__joomblog_list_blogs` WHERE `id`= '".$blogid."'";
+		$blogid = JFactory::getApplication()->input->getInt('blogid',0);
+		//Get blog titles
+		$query = "SELECT `id`, `title` FROM `#__joomblog_list_blogs` WHERE `user_id`=".$my->get('id');
 		$db->setQuery($query);
-		$blog_title = $db->loadResult();
+		$blog_titles = $db->loadObjectList();
+		
+		if(!$blogid)
+		{	
+			$blogid=$blog_titles[0]->id;
+		}
+				
 		$itemid = JFactory::getApplication()->input->get('itemid');
 		if (empty($itemid)) $itemid = jbGetItemId();
 
@@ -50,6 +57,7 @@ class JbblogAdminhomeTask extends JbblogBaseController
 		$filter_search = $db->escape(JString::trim(JString::strtolower($filter_search)));
 		$search_cat = $mainframe->getUserStateFromRequest("search.com_joomblog.cat_search", 'cat_search', '');
 		$search_tag = $mainframe->getUserStateFromRequest("search.com_joomblog.tag_search", 'tag_search', '');
+		$search_blog =  $mainframe->getUserStateFromRequest("search.com_joomblog.blog_search", 'blog_search', '');
 		$filter_state = $mainframe->getUserStateFromRequest("search.com_joomblog.filter_state", 'filter_state', '');
 
  		$search_query = "";
@@ -81,6 +89,7 @@ class JbblogAdminhomeTask extends JbblogBaseController
 		{
 			$search_query .= " AND jt.tag = '$search_tag' ";
 		}
+
 		if (!empty($filter_state) AND $filter_state !=='All') 
 		{
 			switch ($filter_state)
@@ -303,7 +312,7 @@ class JbblogAdminhomeTask extends JbblogBaseController
 		$tpl->set('drafts_count', $drafts_count);
 		$tpl->set('tags',$tags);
 		$tpl->set('blogid', $blogid);
-		$tpl->set('blog_title', $blog_title);
+		$tpl->set('blog_titles', $blog_titles);
 		$tpl->set('filter_search', $filter_search);
 		$tpl->set('postingRights', jbGetUserCanPost());
 		$tpl->set('publishRights', jbGetUserCanPublish());
