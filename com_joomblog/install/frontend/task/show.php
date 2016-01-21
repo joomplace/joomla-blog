@@ -693,22 +693,22 @@ class JbblogShowTask extends JbblogShowBase
 			$metadata_json->page_image = '';
 			$metadata_json->ogdesc = '';
 		}
-		if ( empty($metadata_json->page_image) && !empty($e['defaultimage']) )
+		if (empty($metadata_json->page_image) && !empty($e['defaultimage'])) {
 			$metadata_json->page_image = JURI::root() . $e['defaultimage'];
-		else
-		{
+		} else if(empty($metadata_json->page_image)) {
 			preg_match('/<img[^>]+src=([\'"])?((?(1).+?|[^\s>]+))(?(1)\1)/', $e['text'], $src);
-			if ( !empty($src[2]) )
+			if (!empty($src[2]))
 			{
-				if ( strpos($src[2], JURI::root()) === false )
+				if (strpos($src[2], JURI::root()) === false)
 				{
-					if ( substr($src[2], 0, 1) == '/' )
+					if ( substr($src[2], 0, 1) == '/' ) {
 						$metadata_json->page_image = JURI::root() . substr($src[2], 1, strlen($src[2]));
-					else
+					} else {
 						$metadata_json->page_image = JURI::root() . $src[2];
-				}
-				else
+					}
+				} else {
 					$metadata_json->page_image = $src[2];
+				}
 			}
 		}
 		$page_image = $metadata_json->page_image;
