@@ -497,7 +497,7 @@ function jbCanBlogCreate()
 {
 	$user = JFactory::getUser();
 	if ( $user->id ) {
-		if ( $user->authorise('blog_create', 'com_joomblog') ) return true;
+		if ( $user->authorise('blog.create', 'com_joomblog') ) return true;
 	}
 	return false;
 }

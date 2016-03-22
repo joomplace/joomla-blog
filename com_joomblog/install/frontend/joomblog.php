@@ -238,7 +238,7 @@ function jbfSavenewblog()
 
 	$row->bind( $data , true);
 	
-	if(!$my->authorise('blog_create', 'com_joomblog')){
+	if(!$my->authorise('blog.create', 'com_joomblog')){
 		$mainframe->redirect($_SERVER['HTTP_REFERER'],JText::_('COM_JOOMBLOG_BLOG_ADMIN_NO_PERMISSIONS_TO_POST'));
 		return;
 	}

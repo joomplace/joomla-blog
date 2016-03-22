@@ -1828,18 +1828,6 @@
         </field>
 
         <field type="spacer" name="delimeter41" description="JCONFIG_PERMISSIONS_LABEL" />
-
-        <field name="rules"
-                type="rules"
-                label="Permissions"
-                translate_label="false"
-                class="inputbox"
-                filter="rules"
-                component="com_joomblog"
-                section="component"
-                validate="rules"
-                />
-
         <field name="asset_id" type="hidden" filter="unset"/>
     </fieldset>
 </form>
