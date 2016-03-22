@@ -20,9 +20,12 @@ defined('_JEXEC') or die('Restricted access');
 	{
 		$timeZone = $userTz;
 	}
-
-	foreach ($list as $row):
-	    $row->permalinkURL = jbGetPermalinkUrl($row->id);
+	$limit = $params->get('numLatestEntries');
+	
+	foreach ($list as $row ):
+		if ($i < $limit ){
+		$i++;
+		$row->permalinkURL = jbGetPermalinkUrl($row->id);
 	    $row->titleLink	= $row->permalinkURL;
 	    $row->author = jbGetAuthorName($row->created_by, ($postedByDisplay=="1" ? "0" : "1"));
 
@@ -92,5 +95,5 @@ defined('_JEXEC') or die('Restricted access');
 
 			<div style="clear:both;"><hr size="1"></div>
 		</li>
-<?php endforeach; ?>
+		<?php }endforeach; ?>
 </ul>
