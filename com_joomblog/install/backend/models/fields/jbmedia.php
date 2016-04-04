@@ -22,6 +22,14 @@ class JFormFieldJBMedia extends JFormFieldMedia
 	public $type = 'JBMedia';
 
 	/**
+	 * The self initialised
+	 *
+	 * @var    boolean
+	 * @since  11.1
+	 */
+	public static $initialised = false;
+
+	/**
 	 * Method to get the field input markup.
 	 *
 	 * @return  string   The field input markup.
