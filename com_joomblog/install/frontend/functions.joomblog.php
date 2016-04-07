@@ -1713,7 +1713,7 @@ function getPoweredByLink()
 function jbAddPathway($title, $link = '')
 {
 	$mainframe = JFactory::getApplication();
-	$pathway =& $mainframe->getPathway();
+	$pathway = $mainframe->getPathway();
 
 	$pathway->addItem($title, $link);
 }

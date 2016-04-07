@@ -26,7 +26,7 @@ class JoomBlogViewPlugins extends JViewLegacy
 		$this->messageTrigger = $this->get('CurrDate');
 		$this->pagination = $this->get('Pagination');
 
-		$this->user = &JFactory::getUser();
+		$this->user = JFactory::getUser();
 
 		JoomBlogHelper::getSideBarMenu($this);
 		JHtmlSidebar::setAction('index.php?option=com_joomblog&view='.$this->getName());
