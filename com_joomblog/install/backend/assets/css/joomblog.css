@@ -70,6 +70,10 @@ table.adminlist a.loading, table.adminlist span.loading {
     display: none !important;
 }
 
+#userModal_jform_created_by{
+    display: block !important;
+}
+
 form dl.tabs {
     margin: 0px 0px -1px 0px;
 }
