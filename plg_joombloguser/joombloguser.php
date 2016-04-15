@@ -61,7 +61,7 @@ class plgUserJoombloguser extends JPlugin
 	{
 		$db = JFactory::getDBO();
 		
-		$db->setQuery("SELECT id FROM #__joomblog_user WHERE user_id=".$user['id']);
+		$db->setQuery("SELECT user_id FROM #__joomblog_user WHERE user_id=".$user['id']);
 		$exists = $db->loadResult();
 		
 		if ($exists){
