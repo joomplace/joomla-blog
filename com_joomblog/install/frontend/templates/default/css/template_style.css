@@ -590,6 +590,8 @@ width: 98%;  */
     padding:3px 0;
 }
 
+.fb_iframe_widget>span { width: 445px !important; }
+.fb-like-box iframe { width: 445px !important; }
 
 .jb-btn-submit{    
     border: none;
