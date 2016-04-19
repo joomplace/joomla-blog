@@ -139,7 +139,6 @@ class JbblogUsersTask extends JbblogBaseController
 				return $content;
 			}
 		}
-	}
 
 	protected function getRowsByPrivacyFilter($rows = null)
 	{
