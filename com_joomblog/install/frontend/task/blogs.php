@@ -170,7 +170,8 @@ class JbblogBlogsTask extends JbblogBaseController
 					$blog->last_updated	= JText::_('COM_JOOMBLOG_BLOG_WAS_NEVER_UPDATED');
 				}
 
-				$categories		= jbGetUserTags($blog->user_id);
+				if ($blog->user_id) $categories	= jbGetUserTags($blog->user_id);
+				else $categories = '';
 				
 				$tmpArray		= array();
 				$blogs[0]		= $blog;
