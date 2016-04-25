@@ -149,15 +149,20 @@ class JbblogBrowseBase extends JbblogBaseController
 		$tpl->set('modules', $content_modules);
 		$tpl->set('headerHTML', $this->_headerHTML);
 
-		$get = JInput::get('GET');
+		$get = JFactory::getApplication()->input;
+		$get_option = $get->get('option','','STR');
+		$get_itemid = $get->get('Itemid','','INT');
+		$get_view = $get->get('view','','STR');
+		$get_language = $get->get('language','','STR');
+		$get_lang = $get->get('lang','','STR');
 
 		if (
-			(isset($get['option']) && isset($get['Itemid']) && count($get) == 2) ||
-			(isset($get['option']) && count($get) == 1) ||
-			(isset($get['option']) && isset($get['Itemid']) && isset($get['view']) && $get['view'] == 'default' && count($get) == 3) ||
-			(isset($get['option']) && isset($get['view']) && $get['view'] == 'default' && count($get) == 2) ||
-			(isset($get['option']) && isset($get['Itemid']) && isset($get['view']) && isset($get['language']) && isset($get['lang']) && $get['view'] == 'default' && count($get) == 5) ||
-			(isset($get['option']) && isset($get['Itemid']) && isset($get['language']) && isset($get['lang']) && count($get) == 4)
+			(isset($get_option) && isset($get_itemid) && $get->count() == 2) ||
+			(isset($get_option) && $get->count() == 1) ||
+			(isset($get_option) && isset($get_itemid) && isset($get_view) && $get_view == 'default' && $get->count() == 3) ||
+			(isset($get_option) && isset($get_view) && $get_view == 'default' && $get->count() == 2) ||
+			(isset($get_option) && isset($get_itemid) && isset($get_view) && isset($get_language) && isset($get_lang) && $get_view == 'default' && $get->count() == 5) ||
+			(isset($get_option) && isset($get_itemid) && isset($get_language) && isset($get_lang) && $get->count() == 4)
 		)
 		{
 			$isHome = 1;
