@@ -14,6 +14,33 @@ JHtml::_('behavior.modal');
 
 if(empty($imagesDir)) $imagesDir = NULL;
 if(empty($extensions)) $extensions = NULL;
+
+function regexDefaultInput($field) {
+	$match = substr($field, 0, 6);
+	if ($match == '<input') {
+		$pattern = '/(<input.+?value=["|\'])(.+?)(["|\'].+?>)/i';
+		$result = preg_replace_callback(
+			$pattern,
+			function ($matches) {
+				return $matches[1].JText::_($matches[2]).$matches[3];
+			},
+			$field);
+		return $result;
+	}
+	elseif ($match == '<texta') {
+		$pattern = '/(<textarea.+?>)(.+?)([<].+?>)/i';
+		$result = preg_replace_callback(
+			$pattern,
+			function ($matches) {
+				return $matches[1].JText::_($matches[2]).$matches[3];
+			},
+			$field);
+		return $result;
+	}
+	else return $field;
+
+}
+
 ?>
 <script type="text/javascript" src="<?php echo JURI::root(); ?>administrator/components/com_joomblog/assets/js/settings.js"></script>
 <style type="text/css">
@@ -120,7 +147,7 @@ if(empty($extensions)) $extensions = NULL;
 										<?php echo $field->label; ?>
 									</td>
 									<td>
-										<?php echo $field->input;?>
+										<?php echo regexDefaultInput($field->input) ?>
 									</td>
 									<td>
 										<?php echo JText::_($field->description);?>
@@ -186,7 +213,7 @@ if(empty($extensions)) $extensions = NULL;
 									<?php echo $field->label; ?>
 								</td>
 								<td>
-									<?php echo $field->input; ?>
+									<?php echo regexDefaultInput($field->input) ?>
 									<?php if ($field->name == 'jform[dateFormat]'):?>
 										<a class="modal" href="http://www.joomplace.com/media/dateformat.html" rel="{'handler': 'iframe', 'size': {x: 700, y: 600}}" style="font-weight: bold; text-decoration: none;">?</a>
 									<?php endif;?>
@@ -253,7 +280,7 @@ if(empty($extensions)) $extensions = NULL;
 									<?php echo $field->label; ?>
 								</td>
 								<td>
-									<?php echo $field->input; ?>
+									<?php echo regexDefaultInput($field->input) ?>
 								</td>
 								<td>
 									<?php echo JText::_($field->description);?>
