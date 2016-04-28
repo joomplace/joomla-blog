@@ -135,7 +135,7 @@ function jbGetUsedTags($userId)
 	return $db->loadObjectList();
 }
 
-function jbGetBlogUsedTags($blogid)
+function jbGetBlogUsedTags($blogid = 0)
 {
 	$db = JFactory::getDBO();
 
@@ -736,7 +736,7 @@ function jbCountUserEntry($uid, $exclude_drafts = "")
 	return $result;
 }
 
-function jbCountBlogEntry($blogid, $exclude_drafts = "")
+function jbCountBlogEntry($blogid = 0, $exclude_drafts = "")
 {
 	global $_JB_CONFIGURATION;
 	$sections = implode(',', jbGetCategoryArray($_JB_CONFIGURATION->get('managedSections')));
@@ -777,7 +777,7 @@ function jbCountUserComment($uid)
 	return $result;
 }
 
-function jbCountBlogComment($blogid)
+function jbCountBlogComment($blogid = 0)
 {
 	global $_JB_CONFIGURATION;
 
@@ -812,7 +812,7 @@ function jbCountUserHits($uid)
 	return $result;
 }
 
-function jbCountBlogHits($blogid)
+function jbCountBlogHits($blogid = 0)
 {
 	global $_JB_CONFIGURATION;
 

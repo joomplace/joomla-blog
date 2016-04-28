@@ -36,6 +36,10 @@ class JbblogAdminhomeTask extends JbblogBaseController
 		{	
 			$blogid=$blog_titles[0]->id;
 		}
+		if(!$blogid)
+		{	
+			$blogid=0;
+		}
 				
 		$itemid = JFactory::getApplication()->input->get('itemid');
 		if (empty($itemid)) $itemid = jbGetItemId();

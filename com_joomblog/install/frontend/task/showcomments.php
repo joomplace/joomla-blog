@@ -21,7 +21,7 @@ class JbblogShowcommentsTask extends JbblogBaseController
 		global $_JB_CONFIGURATION;
 
 		$mainframe = JFactory::getApplication(); 
-		$blogid = JFactory::getApplication()->input->get('blogid');
+		$blogid = JFactory::getApplication()->input->get('blogid',0);
 		$itemId = JFactory::getApplication()->input->get('Itemid');
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
