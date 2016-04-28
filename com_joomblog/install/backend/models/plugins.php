@@ -25,7 +25,7 @@ class JoomBlogModelPlugins extends JModelList
 	}
 
 
-	protected function populateState()
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		$this->setState('filter.search_plugin', $this->getUserStateFromRequest('com_joomblog.filter.search_plugin', 'filter_search_plugin'));
 		$this->setState('filter.search_plugin_type', $this->getUserStateFromRequest('com_joomblog.filter.search_plugin_type', 'filter_plugin_type'));

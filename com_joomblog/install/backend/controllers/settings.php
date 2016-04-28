@@ -23,7 +23,7 @@ class JoomBlogControllerSettings extends JControllerForm
 		return false;
 	}
 
-	public function cancel()
+	public function cancel($key = NULL)
 	{
 		$this->setRedirect('index.php?option=com_joomblog');
 	}

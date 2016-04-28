@@ -132,9 +132,13 @@ class JbblogUsersTask extends JbblogBaseController
 			$content = '<div id="jblog-section" class="jb-section">' . JText::_('COM_JOOMBLOG_BLOGGERS') . '</div><div id="bloggers">' . $bloggersHTML . '</div>';
 			$content .= '<div class="jb-pagenav">' . $pageNav->getPagesLinks() . '</div>';
 			return $content;
-
 		}
-	}
+		else {
+				$content = '<div id="jblog-section" class="jb-section">' . JText::_('COM_JOOMBLOG_BLOGGERS_NOT_FOUND') . '</div><div id="bloggers">' . $bloggersHTML . '</div>';
+
+				return $content;
+			}
+		}
 
 	protected function getRowsByPrivacyFilter($rows = null)
 	{

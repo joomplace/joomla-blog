@@ -20,8 +20,8 @@ class JoomBlogModelPosts extends JModelList
 		}
 		parent::__construct($config);
 	}
-	
-	protected function populateState()
+
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		
 		$this->setState('filter.search', $this->getUserStateFromRequest('com_joomblog.filter.search', 'filter_search'));

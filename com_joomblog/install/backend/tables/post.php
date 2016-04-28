@@ -268,7 +268,7 @@ class JoomBlogTablePost extends JTableJoomblogPosts
 		return $this->title;
 	}
 
-	protected function _getAssetParentId($table = null, $id = null)
+	protected function _getAssetParentId(JTable $table = null, $id = null)
 	{
 		$assetId = null;
 		$db = $this->getDbo();
