@@ -37,6 +37,10 @@ $toolbarMenu = array(
     )
 );
 
+if (!$_JB_CONFIGURATION->get('firstPositionT') || !$_JB_CONFIGURATION->get('secondPositionT') || !$_JB_CONFIGURATION->get('thirdPositionT') || !$_JB_CONFIGURATION->get('fourthPositionT')) {
+$toolbarMenu['order'] = array(1,2,3,4);
+};
+
 $registeredMenu = array(
     'items'=>array(
 	),
