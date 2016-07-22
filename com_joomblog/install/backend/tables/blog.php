@@ -191,7 +191,7 @@ class JoomBlogTableBlog extends JTable
 		
 							$subject = stripslashes(JText::_('COM_JOOMBLOG_MAIL_SUBJECT_APPROVED'));
 							$message = nl2br(sprintf(stripslashes(JText::_('COM_JOOMBLOG_MAIL_NEW_MESSAGE_APPROVED')), JURI::root(), $this->title, $this->description));
-							JUtility::sendMail($mailfrom, $fromname, $usrmail, $subject, $message, 1);
+							//JUtility::sendMail($mailfrom, $fromname, $usrmail, $subject, $message, 1);
 
 					}
 				}

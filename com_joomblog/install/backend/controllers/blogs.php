@@ -20,7 +20,8 @@ class JoomBlogControllerBlogs extends JControllerAdmin
 		parent::__construct($config);
 
 		// Define standard task mappings.
-			$this->registerTask('unpublish_approve',	'publish_approve');	// value = 0
+			$this->registerTask('approve',	'publish_approve');
+			$this->registerTask('unapprove',	'publish_approve');
 	}
 		
 	
@@ -83,7 +84,7 @@ class JoomBlogControllerBlogs extends JControllerAdmin
 
 		// Get items to publish from the request.
 		$cid	= JFactory::getApplication()->input->get('cid', array(), '', 'array');
-		$data	= array('publish_approve' => 1, 'unpublish_approve' => 0);
+		$data	= array('approve' => 1, 'unapprove' => 0);
 		$task 	= $this->getTask();
 		$value	= JArrayHelper::getValue($data, $task, 0, 'int');
 

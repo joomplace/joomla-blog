@@ -80,6 +80,8 @@ class JbblogCategoriesTask extends JbblogBaseController{
 				$categories[$i]->count = $postsModel->getTotal();
 				$article = array();
 				$article[0] = $articles;
+				$params = JComponentHelper::getParams('com_joomblog');
+				array_splice($article[0], (int) $params->get('CategoriesRecentPosts'));
 				$cat = array();
 				$cat[0] = $category;
 				$template		= new JoomblogTemplate();

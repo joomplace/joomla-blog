@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0.0" method="upgrade">
-	<name>Categories a blogs</name>
+	<name>Categories of Blogs</name>
 	<author>JoomPlace Team</author>
 	<creationDate>November 2010</creationDate>
 	<copyright>(C) JoomPlace, www.joomplace.com</copyright>

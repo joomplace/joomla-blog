@@ -29,11 +29,14 @@ class JbblogProfileTask extends JbblogBaseController
 		$id = $jinput->get('id',0);
 		$user = JTable::getInstance( 'BlogUsers' , 'Table' );
 		$user->load($id);
-
-		$avatar	= 'Jb' . ucfirst($_JB_CONFIGURATION->get('avatar')) . 'Avatar';
+		
+		$params = JComponentHelper::getParams('com_joomblog');
+		$user->width = $params->get('avatarWidth');
+		$user->height = $params->get('avatarHeight');
+     	$avatar	= 'Jb' . ucfirst($_JB_CONFIGURATION->get('avatar')) . 'Avatar';
 		$avatar	= new $avatar($user->user_id, 0);
 		$user->src	= $avatar->get();
-
+		$user->src	= 'images/joomblog/avatar/'.$user->avatar;
 		$pathway = $mainframe->getPathway();
 
 		$pathway->addItem(JText::_( 'COM_JOOMBLOG_USER_PROFILE_DETAILS'),'');

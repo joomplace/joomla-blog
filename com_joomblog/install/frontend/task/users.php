@@ -118,7 +118,8 @@ class JbblogUsersTask extends JbblogBaseController
 				$recent = array();
 				$man[0] = $user;
 				$recent[0] = $bloggers;
-
+				$params = JComponentHelper::getParams('com_joomblog');
+				array_splice($recent[0], (int) $params->get('BloggerRecentPosts'));
 				$template->set('recent', $recent);
 				$template->set('Itemid', $Itemid);
 				$template->set('man', $man);

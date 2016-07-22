@@ -201,7 +201,7 @@ if ($sortedByOrder)
 						<?php echo JHtml::_('jgrid.published', $item->published, $i, 'blogs.', $this->canDo->get('core.edit'), 'cb'); ?>
 					</td>
 					<td class="center">
-						<?php echo JHtml::_('jgrid.state', JoomBlogHelper::approveStates(), $item->approved, $i, 'dashboard.'); ?>
+						<?php echo JHtml::_('jgrid.state', JoomBlogHelper::approveStates(), $item->approved, $i, 'blogs.'); ?>
 					</td>
 					<?php if ($canChange) : ?>
 						<td class="order center">

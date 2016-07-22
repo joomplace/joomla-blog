@@ -2525,8 +2525,8 @@ label[for="jform_defaultimage"] {
     border: 5px solid #E4E3D1;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 100px;
-    height: 100px;
+  /*  width: 100px;
+    height: 100px;*/
     padding: 0;
 }
 

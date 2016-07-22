@@ -17,6 +17,8 @@ class TableBlogUsers extends JTable
 	var $feedburner = '';
 	var $style = null;
 	var $userStyle = null;
+	var $width = null;
+	var $height = null;
 	var $params = null;
 	var $about = null;
 	var $twitter = null;

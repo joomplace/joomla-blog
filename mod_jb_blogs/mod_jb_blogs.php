@@ -10,6 +10,7 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
+if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
 if(!defined('JB_COM_PATH'))
 	require_once( JPATH_ROOT.DS.'components'.DS.'com_joomblog'.DS.'defines.joomblog.php');

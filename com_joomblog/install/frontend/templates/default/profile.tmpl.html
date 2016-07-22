@@ -21,7 +21,8 @@ $tmpl = JRequest::getVar('tmpl');
 
 <div class="jb-user-profile jb-blogs-head clearfix">
     <div class="jb-blog-imgcont">
-        <img class="jb-author-avatar" alt="" src="<?php echo $user->src;?>"/>
+	
+        <img class="jb-author-avatar" alt="" src="<?php echo $user->src;?>" width="<?php echo $user->width; ?>" height="<?php echo $user->height; ?>" />
     </div>
 
     <div class="jb-blog-info">
