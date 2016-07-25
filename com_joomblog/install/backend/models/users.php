@@ -44,6 +44,7 @@ class JoomBlogModelUsers extends JModelList
 		$query->select('g.title AS usergroup');
 		$query->join('LEFT', '#__user_usergroup_map AS u ON u.user_id=i.id');
 		$query->join('LEFT', '#__usergroups AS g ON g.id=u.group_id');
+		$query->join('RIGHT', '#__joomblog_user AS a ON i.id = a.user_id');
 		
 		$query->select('(SELECT COUNT(c.id) FROM #__joomblog_posts AS c WHERE c.created_by=i.id) AS posts_count');
 		$query->select('(SELECT COUNT(cc.id) FROM #__joomblog_comment AS cc WHERE cc.user_id=i.id) AS comments_count');
