@@ -630,6 +630,17 @@ class JbblogShowTask extends JbblogShowBase
 					$row->at_button = $add;
 				}
 
+			$text = $row->introtext;
+			$ending = JString::strpos($text, '</p>');
+			$pos = -1;
+			$pos_array = array();
+			while (($pos = JString::strpos($text, '</p>', $pos + 1)) !== false)
+				$pos_array[] = $pos;
+			$pNum = $_JB_CONFIGURATION->get('autoReadmorePCount');
+			$ending = $pos_array[$pNum - 1];
+			$text = JString::substr($text, 0, $ending + 4);
+		    $row->text = $text.'<a name="readmore"></a>'.substr($row->introtext,strlen($text),strlen($row->introtext));
+			
 			$tpl->set('entry', $tpl->object_to_array($row));
 			$this->fbOpengraphMeta($tpl->object_to_array($row));
 			$prevHTML = '';
