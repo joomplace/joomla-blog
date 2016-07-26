@@ -78,7 +78,9 @@ $bloggers = $recent[0];
 
                             <a href="<?php echo $articleLink; ?>" class="jb-blogpost"><?php echo $blogger->title?></a></b>
 					</h3>
+					<?php if($_JB_CONFIGURATION->get('allowDefaultTags')) { ?>
 					<div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$blogger->categories;?></div>
+					<?php } ?>
 					<small class="jb-created-bgk"><?php echo $blogger->created;?></small>
 					<small class="jb-category-bgk"><?php if( $_JB_CONFIGURATION->get('categoryDisplay') ){echo ($blogger->multicats?JText::_('COM_JOOMBLOG_CATEGORIES'):JText::_('COM_JOOMBLOG_CATEGORY')).$blogger->jcategory; }?></small>
 				    </li>

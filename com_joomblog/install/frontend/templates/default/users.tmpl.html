@@ -104,8 +104,9 @@ $user->site = (preg_match("/http:\/\//", $user->site, $match)) ? $user->site : "
                         class="blog-sep">&#8594;</span> <a href="<?php echo $articleLink; ?>"
                                                            class="jb-blogpost"><?php echo $blogger->title?></a>
                 </h3>
-
+				<?php if($_JB_CONFIGURATION->get('allowDefaultTags')) { ?>
                 <div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$blogger->categories;?></div>
+				<?php } ?>
                 <small class="jb-created-bgk"><?php echo $blogger->created;?></small>
                 <small class="jb-category-bgk">
                     <?php if( $categoryDisplay ) {

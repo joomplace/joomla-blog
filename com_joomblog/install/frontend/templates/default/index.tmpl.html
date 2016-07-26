@@ -111,12 +111,15 @@ if($useDraganddrop && $modulesDisplay && $isHome){
 	    </div>
 	    
 	    <?php jbShowSocialButtons($e); ?>
-	    
+		
+		
+	    <?php if($_JB_CONFIGURATION->get('allowDefaultTags')) { ?>
 	    <?php if($_JB_CONFIGURATION->get('ShowUntaggedWithoutTags')) { ?>
 			<p ><?php echo $e['categories']; ?></p>
 	    <?php } else if ($e['categories']!="<em>". JText::_('COM_JOOMBLOG_BLOG_UNTAGGED') ."</em>&nbsp;"){?>	
 			<p><?php echo $e['categories']; ?></p>
 	    <?php } ?>
+		<?php } ?>
 
 	    <div class="well post-teas-bottom">
 			<div class="row-fluid row">

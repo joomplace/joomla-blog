@@ -62,11 +62,14 @@ if(empty($entry['blogid'])) $entry['blogid']=$entry['blog_id'];
 				<?php } ?>
 			</div>
 			<?php jbShowSocialButtons($entry); ?>
+			
+			<?php if($_JB_CONFIGURATION->get('allowDefaultTags')) { ?>
 			<?php if($_JB_CONFIGURATION->get('ShowUntaggedWithoutTags')) { ?>
 		    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
 		    <?php } else if ($e['categories']!="<em>". JText::_('COM_JOOMBLOG_BLOG_UNTAGGED') ."</em>&nbsp;"){?>	
 		    <div class="jb-tagslinks"><?php echo $e['categories']; ?></div>
 		    <?php } ?>
+			<?php } ?>
 
                 <?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>    
                     <div class="jb-postauthor-info-wrap">

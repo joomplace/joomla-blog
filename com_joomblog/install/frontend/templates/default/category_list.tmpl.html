@@ -62,7 +62,9 @@ if (!empty($params->image)) $cat_image = Juri::root().$params->image;
 				<h3 class="jb-recent-entry">
 				    <a href="<?php echo $articleLink; ?>" class="jb-blogpost"><?php echo $article->title?></a>
                                 </h3>
-                                <div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$article->categories;?></div>
+                                <?php if($_JB_CONFIGURATION->get('allowDefaultTags')) { ?>
+								<div class="jb-posttags"><?php echo JText::_('COM_JOOMBLOG_LISTTAGS').$article->categories;?></div>
+								<?php } ?>
                                 <small class="jb-created-bgk"><?php echo $article->created;?></small>
 				<?php if ($_JB_CONFIGURATION->get('showUserLink')) { ?> <small class="jb-category-bgk jb-catauthor"><a class="jb-blogpost-category" href="<?php echo $authorLink;?>" target="_blank"><?php echo $user_fullname;?></a></small><?php } ?>
 				</li>
