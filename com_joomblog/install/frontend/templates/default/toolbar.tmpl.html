@@ -75,7 +75,7 @@ $orderArray = array($_JB_CONFIGURATION->get('firstPosition'), $_JB_CONFIGURATION
     <!-- Blog Toolbar Navigation -->
     
     <div class="tools">
-		<ul class="jb-toolbar <?php if(!$_JB_CONFIGURATION->get('showIcons')){echo "jb-without-icons";} ?> <?php if($_JB_CONFIGURATION->get('showTabs')){echo "jb-tabs";} ?> <?php if($_JB_CONFIGURATION->get('showPanel')){echo "jb-panel";} ?> clearfix" id="joomBlog-toolbar">
+		<ul class="jb-toolbar <?php if(!$_JB_CONFIGURATION->get('showIcons')){echo "jb-without-icons";} ?> <?php if($_JB_CONFIGURATION->get('showTabs')){echo "jb-tabs";} ?> <?php if($_JB_CONFIGURATION->get('showPanel')){echo "jb-panel";} ?> clearfix" <?php if($_JB_CONFIGURATION->get('showPanel')) {echo "id='joomBlog-toolbar'";} ?>>
 		    <?php
 		      $menuHTML = '';
 		      foreach($toolbarMenu['order'] as $order){
