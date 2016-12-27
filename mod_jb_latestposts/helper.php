@@ -32,23 +32,21 @@ class modJbLatestPostsHelper
       		$filter = array(
                 'limit'=> $limit,
                 'limitstart' => 0,
-                'authorid' => $authorid
+                'authorid' => $authorid,
+				'setState' => 1
               );
 
 			switch ( (int)$params->get('orderByPost', 0) )
 			{
 				case 1:
-					$filter['setState'] = 1;
 					$filter['ordering'] = 'a.created';
 					$filter['ordering_direction'] = 'ASC';
 				break;
 				case 2:
-					$filter['setState'] = 1;
 					$filter['ordering'] = 'a.hits';
 					$filter['ordering_direction'] = 'DESC';
 				break;
 				case 3:
-					$filter['setState'] = 1;
 					$filter['ordering'] = 'a.hits';
 					$filter['ordering_direction'] = 'ASC';
 				break;
