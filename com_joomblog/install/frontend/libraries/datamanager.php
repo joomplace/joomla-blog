@@ -35,9 +35,9 @@ function mb_get_entries(&$searchby, $returnTotal = false)
 			$model->setState('list.direction', $searchby['ordering_direction']);
 		}
 
-		$model->setState('list.start', $limitstart);
-		$model->setState('list.limit', $limit);
     }
+	$model->setState('list.start', $limitstart);
+	$model->setState('list.limit', $limit);
 
     $rows = $model->getItems();
     $totalEntries = $model->getTotal();
