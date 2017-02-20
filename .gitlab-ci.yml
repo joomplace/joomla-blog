@@ -13,14 +13,13 @@ build:regular:
 # delete updater temporary
     - sed -E -i 's/<file.*?_joomplaceupdater.zip<\/file>//g' ./pkg_joomblog.xml
     - mkdir packages
+    - mkdir install
     - pwd
     - ls
-    - cd ./com_joomblog/install
-    - zip backend.zip -r backend/
-    - zip frontend.zip -r frontend/
-    - cd ../..
+    - zip ./install/beckand.zip -r ./com_joomblog/istall/beckand/*
+    - zip ./install/frontend.zip -r ./com_joomblog/istall/frontend/*
     #/builds/joomplace/blog
-    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x ./install/*; cd ./../; fi; done
+    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* ; cd ./../; fi; done
     - pwd
   artifacts:
     paths:
