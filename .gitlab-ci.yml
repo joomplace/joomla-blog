@@ -14,6 +14,8 @@ build:regular:
     - sed -E -i 's/<file.*?_joomplaceupdater.zip<\/file>//g' ./pkg_joomblog.xml
     - mkdir packages
     - pwd
+    - ls
+    #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x ./install/*; cd ./../; fi; done
     - pwd
   artifacts:
@@ -22,4 +24,4 @@ build:regular:
     - pkg_joomblog.xml
     name: "pkg_joomblog_${CI_BUILD_REF_NAME}"
     when: on_success
-    expire_in: 1 day
+    expire_in: 10 minutes
