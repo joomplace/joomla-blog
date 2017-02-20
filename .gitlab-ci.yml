@@ -17,7 +17,9 @@ build:regular:
     - pwd
     - ls
     - zip ./install/beckand.zip -r ./com_joomblog/install/backend/*
+    - mv ./install/beckand.zip ./com_joomblog/install/
     - zip ./install/frontend.zip -r ./com_joomblog/install/frontend/*
+    - mv ./install/frontend.zip ./com_joomblog/install/
     #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* ; cd ./../; fi; done
     - pwd
