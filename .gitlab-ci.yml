@@ -1,0 +1,34 @@
+stages:
+  - build
+
+build:regular:
+  stage: build
+  image: php:7.0-apache
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq zip
+    - zip -v
+  script:
+    - if grep -rn './' -e "\xEF\xBB\xBF"; then exit 1; fi
+#    - grep -E -o '<version>(.*?)</version>' ./pkg_joomblog.xml | sed -E 's/<version>|<\/version>//g' | while read version; do find ./com_joomblog/admin/sql/updates/ -maxdepth 2 -name "*.sql" -print |  sed -E 's/.*\/|\.sql//g' | while read sqin; do if [ "$sqin" \> "$version" ]; then exit 1; fi; done; done
+# delete updater temporary
+    - sed -E -i 's/<file.*?_joomplaceupdater.zip<\/file>//g' ./pkg_joomblog.xml
+    - mkdir packages
+    - mkdir install
+    - cd ./com_joomblog/install/backend/
+    - zip ./../../../install/backend.zip -r ./*
+    - cd ./../../../
+    - mv ./install/backend.zip ./com_joomblog/install/
+    - cd ./com_joomblog/install/frontend/
+    - zip ./../../../install/frontend.zip -r ./*
+    - cd ./../../../
+    - mv ./install/frontend.zip ./com_joomblog/install/
+    #/builds/joomplace/blog
+    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x "./install/frontend/*" "./install/backend/*"; cd ./../; fi; done
+    - pwd
+  artifacts:
+    paths:
+    - packages/
+    - pkg_joomblog.xml
+    name: "pkg_joomblog_${CI_BUILD_REF_NAME}"
+    when: on_success
+    expire_in: 10 minutes

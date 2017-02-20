@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<extension type="package" version="3.x" method="upgrade">
+  <name>Joom Blog</name>
+  <author>Joomplace Team</author>
+  <creationDate>February 2017</creationDate>
+  <packagename>joomblog</packagename>
+  <authorEmail>support@joomplace.com</authorEmail>
+  <authorUrl>www.joomplace.com</authorUrl>
+  <copyright>Copyright (C) 2005 - 2017 JoomPlace, www.joomplace.com. All rights reserved.</copyright>
+  <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+  <version>1.3.1.010</version>
+  <files folder="packages">
+    <file type="component" id="com_joomblog">com_joomblog.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_archive.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_blogs.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_categories.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_latestposts.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_popularbloggers.zip</file>
+    <file type="module" id="joomblog" client="site">mod_jb_tags.zip</file>
+    <file type="plugin" id="joomblog_system" group="system">plg_joomblog.zip</file>
+    <file type="plugin" id="joomblog_content" group="content">plg_joomblogcontent.zip</file>
+    <file type="plugin" id="joomblog_posts" group="community">plg_joomblogposts.zip</file>
+    <file type="plugin" id="joomblog_user" group="user">plg_joombloguser.zip</file>
+    <file type="plugin" id="joomblog_search" group="search">plg_search_joomblog.zip</file>
+    <file type="plugin" id="joomblog_social" group="editors-xtd">plg_social.zip</file>
+  </files>
+  <updateservers>
+    <server type="collection" priority="1" name="Joomplace Update Site">http://www.joomplace.com/updates/collections.xml</server>
+  </updateservers>
+</extension>
