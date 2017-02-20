@@ -16,10 +16,13 @@ build:regular:
     - mkdir install
     - pwd
     - ls
-    - zip ./install/beckand.zip -r ./com_joomblog/install/backend/*
+    - cd ./com_joomblog/install/backend/
+    - zip ./../../../install/beckand.zip -r ./*
     - mv ./install/beckand.zip ./com_joomblog/install/
-    - zip ./install/frontend.zip -r ./com_joomblog/install/frontend/*
+    - cd ./../frontend/
+    - zip ./../../../install/frontend.zip -r ./*
     - mv ./install/frontend.zip ./com_joomblog/install/
+    - cd ./../../../
     #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* ; cd ./../; fi; done
     - pwd
