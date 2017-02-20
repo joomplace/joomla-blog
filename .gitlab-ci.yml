@@ -19,6 +19,7 @@ build:regular:
   artifacts:
     paths:
     - packages/
+    - installfolder
     - pkg_joomblog.xml
     name: "pkg_joomblog_${CI_BUILD_REF_NAME}"
     when: on_success
