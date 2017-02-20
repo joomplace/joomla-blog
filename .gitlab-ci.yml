@@ -17,7 +17,7 @@ build:regular:
     - pwd
     - ls
     - cd ./com_joomblog/install/backend/
-    - zip ./../../../install/beckand.zip -r ./*
+    - zip ./../../../install/backand.zip -r ./*
     - cd ./../../../
     - mv ./install/beckand.zip ./com_joomblog/install/
     - cd ./com_joomblog/install/frontend/
@@ -25,7 +25,7 @@ build:regular:
     - cd ./../../../
     - mv ./install/frontend.zip ./com_joomblog/install/
     #/builds/joomplace/blog
-    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* ; cd ./../; fi; done
+    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x "./install/frontend/*"; cd ./../; fi; done
     - pwd
   artifacts:
     paths:
