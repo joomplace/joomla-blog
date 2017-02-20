@@ -15,8 +15,10 @@ build:regular:
     - mkdir packages
     - pwd
     - ls
-    - zip -r ./com_joomblog/install/backend.zip ./com_joomblog/install/backend
-    - zip -r ./com_joomblog/install/frontend.zip ./com_joomblog/install/frontend
+    - cd ./com_joomblog/install
+    - zip backend.zip -r backend/
+    - zip frontend.zip -r frontend/
+    - cd ../..
     #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x ./install/*; cd ./../; fi; done
     - pwd
