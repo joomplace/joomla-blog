@@ -13,17 +13,12 @@ build:regular:
 # delete updater temporary
     - sed -E -i 's/<file.*?_joomplaceupdater.zip<\/file>//g' ./pkg_joomblog.xml
     - mkdir packages
-    - mkdir install
-    - cd ./com_joomblog/install/backend/
-    - zip ./../../../install/backend.zip -r ./*
-    - cd ./../../../
-    - mv ./install/backend.zip ./com_joomblog/install/
-    - cd ./com_joomblog/install/frontend/
-    - zip ./../../../install/frontend.zip -r ./*
-    - cd ./../../../
-    - mv ./install/frontend.zip ./com_joomblog/install/
+    - zip ./com_joomblog/install/backend.zip -r ./com_joomblog/install/backend/*
+    - zip ./com_joomblog/install/frontend.zip -r ./com_joomblog/install/frontend/*
+    - rm -rf ./com_joomblog/install/backend
+    - rm -rf ./com_joomblog/install/frontend
     #/builds/joomplace/blog
-    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./* -x "./install/frontend/*" "./install/backend/*"; cd ./../; fi; done
+    - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./*; cd ./../; fi; done
     - pwd
   artifacts:
     paths:
