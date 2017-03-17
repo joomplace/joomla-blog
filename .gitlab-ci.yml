@@ -13,8 +13,8 @@ build:regular:
 # delete updater temporary
     - sed -E -i 's/<file.*?_joomplaceupdater.zip<\/file>//g' ./pkg_joomblog.xml
     - mkdir packages
-    - zip ./com_joomblog/install/backend.zip -r ./com_joomblog/install/backend/*
-    - zip ./com_joomblog/install/frontend.zip -r ./com_joomblog/install/frontend/*
+    - zip ./com_joomblog/install/backend.zip -j ./com_joomblog/install/backend/*
+    - zip ./com_joomblog/install/frontend.zip -j ./com_joomblog/install/frontend/*
     - rm -rf ./com_joomblog/install/backend
     - rm -rf ./com_joomblog/install/frontend
     #/builds/joomplace/blog
