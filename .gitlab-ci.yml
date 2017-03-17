@@ -21,6 +21,7 @@ build:regular:
     - cd ..
     - rm -rf ./backend
     - rm -rf ./frontend
+    - cd ../../
     #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./*; cd ./../; fi; done
     - pwd
