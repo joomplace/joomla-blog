@@ -16,10 +16,11 @@ build:regular:
     - cd ./com_joomblog/install/backend
     - zip -r ../backend.zip *
 #    - zip ./com_joomblog/install/backend.zip ./com_joomblog/install/backend/*
-    - cd ./com_joomblog/install/frontend
+    - cd ../frontend
     - zip -r ../frontend.zip *
-    - rm -rf ./com_joomblog/install/backend
-    - rm -rf ./com_joomblog/install/frontend
+    - cd ..
+    - rm -rf ./backend
+    - rm -rf ./frontend
     #/builds/joomplace/blog
     - grep -E -o '<file.*>(.*?)</file>' ./pkg_joomblog.xml |  sed -E 's/<file[^>]+>|.zip<\/file>//g' | while read in; do if [ "$in" != 'plg_installer_joomplaceupdater' ]; then cd ./"$in"; zip -r ./../packages/"$in".zip ./*; cd ./../; fi; done
     - pwd
