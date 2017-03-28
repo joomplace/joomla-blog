@@ -119,9 +119,10 @@ class JoomBlogModelPosts extends JModelList
 				$query	= "UPDATE `#__joomblog_posts` SET `state`='-2' WHERE `id`=".$id;
 				$db->setQuery( $query );
 				$db->execute();
-				JController::setRedirect(JRoute::_('index.php?option=com_joomblog&view=posts', false), sprintf(Jtext::_('COM_JOOMBLOG_POSTS_WITH_IDS_MOVED_TO_DRAFTS'),$id).Jtext::_('COM_JOOMBLOG_DUE_TO').Jtext::_('COM_JOOMBLOG_CATEGORY_DELETION') );
-				JController::redirect();
-			}			
+                $app = JFactory::getApplication();
+                $app->enqueueMessage(sprintf(Jtext::_('COM_JOOMBLOG_POSTS_WITH_IDS_MOVED_TO_DRAFTS'),$id).Jtext::_('COM_JOOMBLOG_DUE_TO').Jtext::_('COM_JOOMBLOG_CATEGORY_DELETION'));
+                $app->redirect(JRoute::_('index.php?option=com_joomblog&view=posts'));
+			}
 		}	
 
 		
