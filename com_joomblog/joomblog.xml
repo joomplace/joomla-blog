@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 	<name>com_joomblog</name>
-	<creationDate>April 2014</creationDate>
+	<creationDate>May 2017</creationDate>
 	<author>Joomplace Team</author>
 	<authorEmail> </authorEmail>
 	<authorUrl> </authorUrl>
-	<copyright>Copyright 2008 - 2010. All rights reserved</copyright>
+	<copyright>Copyright (C) 2005 - 2017 Joomplace, www.joomplace.com. All rights reserved.</copyright>
 	<license>License Info</license>
-	<version>1.3.0.007</version>
+	<version>1.3.2</version>
 	<description>Blog system for Joomla</description>
 	<scriptfile>install.joomblog.php</scriptfile>
 	<files>

@@ -1149,7 +1149,7 @@ class RSSCreator091 extends FeedCreator {
 			$feed.= "		<language>".$this->language."</language>\n";
 		}
 		if ($this->copyright!="") {
-			$feed.= "		<copyright>".FeedCreator::iTrunc(htmlspecialchars($this->copyright),100)."</copyright>\n";
+			$feed.= "		<copyright>Copyright (C) 2005 - 2017 Joomplace, www.joomplace.com. All rights reserved.</copyright>\n";
 		}
 		if ($this->editor!="") {
 			$feed.= "		<managingEditor>".FeedCreator::iTrunc(htmlspecialchars($this->editor),100)."</managingEditor>\n";

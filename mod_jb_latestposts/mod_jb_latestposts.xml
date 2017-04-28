@@ -2,8 +2,8 @@
 <extension type="module" version="3.0" method="upgrade">
 	<name>Latest Joomblog posts</name>
 	<author>JoomPlace Team</author>
-	<creationDate>November 2010</creationDate>
-	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<creationDate>May 2017</creationDate>
+	<copyright>Copyright (C) 2005 - 2017 Joomplace, www.joomplace.com. All rights reserved.</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
