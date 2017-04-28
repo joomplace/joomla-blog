@@ -26,10 +26,10 @@ class JbblogTagTask extends JbblogBrowseBase
 	{
 		echo parent::_header();
 		$jinput = JFactory::getApplication()->input;
-		$category	= $jinput->get( 'tag' , '' , 'REQUEST' );
-		if(!$category){
-			$category = $jinput->get( 'category' , '' , 'REQUEST' );
-		}
+        $category	= $jinput->get( 'tag' , '' );
+        if(!$category){
+            $category = $jinput->get( 'category' , '' );
+        }
 		
 				
 		if(is_numeric($category)){
