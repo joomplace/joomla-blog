@@ -1334,7 +1334,7 @@ class Joomblog
 			
 			if (isset($view) && $view == 'user')
 			{
-				$menu = JSite::getMenu();
+                $menu = JFactory::getApplication()->getMenu();
 				$item   = $menu->getActive();
 				$params   =& $menu->getParams($item->id);
 				$user = JFactory::getUser($params->get('user'));

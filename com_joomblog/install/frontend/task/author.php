@@ -28,7 +28,8 @@ class JbblogAuthorTask extends JbblogBrowseBase
 		$view = $jinput->get( 'view' , '' , 'GET' );
 		if (isset($view) && $view == 'user')
 			{
-				$menu = JSite::getMenu();
+                $menu = JFactory::getApplication()->getMenu();
+				$menu =
 				$item   = $menu->getActive();
 				$params   =& $menu->getParams($item->id);
 				$authorId = intval($params->get('user'));

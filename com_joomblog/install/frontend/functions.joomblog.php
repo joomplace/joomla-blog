@@ -1337,7 +1337,7 @@ function jbGetItemId()
 	if ( !$mbItemid ) {
 		$Itemid = JFactory::getApplication()->input->get('Itemid');
 
-		$menu = JSite::getMenu();
+        $menu = JFactory::getApplication()->getMenu();
 		$items = $menu->getItems('link', 'index.php?option=com_joomblog&view=default');
 
 		$mbItemid = $items ? $items[0]->id : $Itemid;
