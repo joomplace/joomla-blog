@@ -1298,7 +1298,7 @@ class Joomblog
 	var $task;
 	var $adminTask ;
 	
-	function Joomblog()
+	function __construct()
 	{	
 		$this->adminTask = array('adminhome', 'edit', 'delete', 'write', 'showcomments', 'bloggerpref', 'bloggerstats', 'media');
 	}

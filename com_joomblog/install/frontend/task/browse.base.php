@@ -26,7 +26,7 @@ class JbblogBrowseBase extends JbblogBaseController
 	var $_plugins = null;
 	var $_headerHTML = '';
 
-	function JbblogBrowseBase()
+	function __construct()
 	{
 		global $_JB_CONFIGURATION;
 
