@@ -65,7 +65,7 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 
 	function __construct($cache_id = "", $cache_timeout = 0)
 	{
-		$this->JoomblogTemplate();
+		parent::__construct();
 		/* cache filename */
 		$this->cache_id = JB_CACHE_PATH . "/cache__" . md5($cache_id);
 		/* cached false by default to allow rewrite */
