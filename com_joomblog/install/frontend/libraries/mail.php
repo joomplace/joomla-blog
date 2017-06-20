@@ -17,7 +17,7 @@ class JBMailer
 	var $subject	= '';
 	var $body		= '';
 	
-	function JBMailer()
+	function __construct()
 	{
 		$mainframe		= JFactory::getDBO();
 		

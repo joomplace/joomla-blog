@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class JbblogShowcommentsTask extends JbblogBaseController
 {
-	function JbblogShowcommentsTask()
+	function __construct()
 	{
 		$this->toolbar	= JB_TOOLBAR_BLOGGER;
 	}

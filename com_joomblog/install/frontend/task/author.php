@@ -16,7 +16,7 @@ class JbblogAuthorTask extends JbblogBrowseBase
 	var $author = null;
 	var $authorId = 0;
 	
-	function JbblogAuthorTask()
+	function __construct()
 	{
 		parent::JbblogBrowseBase();
 		$this->toolbar = JB_TOOLBAR_BLOGGER;

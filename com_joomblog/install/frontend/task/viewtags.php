@@ -14,7 +14,7 @@ require_once(JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR . 
 class JbblogViewtagsTask extends JbblogBaseController
 {
 
-	function JbblogViewtagsTask()
+	function __construct()
 	{
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 	}

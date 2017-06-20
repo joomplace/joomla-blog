@@ -13,7 +13,7 @@ include_once(JB_COM_PATH . '/task/base.php');
 
 class JbblogTagslistTask extends JbblogBaseController
 {	
-	function JbblogTagslistTask()
+	function __construct()
 	{
 		$this->toolbar = JB_TOOLBAR_TAGS;
 	}

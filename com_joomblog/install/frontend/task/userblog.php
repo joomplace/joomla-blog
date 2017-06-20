@@ -14,7 +14,7 @@ require_once( JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR .
 class JbblogUserblogTask extends JbblogAuthorTask
 {
 	
-	function JbblogUserblogTask()
+	function __construct()
 	{
 		parent::JbblogBrowseBase();
 		

@@ -142,7 +142,7 @@ if (!defined('JOOMBLOG_CONFIG_CLASS'))
 		var $integrJoomSoc = '0';
 		var $autoapproveblogs = '1';
 
-		function JB_Configuration()
+		function __construct()
 		{
 			$mainframe = JFactory::getApplication();
 			$db = JFactory::getDBO();
