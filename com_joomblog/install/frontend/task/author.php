@@ -18,7 +18,7 @@ class JbblogAuthorTask extends JbblogBrowseBase
 	
 	function __construct()
 	{
-		parent::JbblogBrowseBase();
+		parent::__construct();
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 		$jinput = JFactory::getApplication()->input;
 		$authorId	= $jinput->get( 'user' , '' , 'REQUEST' );

@@ -30,7 +30,7 @@ class JbblogBrowseBase extends JbblogBaseController
 	{
 		global $_JB_CONFIGURATION;
 
-		parent::JbblogBaseController();
+		parent::__construct();
 
 		$this->_plugins = new JBPlugins();
 		$this->toolbar = JB_TOOLBAR_HOME;

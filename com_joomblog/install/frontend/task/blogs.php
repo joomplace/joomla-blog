@@ -16,7 +16,7 @@ class JbblogBlogsTask extends JbblogBaseController
 {
 
 	function __construct(){
-		parent::JbblogBaseController();
+		parent::__construct();
 	
 		$this->toolbar = JB_TOOLBAR_BLOGS;
 	}

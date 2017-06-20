@@ -16,7 +16,7 @@ class JbblogUserblogTask extends JbblogAuthorTask
 	
 	function __construct()
 	{
-		parent::JbblogBrowseBase();
+		parent::__construct();
 		
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 		
