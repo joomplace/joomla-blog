@@ -15,7 +15,7 @@ class JbblogTagTask extends JbblogBrowseBase
 {
 	var $category;
 	
-	function JbblogTagTask()
+	function __construct()
 	{
 		parent::JbblogBrowseBase();
 		$this->toolbar = JB_TOOLBAR_HOME;

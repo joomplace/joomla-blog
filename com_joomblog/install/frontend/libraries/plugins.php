@@ -18,7 +18,7 @@ class JBPluginsDB{
 	var $db		= null;
 	var $_plugins	= '';
 	
-	function JBPluginsDB()
+	function __construct()
 	{
 		$this->db	= JFactory::getDBO();
 		$this->_plugins	= '#__extensions';
@@ -146,7 +146,7 @@ class JBPlugins
 	var $_events	= null;
 	private $_plugins;
 
-	function JBPlugins()
+	function __construct()
 	{
 		$this->_db	= new JBPluginsDB();
 

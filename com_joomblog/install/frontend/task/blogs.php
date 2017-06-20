@@ -15,7 +15,7 @@ require_once( JB_LIBRARY_PATH . DIRECTORY_SEPARATOR . 'avatar.php' );
 class JbblogBlogsTask extends JbblogBaseController
 {
 
-	function JbblogBlogsTask(){
+	function __construct(){
 		parent::JbblogBaseController();
 	
 		$this->toolbar = JB_TOOLBAR_BLOGS;
