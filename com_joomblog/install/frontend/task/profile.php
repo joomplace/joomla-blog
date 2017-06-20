@@ -14,7 +14,7 @@ require_once( JB_LIBRARY_PATH . DIRECTORY_SEPARATOR . 'avatar.php' );
 
 class JbblogProfileTask extends JbblogBaseController
 {
-	function JbblogProfileTask()
+	function __construct()
 	{
 		$this->toolbar	= JB_TOOLBAR_ACCOUNT;
 	}

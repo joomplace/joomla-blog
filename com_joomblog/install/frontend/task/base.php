@@ -659,7 +659,7 @@ class JbblogBaseController
 			}
 	}
 
-	function _getTemplateName($templateType)
+	static function _getTemplateName($templateType)
 	{
 		global $_JB_CONFIGURATION;
 

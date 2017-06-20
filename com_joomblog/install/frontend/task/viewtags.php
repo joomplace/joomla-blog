@@ -26,7 +26,7 @@ class JbblogViewtagsTask extends JbblogBaseController
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$jinput = JFactory::getApplication()->input;
-		$post = JInput::get('post');
+        $post = $jinput->get('post');
 		$option = 'com_joomblog';
 		$trigger = 0;
 		$sort = $mainframe->getUserStateFromRequest($option . 'sort', 'sort', 'name', 'word');

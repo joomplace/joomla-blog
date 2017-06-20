@@ -16,7 +16,7 @@ class JbblogArchiveTask extends JbblogBaseController{
 	var $_calendar = null; 
 	var $_calendar_date = 'now';
 	
-	function JbblogArchiveTask(){
+	function __construct(){
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 	}
 	

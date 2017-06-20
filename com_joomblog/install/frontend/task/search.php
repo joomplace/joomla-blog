@@ -29,8 +29,8 @@ class JbblogSearchTask extends JbblogBaseController
 		
 		$mainframe	= JFactory::getApplication();
 		$my			= JFactory::getUser();
-		$pathway =& $mainframe->getPathway();
-		$jinput = JFactory::getApplication()->input;
+		$pathway    = $mainframe->getPathway();
+		$jinput     = JFactory::getApplication()->input;
 
 		$blogger		= $jinput->get('blogger','','string');
 		$keyword		= $jinput->get('keyword','','string');
