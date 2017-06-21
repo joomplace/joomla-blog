@@ -1336,7 +1336,7 @@ class Joomblog
 			{
                 $menu = JFactory::getApplication()->getMenu();
 				$item   = $menu->getActive();
-				$params   =& $menu->getParams($item->id);
+				$params   = $menu->getParams($item->id);
 				$user = JFactory::getUser($params->get('user'));
 				
 				$author = $user->username;

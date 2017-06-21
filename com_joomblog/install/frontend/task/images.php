@@ -146,7 +146,7 @@ class JbblogImagesTask extends JbBlogBaseController{
 				else
 				{
 					$result[] = array(
-						'file' => $file,
+						'file' => '',
 						'image' => '',
 						'thumb' => '',
 						'folder' => JText::_('COM_JOOMBLOG_IMAGES_MY')
@@ -169,7 +169,7 @@ class JbblogImagesTask extends JbBlogBaseController{
 				else
 				{
 					$result[] = array(
-						'file' => $file,
+						'file' => '',
 						'image' => '',
 						'thumb' => '',
 						'folder' => JText::_('COM_JOOMBLOG_IMAGES_SHARE')

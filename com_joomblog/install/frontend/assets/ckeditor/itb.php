@@ -176,7 +176,9 @@ class Image_Toolbox {
 		}
 
 		$this->_gd_ttf = $gd_info['FreeType Support'];
-		$this->_gd_ps = $gd_info['T1Lib Support'];
+        if(array_key_exists('T1Lib Support', $gd_info)){
+            $this->_gd_ps = $gd_info['T1Lib Support'];
+        }
 		if ($gd_info['GIF Read Support']) {
 			$this->_types[1]['supported'] = 1;
 			if ($gd_info['GIF Create Support']) {

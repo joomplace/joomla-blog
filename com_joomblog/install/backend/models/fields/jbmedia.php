@@ -184,7 +184,7 @@ class JFormFieldJBMedia extends JFormFieldMedia
 		// The text field.
 		$html[] = '<div class="fltlft">';
 		$html[] = '	<input type="text" name="' . $this->name . '" id="' . $this->id . '"' . ' value="'
-			. htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"' . ' readonly="readonly"' . $attr . ' />';
+			. htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"' . ' readonly="readonly" />';
 		$html[] = '</div>';
 
 		$directory = (string) $this->element['directory'];
