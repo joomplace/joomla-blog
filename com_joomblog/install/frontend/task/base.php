@@ -30,7 +30,7 @@ class JbblogBaseController
 		echo $this->_footer();
 	}
 
-	function JbblogBaseController()
+	public function __construct()
 	{
 		$db = JFactory::getDBO();
 		$jinput = JFactory::getApplication()->input;
