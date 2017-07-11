@@ -25,6 +25,8 @@
  * @link http://sourceforge.net/projects/image-toolbox
  */
 
+defined('_JEXEC') or die( 'Restricted access' );
+
 // $Id: Image_Toolbox.class.php,v 1.9 2003/12/05 19:34:01 pappkamerad Exp $
 
 if (!defined('IMAGE_TOOLBOX_DEFAULT_JPEG_QUALITY')) {
