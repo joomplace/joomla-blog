@@ -21,7 +21,7 @@ class JbblogShowTask extends JbblogShowBase
 	var $prev = null;
 	var $next = null;
 
-	function JbblogShowTask()
+	function __construct()
 	{
 		$this->_plugins = new JBPlugins();
 		$this->toolbar = JB_TOOLBAR_HOME;

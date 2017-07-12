@@ -14,7 +14,7 @@ require_once(JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR . 
 class JbblogViewtagsTask extends JbblogBaseController
 {
 
-	function JbblogViewtagsTask()
+	function __construct()
 	{
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 	}
@@ -26,7 +26,7 @@ class JbblogViewtagsTask extends JbblogBaseController
 		$mainframe = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		$jinput = JFactory::getApplication()->input;
-		$post = JInput::get('post');
+        $post = $jinput->get('post');
 		$option = 'com_joomblog';
 		$trigger = 0;
 		$sort = $mainframe->getUserStateFromRequest($option . 'sort', 'sort', 'name', 'word');

@@ -13,7 +13,8 @@ require_once( JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR .
 
 class JbblogCategoriesTask extends JbblogBaseController{
 	
-	function JbblogCategoriesTask(){
+	public function __construct(){
+	    parent::__construct();
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 	}
 	

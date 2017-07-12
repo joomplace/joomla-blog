@@ -15,9 +15,9 @@ class JbblogTagTask extends JbblogBrowseBase
 {
 	var $category;
 	
-	function JbblogTagTask()
+	function __construct()
 	{
-		parent::JbblogBrowseBase();
+		parent::__construct();
 		$this->toolbar = JB_TOOLBAR_HOME;
 	}
 	
@@ -60,7 +60,7 @@ class JbblogTagTask extends JbblogBrowseBase
 		$view = $jinput->get( 'view' , '' , 'GET' );
 		if (isset($view) && $view == 'category')
 		{
-			$menu = JSite::getMenu();
+            $menu = JFactory::getApplication()->getMenu();
 			$item   = $menu->getActive();
 			$params   = $menu->getParams($item->id);
 			$category = intval($params->get('category'));

@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class JbblogBloggerstatsTask extends JbblogBaseController
 {
-	function JbblogBloggerstatsTask()
+	function __construct()
 	{
 		$this->toolbar	= JB_TOOLBAR_BLOGGER;
 	}

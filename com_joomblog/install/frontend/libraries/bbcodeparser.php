@@ -6,7 +6,9 @@ Plugin URI: http://www.procata.com/software/wordpress-bbcode/
 Description: Allows <a href="http://www.phpbb.com/phpBB/faq.php?mode=bbcode">BBCode</a> markup to be used in the content, excerpt, and comments of WordPress.  If you use BBCode, you should disable other markup plugins.
 Author: Jeff Moore
 Author URI: http://www.procata.com/blog/
+License GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
+
 (defined('_VALID_MOS') OR defined('_JEXEC')) or die('Direct Access to this location is not allowed.');
 
 if (!defined('CUSTOM_TAGS')) {
@@ -123,7 +125,7 @@ class HTML_BBCodeParser
     * @access   public
     * @author   Stijn de Reede  <sjr@gmx.co.uk>
     */
-    function HTML_BBCodeParser($options = array())
+    function __construct($options = array())
     {
 
         /* set the already set options */

@@ -71,7 +71,7 @@ class JFormFieldHtml5editor extends JFormField
 	public function getButtons($editor = '')
 	{
 		JHtml::_('behavior.modal', 'a.modal-button');
-		$editorz =& JEditor::getInstance('tinymce');
+		$editorz = JEditor::getInstance('tinymce');
 
 		/* Get plugins */
 		$plugins = JPluginHelper::getPlugin('editors-xtd');

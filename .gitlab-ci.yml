@@ -31,4 +31,4 @@ build:regular:
     - pkg_joomblog.xml
     name: "pkg_joomblog_${CI_BUILD_REF_NAME}"
     when: on_success
-    expire_in: 10 minutes
+    expire_in: 1 day

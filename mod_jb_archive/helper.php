@@ -85,7 +85,7 @@ class modJbArchivePostsHelper
 	function getItemid(){
 		$Itemid = JRequest::getInt('Itemid');
 	
-		$menu 	= JSite::getMenu();
+        $menu = JFactory::getApplication()->getMenu();
 		$items	= $menu->getItems('link', 'index.php?option=com_joomblog&view=default');
 		
 		return $items?$items[0]->id:$Itemid;

@@ -12,7 +12,7 @@
 if(empty($active['blogs'])) $active['blogs'] = '';
 
 global $_JB_CONFIGURATION;
-$menu = JSite::getMenu();
+$menu = JFactory::getApplication()->getMenu();
 $menuItem = $menu->getActive();
 $itemId = JFactory::getApplication()->input->get('itemid');
 if (empty($itemId)) $itemId = jbGetItemId();

@@ -14,7 +14,7 @@ require_once( JB_COM_PATH . DIRECTORY_SEPARATOR . 'task' . DIRECTORY_SEPARATOR .
 class JbblogAdminhomeTask extends JbblogBaseController
 {
 
-    function JbblogAdminhomeTask()
+    function __construct()
 	{
 		$this->toolbar	= JB_TOOLBAR_ACCOUNT;
 	}

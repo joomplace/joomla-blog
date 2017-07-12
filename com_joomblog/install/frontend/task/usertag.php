@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 include_once(JB_COM_PATH . '/task/base.php');
  
 class JbblogUsertagTask extends JbblogBaseController{
-	function JbblogUsertagTask(){
+	function __construct(){
 	}
 	
 	function display(){

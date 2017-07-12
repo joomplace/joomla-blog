@@ -129,8 +129,10 @@ JHTML::_( 'behavior.modal' );
 </script>
 
 <?php
-if($this->vars['validation_msg']) foreach ($this->vars['validation_msg'] as $msg) {
-echo '<div class="error">' . $msg . '</div>';
+if(array_key_exists('validation_msg', $this->vars)){
+    if($this->vars['validation_msg']) foreach ($this->vars['validation_msg'] as $msg) {
+        echo '<div class="error">' . $msg . '</div>';
+    }
 }
 ?>
 <script style="text/javascript">

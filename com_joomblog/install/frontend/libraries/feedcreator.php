@@ -114,75 +114,13 @@ v1.0	06-24-03
 
 
 
-***************************************************************************/
+**************************************************************************/
 
-/*** GENERAL USAGE *********************************************************
-
-include("feedcreator.class.php");
-
-$rss = new UniversalFeedCreator();
-$rss->useCached(); // use cached version if age<1 hour
-$rss->title = "PHP news";
-$rss->description = "daily news from the PHP scripting world";
-
-//optional
-$rss->descriptionTruncSize = 500;
-$rss->descriptionHtmlSyndicated = true;
-
-$rss->link = "http://www.dailyphp.net/news";
-$rss->syndicationURL = "http://www.dailyphp.net/".$_SERVER["PHP_SELF"];
-
-$image = new FeedImage();
-$image->title = "dailyphp.net logo";
-$image->url = "http://www.dailyphp.net/images/logo.gif";
-$image->link = "http://www.dailyphp.net";
-$image->description = "Feed provided by dailyphp.net. Click to visit.";
-
-//optional
-$image->descriptionTruncSize = 500;
-$image->descriptionHtmlSyndicated = true;
-
-$rss->image = $image;
-
-// get your news items from somewhere, e.g. your database:
-mysql_select_db($dbHost, $dbUser, $dbPass);
-$res = mysql_query('SELECT * FROM news ORDER BY newsdate DESC');
-while ($data = mysql_fetch_object($res)) {
-	$item = new FeedItem();
-	$item->title = $data->title;
-	$item->link = $data->url;
-	$item->description = $data->short;
-
-	//optional
-	item->descriptionTruncSize = 500;
-    item->descriptionHtmlSyndicated = true;
-
-    //optional (enclosure)
-    $item->enclosure = new EnclosureItem();
-    $item->enclosure->url='http://http://www.dailyphp.net/media/voice.mp3';
-    $item->enclosure->length="950230";
-    $item->enclosure->type='audio/x-mpeg'
-
-
-
-	$item->date = $data->newsdate;
-	$item->source = "http://www.dailyphp.net";
-	$item->author = "John Doe";
-
-	$rss->addItem($item);
-}
-
-// valid format strings are: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated),
-// MBOX, OPML, ATOM, ATOM10, ATOM0.3, HTML, JS
-echo $rss->saveFeed("RSS1.0", "news/feed.xml");
-
-//to generate "on-the-fly"
-$rss->outputFeed("RSS1.0");
-
-
-***************************************************************************
+/*************************************************************************
 *		  A little setup												 *
 **************************************************************************/
+
+defined('_JEXEC') or die( 'Restricted access' );
 
 // your local timezone, set to "" to disable or for GMT
 define("TIME_ZONE","+01:00");
@@ -365,7 +303,7 @@ class FeedHtmlField {
 	 * Creates a new instance of FeedHtmlField.
 	 * @param  $string: if given, sets the rawFieldContent property
 	 */
-	function FeedHtmlField($parFieldContent) {
+	function __construct($parFieldContent) {
 		if ($parFieldContent) {
 			$this->rawFieldContent = $parFieldContent;
 		}
@@ -901,7 +839,7 @@ class FeedDate {
 	 * Accepts RFC 822, ISO 8601 date formats as well as unix time stamps.
 	 * @param mixed $dateString optional the date this FeedDate will represent. If not specified, the current date and time is used.
 	 */
-	function FeedDate($dateString="") {
+	function __construct($dateString="") {
 		if ($dateString=="") $dateString = date("r");
 
 		if (is_numeric($dateString)) {
@@ -1081,7 +1019,7 @@ class RSSCreator091 extends FeedCreator {
 
 	var $namespaces;
 
-	function RSSCreator091() {
+	function __construct() {
 		$this->_setRSSVersion("0.91");
 		$this->contentType = "application/rss+xml";
 		$this->namespaces = array();
@@ -1244,7 +1182,7 @@ class RSSCreator091 extends FeedCreator {
  */
 class RSSCreator20 extends RSSCreator091 {
 
-	function RSSCreator20() {
+	function __construct() {
 		parent::_setRSSVersion("2.0");
 	}
 
@@ -1261,7 +1199,7 @@ class RSSCreator20 extends RSSCreator091 {
  */
 class PIECreator01 extends FeedCreator {
 
-	function PIECreator01() {
+	function __construct() {
 		$this->encoding = "utf-8";
 	}
 
@@ -1318,7 +1256,7 @@ class PIECreator01 extends FeedCreator {
  */
  class AtomCreator10 extends FeedCreator {
 
-	function AtomCreator10() {
+	function __construct() {
 		$this->contentType = "application/atom+xml";
 		$this->encoding = "utf-8";
 	}
@@ -1400,7 +1338,7 @@ class PIECreator01 extends FeedCreator {
  */
 class AtomCreator03 extends FeedCreator {
 
-	function AtomCreator03() {
+	function __construct() {
 		$this->contentType = "application/atom+xml";
 		$this->encoding = "utf-8";
 	}
@@ -1470,7 +1408,7 @@ class AtomCreator03 extends FeedCreator {
  */
 class MBOXCreator extends FeedCreator {
 
-	function MBOXCreator() {
+	function __construct() {
 		$this->contentType = "text/plain";
 		$this->encoding = "utf-8";
 	}
@@ -1557,7 +1495,7 @@ class MBOXCreator extends FeedCreator {
  */
 class OPMLCreator extends FeedCreator {
 
-	function OPMLCreator() {
+	function __construct() {
 		$this->encoding = "utf-8";
 	}
 
@@ -1826,59 +1764,3 @@ class GoogleSiteMapIndex extends FeedCreator {
 		return $feed;
 	}
 }
-
-/*** TEST SCRIPT *********************************************************
-
-//include("feedcreator.class.php");
-
-$rss = new UniversalFeedCreator();
-$rss->useCached();
-$rss->title = "PHP news";
-$rss->description = "daily news from the PHP scripting world";
-
-//optional
-//$rss->descriptionTruncSize = 500;
-//$rss->descriptionHtmlSyndicated = true;
-//$rss->xslStyleSheet = "http://feedster.com/rss20.xsl";
-
-$rss->link = "http://www.dailyphp.net/news";
-$rss->feedURL = "http://www.dailyphp.net/".$PHP_SELF;
-
-$image = new FeedImage();
-$image->title = "dailyphp.net logo";
-$image->url = "http://www.dailyphp.net/images/logo.gif";
-$image->link = "http://www.dailyphp.net";
-$image->description = "Feed provided by dailyphp.net. Click to visit.";
-
-//optional
-$image->descriptionTruncSize = 500;
-$image->descriptionHtmlSyndicated = true;
-
-$rss->image = $image;
-
-// get your news items from somewhere, e.g. your database:
-//mysql_select_db($dbHost, $dbUser, $dbPass);
-//$res = mysql_query("SELECT * FROM news ORDER BY newsdate DESC");
-//while ($data = mysql_fetch_object($res)) {
-	$item = new FeedItem();
-	$item->title = "This is an the test title of an item";
-	$item->link = "http://localhost/item/";
-	$item->description = "<b>description in </b><br />HTML";
-
-	//optional
-	//item->descriptionTruncSize = 500;
-	$item->descriptionHtmlSyndicated = true;
-
-	$item->date = time();
-	$item->source = "http://www.dailyphp.net";
-	$item->author = "John Doe";
-
-	$rss->addItem($item);
-//}
-
-// valid format strings are: RSS0.91, RSS1.0, RSS2.0, PIE0.1, MBOX, OPML, ATOM0.3, HTML, JS
-echo $rss->saveFeed("RSS0.91", "feed.xml");
-
-
-
-***************************************************************************/

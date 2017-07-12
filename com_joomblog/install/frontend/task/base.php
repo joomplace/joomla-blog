@@ -30,7 +30,7 @@ class JbblogBaseController
 		echo $this->_footer();
 	}
 
-	function JbblogBaseController()
+	public function __construct()
 	{
 		$db = JFactory::getDBO();
 		$jinput = JFactory::getApplication()->input;
@@ -659,7 +659,7 @@ class JbblogBaseController
 			}
 	}
 
-	function _getTemplateName($templateType)
+	static function _getTemplateName($templateType)
 	{
 		global $_JB_CONFIGURATION;
 

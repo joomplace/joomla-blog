@@ -13,7 +13,7 @@ require_once( JB_LIBRARY_PATH . DIRECTORY_SEPARATOR . 'captcha.php' );
 
 class JbblogCaptchaTask
 {
-	function JbblogCaptchaTask()
+	function __construct()
 	{
 		getCaptcha();
 		exit();

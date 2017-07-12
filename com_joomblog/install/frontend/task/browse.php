@@ -14,9 +14,9 @@ include_once(JB_COM_PATH . '/task/browse.base.php');
 class JbblogBrowseTask extends JbblogBrowseBase
 {
 	
-	function JbblogBrowseTask()
+	function __construct()
 	{
-		parent::JbblogBrowseBase();
+		parent::__construct();
 		$this->toolbar = JB_TOOLBAR_HOME;
 	}
 	

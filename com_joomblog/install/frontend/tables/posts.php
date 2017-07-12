@@ -91,7 +91,7 @@ class TablePosts extends JTable
 		return $tagstoclose;
 	}
 
-	function getParagraphCount($text)
+	static function getParagraphCount($text)
 	{
 		$position = -1;
 		$count = 0;
@@ -104,7 +104,7 @@ class TablePosts extends JTable
 		return $count;
 	}
 
-	function getBrowseText(&$row)
+	static function getBrowseText(&$row)
 	{
 		global $_JB_CONFIGURATION;
 

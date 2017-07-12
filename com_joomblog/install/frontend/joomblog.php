@@ -1298,7 +1298,7 @@ class Joomblog
 	var $task;
 	var $adminTask ;
 	
-	function Joomblog()
+	function __construct()
 	{	
 		$this->adminTask = array('adminhome', 'edit', 'delete', 'write', 'showcomments', 'bloggerpref', 'bloggerstats', 'media');
 	}
@@ -1334,9 +1334,9 @@ class Joomblog
 			
 			if (isset($view) && $view == 'user')
 			{
-				$menu = JSite::getMenu();
+                $menu = JFactory::getApplication()->getMenu();
 				$item   = $menu->getActive();
-				$params   =& $menu->getParams($item->id);
+				$params   = $menu->getParams($item->id);
 				$user = JFactory::getUser($params->get('user'));
 				
 				$author = $user->username;

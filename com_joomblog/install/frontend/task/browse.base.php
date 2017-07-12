@@ -26,11 +26,11 @@ class JbblogBrowseBase extends JbblogBaseController
 	var $_plugins = null;
 	var $_headerHTML = '';
 
-	function JbblogBrowseBase()
+	function __construct()
 	{
 		global $_JB_CONFIGURATION;
 
-		parent::JbblogBaseController();
+		parent::__construct();
 
 		$this->_plugins = new JBPlugins();
 		$this->toolbar = JB_TOOLBAR_HOME;

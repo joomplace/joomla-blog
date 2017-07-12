@@ -25,6 +25,8 @@
  * @link http://sourceforge.net/projects/image-toolbox
  */
 
+defined('_JEXEC') or die( 'Restricted access' );
+
 // $Id: Image_Toolbox.class.php,v 1.9 2003/12/05 19:34:01 pappkamerad Exp $
 
 if (!defined('IMAGE_TOOLBOX_DEFAULT_JPEG_QUALITY')) {
@@ -176,7 +178,9 @@ class Image_Toolbox {
 		}
 
 		$this->_gd_ttf = $gd_info['FreeType Support'];
-		$this->_gd_ps = $gd_info['T1Lib Support'];
+        if(array_key_exists('T1Lib Support', $gd_info)){
+            $this->_gd_ps = $gd_info['T1Lib Support'];
+        }
 		if ($gd_info['GIF Read Support']) {
 			$this->_types[1]['supported'] = 1;
 			if ($gd_info['GIF Create Support']) {

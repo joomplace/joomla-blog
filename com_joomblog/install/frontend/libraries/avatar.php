@@ -24,7 +24,7 @@ class JBAvatarBase
 
 	var $_display = 1;
 	
-	function JBAvatarBase($userId, $display = 1, $userObject = false )
+	function __construct($userId, $display = 1, $userObject = false )
 	{
 		global $_JB_CONFIGURATION;
 		

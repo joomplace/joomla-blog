@@ -20,7 +20,7 @@ class JbblogWriteTask extends JbBlogBaseController
 		$my = JFactory::getUser();
 		$doc = JFactory::getDocument();
 
-		$pathway =& $mainframe->getPathway();
+		$pathway = $mainframe->getPathway();
 
 		$tpl = new JoomblogTemplate();
 		$jinput = JFactory::getApplication()->input;

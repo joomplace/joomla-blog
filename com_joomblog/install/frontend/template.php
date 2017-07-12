@@ -16,7 +16,7 @@ class JoomblogTemplate
 {
 	var $vars;
 
-	function JoomblogTemplate($file = null)
+	function __construct($file = null)
 	{
 		$this->file = $file;
 		@ini_set('short_open_tag', 'On');
@@ -63,9 +63,9 @@ class JoomblogCachedTemplate extends JoomblogTemplate
 	var $cached;
 	var $file;
 
-	function JoomblogCachedTemplate($cache_id = "", $cache_timeout = 0)
+	function __construct($cache_id = "", $cache_timeout = 0)
 	{
-		$this->JoomblogTemplate();
+		parent::__construct();
 		/* cache filename */
 		$this->cache_id = JB_CACHE_PATH . "/cache__" . md5($cache_id);
 		/* cached false by default to allow rewrite */

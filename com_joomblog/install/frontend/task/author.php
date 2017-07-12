@@ -16,9 +16,9 @@ class JbblogAuthorTask extends JbblogBrowseBase
 	var $author = null;
 	var $authorId = 0;
 	
-	function JbblogAuthorTask()
+	function __construct()
 	{
-		parent::JbblogBrowseBase();
+		parent::__construct();
 		$this->toolbar = JB_TOOLBAR_BLOGGER;
 		$jinput = JFactory::getApplication()->input;
 		$authorId	= $jinput->get( 'user' , '' , 'REQUEST' );
@@ -28,7 +28,8 @@ class JbblogAuthorTask extends JbblogBrowseBase
 		$view = $jinput->get( 'view' , '' , 'GET' );
 		if (isset($view) && $view == 'user')
 			{
-				$menu = JSite::getMenu();
+                $menu = JFactory::getApplication()->getMenu();
+				$menu =
 				$item   = $menu->getActive();
 				$params   =& $menu->getParams($item->id);
 				$authorId = intval($params->get('user'));
