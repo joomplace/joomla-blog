@@ -2,12 +2,12 @@
 <extension type="module" version="3.0" method="upgrade">
 	<name>List of blogs</name>
 	<author>JoomPlace Team</author>
-	<creationDate>May 2017</creationDate>
+	<creationDate>July 2017</creationDate>
 	<copyright>Copyright (C) 2005 - 2017 Joomplace, www.joomplace.com. All rights reserved.</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
-	<version>1.3.2</version>
+	<version>1.3.3</version>
 	<description></description>
 	<files>
 		<filename module="mod_jb_blogs">mod_jb_blogs.php</filename>

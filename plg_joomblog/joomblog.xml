@@ -2,12 +2,12 @@
 <extension type="plugin" method="upgrade" group="system" version="3.0">
 	<name>Joomblog system</name>
 	<author>JoomPlace Team</author>
-	<creationDate>May 2017</creationDate>
+	<creationDate>July 2017</creationDate>
 	<copyright>Copyright (C) 2005 - 2017 Joomplace, www.joomplace.com. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>support@jomplace.com</authorEmail>
-	<authorUrl>www.jomplace.com</authorUrl>
-	<version>1.3.2</version>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.3.3</version>
 	<description></description>
 	<files>
 		<filename plugin="joomblog">joomblog.php</filename>
