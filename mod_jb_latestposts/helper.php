@@ -13,12 +13,13 @@ defined('_JEXEC') or die('Restricted access');
 
 class modJbLatestPostsHelper
 {
-	function getList(&$params)
+	public static function getList(&$params)
 	{
 		$limit = $params->get('numLatestEntries', 5);
     	$titleMaxLength = $params->get('titleMaxLength', 20);
-	
-		$user = JRequest::getVar( 'user' , '' , 'GET' );
+        $app = JFactory::getApplication();
+        $user = $app->input->get('user', '');
+
     	$authorid	= jbGetAuthorId( $user );
     
 		if($authorid == '0')
