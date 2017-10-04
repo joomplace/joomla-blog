@@ -161,6 +161,10 @@ JHtml::_('behavior.formvalidation');
 	});
 
 	Joomla.submitbutton = function (task) {
+	    document.getElementById('jform_created').setAttribute("data-alt-value", document.getElementById('jform_created').value);
+        document.getElementById('jform_publish_up').setAttribute("data-alt-value", document.getElementById('jform_publish_up').value);
+        document.getElementById('jform_publish_down').setAttribute("data-alt-value", document.getElementById('jform_publish_down').value);
+
 		if (task == 'post.cancel') {
 			Joomla.submitform(task, document.getElementById('adminForm'));
 			return;

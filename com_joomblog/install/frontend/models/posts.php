@@ -477,17 +477,23 @@ class JoomblogModelPosts extends JModelList
 		}
 
 		//Get current timezone
-		$userTz = JFactory::getUser()->getParam('timezone');
-		$timeZone = JFactory::getConfig()->get('offset');
-		if ($userTz)
-		{
-			$timeZone = $userTz;
-		}
+		//$userTz = JFactory::getUser()->getParam('timezone');
+		//$timeZone = JFactory::getConfig()->get('offset');
+		//if ($userTz)
+		//{
+		//	$timeZone = $userTz;
+		//}
 
+		$config = JFactory::getConfig();
+		$offset = $config->get('offset');
+		
 		// Filter by start and end dates.
 		$nullDate = $db->Quote($db->getNullDate());
-		$nowDate = $db->Quote(JFactory::getDate('now', $timeZone)->toSql(true));
-
+		$nowDate = $db->Quote(JFactory::getDate('now', null)->toSql(true));
+		
+		//print_r($nullDate." ".$nowDate." ".$offset);
+		//exit();
+		
 		$query->where('(a.publish_up = ' . $nullDate . ' OR a.publish_up <= ' . $nowDate . ')');
 		$query->where('(a.publish_down = ' . $nullDate . ' OR a.publish_down >= ' . $nowDate . ')');
 
