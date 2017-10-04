@@ -489,7 +489,7 @@ class JoomblogModelPosts extends JModelList
 		
 		// Filter by start and end dates.
 		$nullDate = $db->Quote($db->getNullDate());
-		$nowDate = $db->Quote(JFactory::getDate('now', null)->toSql(true));
+		$nowDate = $db->Quote(JFactory::getDate('now', $offset)->toSql(true));
 		
 		//print_r($nullDate." ".$nowDate." ".$offset);
 		//exit();

@@ -196,6 +196,29 @@ class ContentModelArticle extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
+        $config = JFactory::getConfig();
+        $offset = $config->get('offset');
+
+        //changing publishing date for timezone
+        $datetime = new DateTime($table->publish_up);
+        $timezone = new DateTimeZone($offset);
+        $datetime->setTimezone($timezone);
+	    $table->publish_up = $datetime->format('Y-m-d H:i:s');
+
+
+        //changing deleting date for timezone
+        $datetime = new DateTime($table->publish_down);
+        $timezone = new DateTimeZone($offset);
+        $datetime->setTimezone($timezone);
+        $table->publish_down = $datetime->format('Y-m-d H:i:s');
+
+
+        //changing creation date for timezone
+        $datetime = new DateTime($table->created);
+        $timezone = new DateTimeZone($offset);
+        $datetime->setTimezone($timezone);
+        $table->created = $datetime->format('Y-m-d H:i:s');
+
 		// Set the publish date to now
 		$db = $this->getDbo();
 		if($table->state == 1 && intval($table->publish_up) == 0) {
