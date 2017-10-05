@@ -199,32 +199,41 @@ class ContentModelArticle extends JModelAdmin
         $config = JFactory::getConfig();
         $offset = $config->get('offset');
 
-        //changing publishing date for timezone
-        $datetime = new DateTime($table->publish_up);
-        $timezone = new DateTimeZone($offset);
-        $datetime->setTimezone($timezone);
-	    $table->publish_up = $datetime->format('Y-m-d H:i:s');
-
-
         //changing deleting date for timezone
-        $datetime = new DateTime($table->publish_down);
-        $timezone = new DateTimeZone($offset);
-        $datetime->setTimezone($timezone);
-        $table->publish_down = $datetime->format('Y-m-d H:i:s');
+        if ($table->publish_down) {
+            /** @var \Joomla\CMS\Date\Date $date */
+            $date = JFactory::getDate($table->publish_down);
 
+            $timezone = new DateTimeZone($offset);
+            $date->setTimezone($timezone);
+            $table->publish_down = $date->toSql(true);
+        }
 
         //changing creation date for timezone
-        $datetime = new DateTime($table->created);
+
+        /** @var \Joomla\CMS\Date\Date $date */
+        $date = JFactory::getDate($table->created);
         $timezone = new DateTimeZone($offset);
-        $datetime->setTimezone($timezone);
-        $table->created = $datetime->format('Y-m-d H:i:s');
+        $date->setTimezone($timezone);
+        $table->created = $date->toSql(true);
+
+        //$table->created = $date->toISO8601(true);
 
 		// Set the publish date to now
 		$db = $this->getDbo();
 		if($table->state == 1 && intval($table->publish_up) == 0) {
-			$table->publish_up = JFactory::getDate()->toSql();
+			$date = JFactory::getDate("now");
+            $timezone = new DateTimeZone($offset);
+            $date->setTimezone($timezone);
+            $table->publish_up = $date->toSql(true);
 		}
-
+		else {
+            //changing publishing date for timezone
+            $date = JFactory::getDate($table->publish_up);
+            $timezone = new DateTimeZone($offset);
+            $date->setTimezone($timezone);
+            $table->publish_up = $date->toSql(true);
+        }
 		// Increment the content version number.
 		$table->version++;
 

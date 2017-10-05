@@ -476,23 +476,17 @@ class JoomblogModelPosts extends JModelList
 			$query->where($authorWhere . $authorAliasWhere);
 		}
 
-		//Get current timezone
-		//$userTz = JFactory::getUser()->getParam('timezone');
-		//$timeZone = JFactory::getConfig()->get('offset');
-		//if ($userTz)
-		//{
-		//	$timeZone = $userTz;
-		//}
-
 		$config = JFactory::getConfig();
 		$offset = $config->get('offset');
 		
 		// Filter by start and end dates.
 		$nullDate = $db->Quote($db->getNullDate());
-		$nowDate = $db->Quote(JFactory::getDate('now', $offset)->toSql(true));
-		
-		//print_r($nullDate." ".$nowDate." ".$offset);
-		//exit();
+
+		$date = JFactory::getDate("now");
+        $timezone = new DateTimeZone($offset);
+        $date->setTimezone($timezone);
+		$nowDate = $db->Quote($date->toSql(true));
+
 		
 		$query->where('(a.publish_up = ' . $nullDate . ' OR a.publish_up <= ' . $nowDate . ')');
 		$query->where('(a.publish_down = ' . $nullDate . ' OR a.publish_down >= ' . $nowDate . ')');
