@@ -11,6 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.modeladmin');
+jimport( 'joomla.html.html' );
 
 
 require_once JPATH_COMPONENT_ADMINISTRATOR.'/helpers/content.php';
@@ -35,17 +36,6 @@ class ContentModelArticle extends JModelAdmin
 	 *
 	 * @since	11.1
 	 */
-
-    protected function getTimezoneDate($date)
-    {
-        $config = JFactory::getConfig($date);
-        $offset = $config->get('offset');
-
-        $timezone = new DateTimeZone($offset);
-        $date->setTimezone($timezone);
-
-        return $date->toSql(true);
-    }
 
 	protected function batchCopy($value, $pks, $contexts)
 	{
@@ -209,32 +199,23 @@ class ContentModelArticle extends JModelAdmin
 
 	protected function prepareTable($table)
 	{
-
         //changing deleting date for timezone
         if ($table->publish_down) {
-            /** @var \Joomla\CMS\Date\Date $date */
-            $date = JFactory::getDate($table->publish_down);
-            $table->publish_down = $this->getTimezoneDate($date);
+            $table->publish_down = JHtml::date($table->publish_down, 'Y-m-d H:i:s', true);
         }
 
         //changing creation date for timezone
-
-        /** @var \Joomla\CMS\Date\Date $date */
-        $date = JFactory::getDate($table->created);
-        $table->created = $this->getTimezoneDate($date);
-
-        //$table->created = $date->toISO8601(true);
+        $table->created = JHtml::date($table->created, 'Y-m-d H:i:s', true);
 
 		// Set the publish date to now
 		$db = $this->getDbo();
 		if($table->state == 1 && intval($table->publish_up) == 0) {
-			$date = JFactory::getDate("now");
-            $table->publish_up = $this->getTimezoneDate($date);
+
+			$table->publish_up = JHtml::date("now", 'Y-m-d H:i:s', true);
 		}
 		else {
             //changing publishing date for timezone
-            $date = JFactory::getDate($table->publish_up);
-            $table->publish_up = $this->getTimezoneDate($date);
+            $table->publish_up = JHtml::date($table->publish_up, 'Y-m-d H:i:s', true);
         }
 		// Increment the content version number.
 		$table->version++;
@@ -243,6 +224,10 @@ class ContentModelArticle extends JModelAdmin
 		if (empty($table->id)) {
 			$table->reorder('catid = '.(int) $table->catid.' AND state >= 0');
 		}
+
+
+		//echo $table->created." - ".$table->publish_up." - ".$table->publish_down;
+		//exit();
 	}
 
 	/**
