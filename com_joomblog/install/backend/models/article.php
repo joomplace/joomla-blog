@@ -201,21 +201,21 @@ class ContentModelArticle extends JModelAdmin
 	{
         //changing deleting date for timezone
         if ($table->publish_down) {
-            $table->publish_down = JHtml::date($table->publish_down, 'Y-m-d H:i:s', true);
+            $table->publish_down = JHtml::date($table->publish_down, 'Y-m-d H:i:s', false);
         }
 
         //changing creation date for timezone
-        $table->created = JHtml::date($table->created, 'Y-m-d H:i:s', true);
+        $table->created = JHtml::date($table->created, 'Y-m-d H:i:s', false);
 
 		// Set the publish date to now
 		$db = $this->getDbo();
 		if($table->state == 1 && intval($table->publish_up) == 0) {
 
-			$table->publish_up = JHtml::date("now", 'Y-m-d H:i:s', true);
+			$table->publish_up = JHtml::date("now", 'Y-m-d H:i:s', false);
 		}
 		else {
             //changing publishing date for timezone
-            $table->publish_up = JHtml::date($table->publish_up, 'Y-m-d H:i:s', true);
+            $table->publish_up = JHtml::date($table->publish_up, 'Y-m-d H:i:s', false);
         }
 		// Increment the content version number.
 		$table->version++;
