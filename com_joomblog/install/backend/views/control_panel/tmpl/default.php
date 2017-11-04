@@ -281,17 +281,6 @@ JHtml::_('behavior.modal');
 			<td width="120" style="border-top: none;"><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_INSTALLED_VERSION') . ':'; ?></td>
 			<td class="joomblog_control_panel_current_version" style="border-top: none;"><?php echo $this->config->version; ?></td>
 		</tr>
-		<tr>
-			<td><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_LATEST_VERSION') . ':'; ?></td>
-			<td>
-				<div id="joomblogLatestVersion">
-					<button class="btn btn-small" onclick="onBtnCheckLatestVersionClick(this, event);">
-						<i class="icon-health"></i>
-						<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_CHECK_NOW'); ?>
-					</button>
-				</div>
-			</td>
-		 </tr>
 		 <tr>
 			<td><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_ABOUT') . ':'; ?></td>
 			<td>
