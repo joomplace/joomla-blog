@@ -70,10 +70,14 @@ if(empty($entry['blogid'])) $entry['blogid']=$entry['blog_id'];
 
                 <?php if ($_JB_CONFIGURATION->get('showUserLink')) : ?>    
                     <div class="jb-postauthor-info-wrap">
-                        <div class="jb-postauthor-photo">
-                            <a target="_blank" href="<?php echo $entry['authorLink'];?>"><?php echo $entry['avatar']; ?></a>
-                        </div>
-                        <div class="jb-postauthor-info">
+						<?php if($entry['avatar']){ ?>
+						<div class="jb-postauthor-photo">
+							<a target="_blank" href="<?php echo $entry['authorLink'];?>"><?php echo $entry['avatar']; ?></a>
+						</div>
+						<?php } else {
+							$postauthorinfo_paddingleft = ' style="padding-left:0;"';
+						} ?>
+						<div class="jb-postauthor-info"<?php echo isset($postauthorinfo_paddingleft) ? $postauthorinfo_paddingleft : ''; ?>>
                             <span class="jb-postauthor"><a target="_blank" href="<?php echo $entry['authorLink'];?>"><?php echo $entry['author'];?></a></span>
                             <div class="jb-postauthor-desc">
                                 <p><?php echo $entry['author_about'];?></p>
