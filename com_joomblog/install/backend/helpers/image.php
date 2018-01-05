@@ -239,7 +239,7 @@ class JBImageHelper
 		{
 			// Put the new image in temporary dest path, and move them using
 			// Joomla API to ensure new folder is created
-			$tempFilename = $jconfig->getValue('tmp_path'). DIRECTORY_SEPARATOR . md5($destPath);
+			$tempFilename = $jconfig->get('tmp_path'). DIRECTORY_SEPARATOR . md5($destPath);
 			
 			$thumb = new Imagick();
 			$thumb->readImage($srcPath);
