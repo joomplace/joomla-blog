@@ -351,17 +351,17 @@ class JbblogPreviewTask extends JbblogShowBase
 					
  					if($_JB_CONFIGURATION->get('enableJCDashboard'))
 					{
- 						if(eregi('\{!jomcomment\}',$row->text))
+                        if(preg_match('/{!jomcomment}/i',$row->text))
 						{
  							$row->text	= str_replace('{!jomcomment}','',$row->text);
  						}
-						else if(eregi('\{jomcomment\}',$row->text))
+                        else if(preg_match('/{jomcomment}/i',$row->text))
 						{
  							$row->text	= str_replace('{jomcomment}','',$row->text);
  							$row->comments	= "";
  							$row->comments 	= jomcomment($row->id, "com_joomblog");
  						}
- 						else if(eregi('\{jomcomment lock\}', $row->text) )
+                        else if(preg_match('/{jomcomment lock/}/i', $row->text) )
  						{
  							$row->text	= str_replace('{jomcomment lock}','',$row->text);
  							$row->comments	= "";

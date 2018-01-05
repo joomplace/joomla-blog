@@ -31,14 +31,14 @@ class JBMailer
 
 		if($html)
 			$this->mail->IsHTML(true);
-	
-		$regexp	= "^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$";
+
+        $regexp	= "/^([_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i";
 		
 		if (is_array($recipient))
 		{
 			foreach ($recipient as $to)
 			{
-				if(!empty($to) && eregi($regexp, $to))
+                if(!empty($to) && preg_match($regexp, $to))
 				{
 					$this->mail->AddAddress($to);
 				}
@@ -46,7 +46,7 @@ class JBMailer
 		}
 		else 
 		{
-			if(!empty($recipient) && eregi($regexp, $recipient))
+            if(!empty($recipient) && preg_match($regexp, $recipient))
 			{
 				$this->mail->AddAddress($recipient);
 			}
