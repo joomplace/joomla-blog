@@ -194,11 +194,11 @@ function jbfAddcomment(){
     $content = $db->loadObject();
 		
 		if($_JB_CONFIGURATION->get('notifyCommentAdmin') && !array_diff($my->groups, array('Super User')) ){
-      jbNotifyCommentAdmin($row->id, $data['name'], $data['title'], $comment);
+      jbNotifyCommentAdmin($row->id, $data['name'], $data['title'], $data['comment']);
 		}
 	
 		if($_JB_CONFIGURATION->get('notifyCommentAuthor') && $my->get('id') != $content->created_by ){
-      jbNotifyCommentAuthor($row->id, $data['name'], $data['title'], $comment);
+      jbNotifyCommentAuthor($row->id, $data['name'], $data['title'], $data['comment']);
 		}
 
 
