@@ -170,7 +170,7 @@ class JBPlugins
                 $plg = JPluginHelper::getPlugin('content', $plugin->element);
 
 
-                $dispatcher = JDispatcher::getInstance();
+                $dispatcher = JEventDispatcher::getInstance();
                 $plgObj = 'plgContent' . ucfirst($plg->name);
 
                 if (class_exists($plgObj)) {
@@ -192,7 +192,7 @@ class JBPlugins
                         $this->register('onAfterDisplayContent', $plugin, $plugin->params, $plugin->published);
                     }
                 } else {
-                    $observers = $dispatcher->getObservers();
+                    $observers = $dispatcher->get('_observers');
                     foreach ($observers as $observer) {
                         if (is_array($observer)) {
                             if ($observer['event'] == 'onPrepareContent') {
