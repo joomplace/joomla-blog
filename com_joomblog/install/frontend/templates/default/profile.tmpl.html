@@ -20,11 +20,15 @@ $tmpl = JRequest::getVar('tmpl');
 </script>
 
 <div class="jb-user-profile jb-blogs-head clearfix">
+    <?php if($user->src){ ?>
     <div class="jb-blog-imgcont">
         <img class="jb-author-avatar" alt="" src="<?php echo $user->src;?>"/>
     </div>
+    <?php } else {
+		$bloginfo_paddingleft = ' style="padding-left:0;"';
+	} ?>
 
-    <div class="jb-blog-info">
+    <div class="jb-blog-info"<?php echo isset($bloginfo_paddingleft) ? $bloginfo_paddingleft : ''; ?>>
         <h3 class="jb-blog-title">
             <?php echo jbGetAuthorName($user->user_id, $_JB_CONFIGURATION->get('useFullName')); ?>
         </h3>
