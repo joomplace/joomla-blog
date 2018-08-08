@@ -10,60 +10,6 @@
 class JoomBlogControllerGeneral extends JControllerLegacy
 {
 	//----------------------------------------------------------------------------------------------------
-	public function get_latest_component_version()
-	{
-		require_once(JPATH_COMPONENT_ADMINISTRATOR."/helpers/Snoopy.php");
-		require_once(JPATH_COMPONENT_ADMINISTRATOR."/helpers/MethodsForXml.php");
-
-		$tm_version = JoomBlogHelper::getVersion();
-		
-		// Making request.
-		$snoopy = new Snoopy();
-		$snoopy->read_timeout = 90;
-		$snoopy->referer = JURI::root();
-		@$snoopy->fetch("http://www.joomplace.com/version_check/componentVersionCheck.php?component=joomblog&current_version=".urlencode($tm_version));
-		
-		$error = $snoopy->error;
-		$status = $snoopy->status;
-		
-		$versionInfo = $snoopy->results;
-		$versionInfoPos = strpos($versionInfo, ":");
-		
-		if ($versionInfoPos === false)
-		{
-			$version = $versionInfo;
-			$info = "";
-		}
-		else
-		{
-			$version = substr($versionInfo, 0, $versionInfoPos);
-			$info = substr($versionInfo, $versionInfoPos + 1);
-		}
-		
-		// Returning data.
-		
-		@ob_clean();
-		header('Expires: Fri, 14 Mar 1980 20:53:00 GMT');
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-		header('Cache-Control: no-cache, must-revalidate');
-		header('Pragma: no-cache');
-		header('Content-Type: text/xml; charset=utf-8');
-		
-		$xml = array();
-		
-		$xml[] = "<\x3fxml version=\"1.0\" encoding=\"UTF-8\"\x3f>";
-		$xml[] = '<root>';
-		$xml[] = 	'<error>' . MethodsForXml::XmlEncode($error) . '</error>';
-		$xml[] = 	'<status>' . MethodsForXml::XmlEncode($status) . '</status>';
-		$xml[] = 	'<version>' . MethodsForXml::XmlEncode($version) . '</version>';
-		$xml[] = 	'<info>' . MethodsForXml::XmlEncode($info) . '</info>';
-		$xml[] = '</root>';
-		
-		print(implode("", $xml));
-		
-		jexit();
-	}
-	//----------------------------------------------------------------------------------------------------
 	public function get_latest_news()
 	{
 		require_once(JPATH_COMPONENT_ADMINISTRATOR."/helpers/Snoopy.php");

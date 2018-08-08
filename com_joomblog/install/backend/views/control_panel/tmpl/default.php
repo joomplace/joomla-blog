@@ -43,75 +43,7 @@ JHtml::_('behavior.modal');
 	
 	jQuery(document).ready(function () {
 	    getLatestNews();
-
-		/*jQuery('.extend-buttons').popover({
-			html: true,
-			placement: 'right',
-			title: 'Select button, which you want to add',
-			content: function() {
-				return jQuery('#j-sidebar-container-popover').html();
-			}
-		});*/
 	});
-
-	function onBtnCheckLatestVersionClick(sender, event)
-	{
-		var resultDiv = document.getElementById('joomblogLatestVersion');
-		
-		resultDiv.innerHTML = '<img src="<?php echo JUri::root();?>administrator/components/com_joomblog/assets/images/ajax_loader_16x11.gif" />';
-		
-		var url = '<?php echo JURI::root().'administrator/index.php?option=com_joomblog&task=general.get_latest_component_version'; ?>';
-		var xmlData = "";
-		var syncObject = {};
-		var timeout = 5000;
-		var dataCallback = function(request, syncObject, responseText) { onGetLatestVersionData(request, syncObject, responseText); };
-		var timeoutCallback = function(request, syncObject) { onGetLatestVersionTimeout(request, syncObject); };
-		
-		MyAjax.makeRequest(url, xmlData, syncObject, timeout, dataCallback, timeoutCallback);
-	}
-	
-	function onGetLatestVersionData(request, syncObject, responseText)
-	{
-		var resultDiv = document.getElementById('joomblogLatestVersion');
-		
-		// Handling XML.
-		
-		var xmlDoc = MethodsForXml.getXmlDocFromString(responseText);
-		var rootNode = xmlDoc.documentElement;
-		
-		var error = MethodsForXml.getNodeValue(rootNode.childNodes[0]);
-		var status = MethodsForXml.getNodeValue(rootNode.childNodes[1]);
-		var version = MethodsForXml.getNodeValue(rootNode.childNodes[2]);
-		var info = MethodsForXml.getNodeValue(rootNode.childNodes[3]);
-		
-		// Handling data.
-		
-		if (error == "" && status == 200)
-		{
-			if (version == "<?php echo $this->config->version; ?>")
-			{
-				resultDiv.innerHTML = '<font color="green">' + version + '</font>' + info;
-			}
-			else
-			{
-				resultDiv.innerHTML = '<font color="red">' + version + '</font>&nbsp;<a href="http://www.joomplace.com/members-area.html" target="_blank">' +
-					'<?php echo '(' . JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_UPGRADE') . ')'; ?>' + '</a>';
-			}
-		}
-		else
-		{
-			resultDiv.innerHTML = '<font color="red">' + '<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_CONNECTION_FAILED'); ?>: ' + error + (error == '' ? '' : ', ') +
-				(status == -100 ? '<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_TIMEOUT'); ?>' : status) + '</font>';
-		}
-	}
-	
-	function onGetLatestVersionTimeout(request, syncObject)
-	{
-		var resultDiv = document.getElementById('joomblogLatestVersion');
-		
-		resultDiv.innerHTML = '<font color="red">' + '<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_CONNECTION_FAILED'); ?>: ' +
-			'<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_TIMEOUT'); ?>' + '</font>';
-	}
 	
 	function getLatestNews()
 	{
@@ -281,17 +213,6 @@ JHtml::_('behavior.modal');
 			<td width="120" style="border-top: none;"><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_INSTALLED_VERSION') . ':'; ?></td>
 			<td class="joomblog_control_panel_current_version" style="border-top: none;"><?php echo $this->config->version; ?></td>
 		</tr>
-		<tr>
-			<td><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_LATEST_VERSION') . ':'; ?></td>
-			<td>
-				<div id="joomblogLatestVersion">
-					<button class="btn btn-small" onclick="onBtnCheckLatestVersionClick(this, event);">
-						<i class="icon-health"></i>
-						<?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_CHECK_NOW'); ?>
-					</button>
-				</div>
-			</td>
-		 </tr>
 		 <tr>
 			<td><?php echo JText::_('COM_JOOMBLOG_BE_CONTROL_PANEL_ABOUT') . ':'; ?></td>
 			<td>
