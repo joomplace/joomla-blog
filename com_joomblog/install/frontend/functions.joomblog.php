@@ -266,7 +266,7 @@ function jbNotifyAdmin($contentId, $author = '', $title = '', $text = '', $isNew
 	return $status;
 }
 
-function jbNotifyCommentAdmin($commentId, $author = '', $title = '', $text = '')
+function jbNotifyCommentAdmin($commentId, $author = '', $title = '', $text = '', $postId=0, $Itemid=0)
 {
 	global $_JB_CONFIGURATION, $joomblog_LANG;
 
@@ -297,10 +297,9 @@ function jbNotifyCommentAdmin($commentId, $author = '', $title = '', $text = '')
 		$db->setQuery($strSQL);
 		$comment = $db->loadObject();
 
+        $link_to_post = jbGetExternalLink('index.php?option=com_joomblog&show='.(int)$postId.'&Itemid='.(int)$Itemid, false);
 		$publish = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=publish&sid=' . $sid, false);
-
 		$unpublish = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=unpublish&sid=' . $sid, false);
-
 		$delete = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=remove&sid=' . $sid, false);
 
 		$template = new JoomblogTemplate();
@@ -310,6 +309,7 @@ function jbNotifyCommentAdmin($commentId, $author = '', $title = '', $text = '')
 		$content = $template->fetch(JB_TEMPLATE_PATH . "/default/comment.notifyadmin.tmpl.html");
 
 		$content = str_replace('%DATE%', $comment->created, $content);
+        $content = str_replace('%LINKTOPOST%', $link_to_post, $content);
 		$content = str_replace('%PUBLISH%', $publish, $content);
 		$content = str_replace('%UNPUBLISH%', $unpublish, $content);
 		$content = str_replace('%DELETE%', $delete, $content);
@@ -326,7 +326,7 @@ function jbNotifyCommentAdmin($commentId, $author = '', $title = '', $text = '')
 	return $status;
 }
 
-function jbNotifyCommentAuthor($commentId, $author = '', $title = '', $text = '')
+function jbNotifyCommentAuthor($commentId, $author = '', $title = '', $text = '', $postId=0, $Itemid=0)
 {
 	global $_JB_CONFIGURATION, $joomblog_LANG;
 
@@ -359,10 +359,9 @@ function jbNotifyCommentAuthor($commentId, $author = '', $title = '', $text = ''
 
 		$recipients = array(jbGetAuthorEmail($blog->created_by));
 
+        $link_to_post = jbGetExternalLink('index.php?option=com_joomblog&show='.(int)$postId.'&Itemid='.(int)$Itemid, false);
 		$publish = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=publish&sid=' . $sid, false);
-
 		$unpublish = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=unpublish&sid=' . $sid, false);
-
 		$delete = jbGetExternalLink('index.php?option=com_joomblog&task=admin&operation=remove&sid=' . $sid, false);
 
 		$template = new JoomblogTemplate();
@@ -372,6 +371,7 @@ function jbNotifyCommentAuthor($commentId, $author = '', $title = '', $text = ''
 		$content = $template->fetch(JB_TEMPLATE_PATH . "/default/comment.notifyauthor.tmpl.html");
 
 		$content = str_replace('%DATE%', $comment->created, $content);
+        $content = str_replace('%LINKTOPOST%', $link_to_post, $content);
 		$content = str_replace('%PUBLISH%', $publish, $content);
 		$content = str_replace('%UNPUBLISH%', $unpublish, $content);
 		$content = str_replace('%DELETE%', $delete, $content);

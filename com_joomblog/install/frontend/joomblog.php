@@ -135,6 +135,7 @@ function jbfAddcomment(){
 	$data['contentid']= JFactory::getApplication()->input->post->get('contentid');
 	$data['task']= JFactory::getApplication()->input->post->get('task');
 	$data['option']= JFactory::getApplication()->input->post->get('option');
+    $data['Itemid']= JFactory::getApplication()->input->getInt('Itemid', jbGetItemId());
 	
 	if (!class_exists('HTML_BBCodeParser') AND !function_exists('BBCode')) {
 		include_once (JB_LIBRARY_PATH.DIRECTORY_SEPARATOR."bbcodeparser.php");
@@ -194,11 +195,11 @@ function jbfAddcomment(){
     $content = $db->loadObject();
 		
 		if($_JB_CONFIGURATION->get('notifyCommentAdmin') && !array_diff($my->groups, array('Super User')) ){
-      jbNotifyCommentAdmin($row->id, $data['name'], $data['title'], $comment);
+            jbNotifyCommentAdmin($row->id, $data['name'], $content->title, $data['comment'], $content->id, $data['Itemid']);
 		}
 	
 		if($_JB_CONFIGURATION->get('notifyCommentAuthor') && $my->get('id') != $content->created_by ){
-      jbNotifyCommentAuthor($row->id, $data['name'], $data['title'], $comment);
+            jbNotifyCommentAuthor($row->id, $data['name'], $content->title, $data['comment'], $content->id, $data['Itemid']);
 		}
 
 
