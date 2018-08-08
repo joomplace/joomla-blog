@@ -46,6 +46,7 @@ class JBPluginsDB{
 				. $type
 				. 'AND a.type="plugin" '
 				. "AND a.element !='jom_comment_bot' "
+				. "AND a.element !='powrshortcodes' "
 				. "ORDER BY a.ordering";
 
 		$this->db->setQuery($strSQL);
