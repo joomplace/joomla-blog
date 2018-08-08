@@ -724,7 +724,7 @@ class JbblogShowTask extends JbblogShowBase
 		if ( empty($page_image) AND !empty($default_blogpost_image) ) {
 			$page_image = JURI::base() . 'images/' . $default_blogpost_image;
 		}
-		if ( !empty($page_image) ) {
+		if ( !empty($page_image) && file_exists($page_image) ) {
 			list($width, $height) = @getimagesize($page_image);
 		} else {
 			$width = 0;
