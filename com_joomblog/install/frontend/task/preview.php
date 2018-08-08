@@ -406,17 +406,18 @@ class JbblogPreviewTask extends JbblogShowBase
 			$post_owner = JTable::getInstance( 'BlogUsers' , 'Table' );
 			$post_owner->load($row->created_by);
 
-			if ($post_owner->avatar!=='')
-			{
-				$row->avatar = JUri::root().'images/joomblog/avatar/'.$post_owner->avatar;
-			}
-			else 
-			{
-				$row->avatar = JUri::root().'components/com_joomblog/images/user.png';
-			}
-			$row->avatar = '<img src="'.$row->avatar.'"/>';
-			
-			$row->afterContent = '';
+            if ( $post_owner->avatar ) {
+                $row->avatar = JUri::root() . 'images/joomblog/avatar/' . $post_owner->avatar;
+            } else if($_JB_CONFIGURATION->get('avatar') == 'none') {
+                $row->avatar = '';
+            } else {
+                $row->avatar = JUri::root() . 'components/com_joomblog/images/user.png';
+            }
+            if($row->avatar) {
+                $row->avatar = '<img src="' . $row->avatar . '"/>';
+            }
+
+            $row->afterContent = '';
 			$row->beforeContent = '';
 			
 
