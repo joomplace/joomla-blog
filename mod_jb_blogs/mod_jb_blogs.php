@@ -12,13 +12,13 @@
 defined('_JEXEC') or die('Restricted access');
 
 if(!defined('JB_COM_PATH'))
-	require_once( JPATH_ROOT.DS.'components'.DS.'com_joomblog'.DS.'defines.joomblog.php');
+	require_once( JPATH_ROOT.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_joomblog'.DIRECTORY_SEPARATOR.'defines.joomblog.php');
 
-require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_joomblog'.DS.'config.joomblog.php');
-require_once(JB_COM_PATH.DS.'libraries'.DS.'datamanager.php');
-require_once(JB_COM_PATH.DS.'functions.joomblog.php');
+require_once(JPATH_ROOT.DIRECTORY_SEPARATOR.'administrator'.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_joomblog'.DIRECTORY_SEPARATOR.'config.joomblog.php');
+require_once(JB_COM_PATH.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'datamanager.php');
+require_once(JB_COM_PATH.DIRECTORY_SEPARATOR.'functions.joomblog.php');
 
-require_once(JPATH_SITE.DS.'components'.DS.'com_joomblog'.DS.'router.php');
+require_once(JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_joomblog'.DIRECTORY_SEPARATOR.'router.php');
 
 global $_JB_CONFIGURATION;
 $count_blogs = $params->get('count_blogs');
