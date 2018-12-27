@@ -159,12 +159,16 @@ class JbblogRssTask extends JbblogBaseController
 					$item = new FeedItem();
 					$item->title = $row->title != "" ? $row->title : "...";
 					$item->title = jbUnhtmlspecialchars($item->title);
+                    $itemDesc = '';
 
                     switch($feedType)
                     {
                         case 0:
-                            if(!empty($row->introtext) && !empty($row->fulltext)){
-                                $itemDesc = $row->introtext . $row->fulltext;
+                            if(!empty($row->introtext)){
+                                $itemDesc = $row->introtext;
+                                if(!empty($row->fulltext)){
+                                    $itemDesc = $itemDesc . $row->fulltext;
+                                }
                                 $itemDesc = str_replace('&nbsp;', ' ', $itemDesc);
                             }
                         break;
@@ -180,8 +184,12 @@ class JbblogRssTask extends JbblogBaseController
                             $desc_length_max = $countOfChars;
                             $dots="...";
                             $spacebar= ' ';
-                            if(!empty($row->introtext) && !empty($row->fulltext)){
-                                $text = strip_tags($row->introtext.$row->fulltext);
+                            $text = '';
+                            if(!empty($row->introtext)){
+                                $text = strip_tags($row->introtext);
+                                if(!empty($row->fulltext)){
+                                    $text = $text . strip_tags($row->fulltext);
+                                }
                                 $text = str_replace('&nbsp;', $spacebar, $text);
                                 if(strlen($text)>$desc_length_max)
                                 {
@@ -230,15 +238,16 @@ class JbblogRssTask extends JbblogBaseController
 					    $metadata_json = new stdClass();
 					    $metadata_json->page_image = '';
 					}*/
-                    if($row->defaultimage!=''){
+
+                    $page_image = '';
+                    if(!empty($row->defaultimage)){
                         $page_image = $row->defaultimage;
                     }
-                    else{
-                        $page_image = $row->defaultimage;
+                    if($page_image) {
+                        $itemDesc = '<img height="72" align="left" src="' . JUri::root() . substr($page_image, 1) . '">' . $itemDesc;
                     }
 
-					$itemDesc = '<img height="72" align="left" src="'.$page_image.'">'. $itemDesc;
-					$itemDesc = jbCloseTags($itemDesc);
+                    $itemDesc = jbCloseTags($itemDesc);
 					$item->description	= $itemDesc;
 
 					$item->link			= html_entity_decode(  $row->permalink  );
