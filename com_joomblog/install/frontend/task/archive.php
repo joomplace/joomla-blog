@@ -227,9 +227,13 @@ class JbblogArchiveTask extends JbblogBaseController{
 		$month = date('m', $date);
 		$day   = date('d', $date);
 		$year  = date('Y', $date);
-		
-		$wday = JDDayOfWeek(GregorianToJD($month, 1, $year), 0);
-		
+
+        if (function_exists('jddayofweek') && function_exists('gregoriantojd')) {
+            $wday = jddayofweek(gregoriantojd($month, 1, $year), 0);
+        } else {
+            $wday = date("N", time()) - 1;
+        }
+
 		if ($wday == 0) 
 			$wday = 7;
 		$n = - ($wday - ($sundayfirst? 1: 2));
