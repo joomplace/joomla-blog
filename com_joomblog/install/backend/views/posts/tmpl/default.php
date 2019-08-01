@@ -106,7 +106,7 @@ if ($sortedByOrder)
 			<thead>
 				<tr>
 					<th width="1%" class="center">
-						<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+                        <input type="checkbox" name="checkall-toggle" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this);" />
 					</th>
 					<th>
 						<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'c.title', $listDirn, $listOrder); ?>

@@ -91,7 +91,7 @@ $search 	= $this->escape($this->state->get('filter.search'));
 			<thead>
 				<tr>
 					<th width="1%" >
-						<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+                        <input type="checkbox" name="checkall-toggle" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this);" />
 					</th>
 					<th>
 						<?php echo JHtml::_('grid.sort', 'COM_JOOMBLOG_FIELD_HEADING_TAG', 'i.name', $listDirn, $listOrder); ?>
