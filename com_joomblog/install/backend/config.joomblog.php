@@ -155,7 +155,7 @@ if (!defined('JOOMBLOG_CONFIG_CLASS'))
 			/**
 			 * @todo: Correctly process case when cfg variable is empty. Temporary showing notice asking to save configuration
 			 */
-			if (sizeof($cfg))
+			if (!empty($cfg))
 			{
 				foreach ($cfg as $key => $val)
 				{

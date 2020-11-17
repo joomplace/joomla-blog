@@ -13,12 +13,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class modJbPopularbloggersHelper
 {
-	function getList(&$params)
+    public static function getList(&$params)
 	{
 		global $_JB_CONFIGURATION;
 
 		$limit = $params->get('numPopularBlogs', 5);
-		$db =& JFactory::getDBO();
+		$db = JFactory::getDBO();
 
 		if (!is_numeric($limit))
 			$limit = 5;
@@ -37,12 +37,12 @@ class modJbPopularbloggersHelper
 		return $rows;
 	}
 
-	function getCountPosts($uid)
+    public static function getCountPosts($uid)
 	{
 		global $_JB_CONFIGURATION;
 
-		$user =& JFactory::getUser();
-		$db =& JFactory::getDBO();
+		$user = JFactory::getUser();
+		$db = JFactory::getDBO();
 
 		//Get current timezone
 		$userTz = JFactory::getUser()->getParam('timezone');
@@ -52,7 +52,7 @@ class modJbPopularbloggersHelper
 			$timeZone = $userTz;
 		}
 
-		$date =& JFactory::getDate('now', $timeZone);
+		$date = JFactory::getDate('now', $timeZone);
 
 		$sections = implode(",", jbGetCategoryArray($_JB_CONFIGURATION->get('managedSections')));
 
@@ -63,7 +63,7 @@ class modJbPopularbloggersHelper
 		$db->setQuery($strSQL);
 		$rows = $db->loadObjectList();
 
-		if (sizeof($rows))
+		if (!empty($rows))
 		{
 			for ($i = 0; $i < count($rows); $i++)
 			{
@@ -73,7 +73,7 @@ class modJbPopularbloggersHelper
 					" LEFT JOIN `#__joomblog_privacy` AS `p` ON `p`.`postid`=`lb`.`id` AND `p`.`isblog`=1 " .
 					" WHERE b.content_id=" . $row->id . " AND lb.id = b.blog_id AND lb.approved=1 AND lb.published=1 ");
 				$blogs = $db->loadObjectList();
-				if (sizeof($blogs))
+				if (!empty($blogs))
 				{
 					switch ($blogs[0]->posts)
 					{

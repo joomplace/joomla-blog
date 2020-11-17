@@ -112,13 +112,12 @@ class JbblogBrowseBase extends JbblogBaseController
 				}
 			}
 
-            //$query = "SELECT m.* FROM #__joomblog_modules AS jm, #__modules AS m WHERE jm.name = m.module AND jm.published = 1 GROUP BY (m.module)  ";
             $query = "SELECT m.* FROM #__joomblog_modules AS jm, #__modules AS m WHERE jm.name = (CONVERT (m.module USING utf8) COLLATE utf8_unicode_ci) AND jm.published = 1 GROUP BY (m.module)  ";
 			$db->setQuery($query);
 			$rows = $db->loadObjectList();
+
 			$document = JFactory::getDocument();
 			$renderer = $document->loadRenderer('module');
-
 
 			foreach ($rows as $module)
 			{
