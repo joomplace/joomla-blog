@@ -25,7 +25,7 @@ require_once(dirname(__FILE__) . '/helper.php');
 
 global $_JB_CONFIGURATION;
 $mainframe = JFactory::getApplication();
-$doc =& JFactory::getDocument(); 
+$doc = JFactory::getDocument();
 	
 $file	= JURI::base().'components/com_joomblog/templates/_default/module.tags.css';
 

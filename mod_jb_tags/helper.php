@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class modJbTagsHelper
 {
-	function getList(&$params)
+    public static function getList(&$params)
 	{
 		global $mainframe;
 
@@ -24,7 +24,7 @@ class modJbTagsHelper
 		$jbItemid = jbGetItemID();
 		$objFrontView = new JbblogTagslistTask();
 		$tagCloud = $objFrontView->display('id="blog-tags-mod"', $wrapperTag);
-		$mainframe =& JFactory::getApplication();
+		$mainframe = JFactory::getApplication();
 
 		$tagCloud = str_ireplace("<p>", "", $tagCloud);
 		$tagCloud = str_ireplace("</p>", "", $tagCloud);

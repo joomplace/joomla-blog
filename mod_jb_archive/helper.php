@@ -22,11 +22,11 @@ require_once (JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'c
 
 class modJbArchivePostsHelper
 {
-	function getList(&$params)
+    public static function getList(&$params)
 	{
     global $_JB_CONFIGURATION;
 	
-		$db = &JFactory::getDBO();
+		$db = JFactory::getDBO();
 		
     $managedSections = $_JB_CONFIGURATION->managedSections;
 
@@ -68,8 +68,8 @@ class modJbArchivePostsHelper
 		}
 		return $list;
 	}
-	
-	function getCountByYearAndMonth($created_year=0, $created_month=0)
+
+    public static function getCountByYearAndMonth($created_year=0, $created_month=0)
 	{
 	    $filter = array(
                 'limit'=> 5,
@@ -81,8 +81,8 @@ class modJbArchivePostsHelper
 	    $entries = mb_get_entries($filter, true);
 	    return $entries;
 	}
-	
-	function getItemid(){
+
+    public static function getItemid(){
 		$Itemid = JRequest::getInt('Itemid');
 	
         $menu = JFactory::getApplication()->getMenu();

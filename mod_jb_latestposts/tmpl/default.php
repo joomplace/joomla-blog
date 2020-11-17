@@ -21,7 +21,9 @@ defined('_JEXEC') or die('Restricted access');
 		$timeZone = $userTz;
 	}
 	$limit = $params->get('numLatestEntries');
-	
+
+	$i = 0;
+
 	foreach ($list as $row ):
 		if ($i < $limit ){
 		$i++;
